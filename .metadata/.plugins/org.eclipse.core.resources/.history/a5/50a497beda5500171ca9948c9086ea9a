@@ -1,0 +1,40 @@
+--
+-- Sample dataset containing a number of Hotels in various Cities across the world.  The reviews are entirely fictional :)
+--
+
+-- =================================================================================================
+-- AUSTRALIA
+
+
+insert into restaurant(id, category, description, name) values (1,'KINESKI','dobar restoran','CAO CAO')
+insert into restaurant(id, category, description, name) values (2,'ITALIJANSKI','superiska','Senjorita')
+insert into restaurant(id, category, description, name) values (3,'KINESKI','mirisljavi','SUNG YAO')
+insert into restaurant(id, category, description, name) values (4,'ITALIJANSKI','dobar','Bato i seka')
+
+insert into userr(id, email, first, last_name, name, password, user_type) values (11,'gogirafa@gmail.com',1,'Divovic','Goran','divovic','GUEST')
+
+insert into userr(id, email, password, user_type, first) values (3, 'ko','ko','WAITER', true)
+INSERT INTO waiter(id, email, name) VALUES (1, 'ko', 'ko')
+
+insert into userr(id, email, password, user_type, first) values (4, 'bar','bar','BARTENDER', true)
+INSERT INTO bartender(id, email) VALUES (1, 'bar')
+
+insert into userr(id, email, password, user_type, first) values (5, 'ku','ku','COOK', true)
+INSERT INTO cook(id, email, typee) VALUES (1, 'ku', 'ALL')
+
+insert into userr(id, email, password, user_type) values (6, 'salata','salata','COOK')
+INSERT INTO cook(id, email, typee) VALUES (2, 'salata', 'SALATA')
+insert into userr(id, email, password, user_type) values (7, 'pecenje','pecenje','COOK')
+INSERT INTO cook(id, email, typee) VALUES (3, 'pecenje', 'PECENJE')
+insert into userr(id, email, password, user_type) values (8, 'kuvanje','kuvanje','COOK')
+INSERT INTO cook(id, email, typee) VALUES (4, 'kuvanje', 'KUVANJE')
+
+insert into food values (1, "", 5, "Cevapi", 10, "PECENJE")
+insert into food values (2, "", 5, "Sarma", 10, "KUVANJE")
+insert into food values (3, "", 5, "Salata", 10, "SALATA")
+insert into drink values (1, "", 5, "Pivo", 3)
+insert into drink  values (2, "", 5, "Rakija",5)
+
+insert into userr(id, email, password, user_type) values (2, 'mi', 'milenko', 'RESTAURANTMANAGER')
+insert into userr(id, email, password, user_type) values (1, 'admin', 'admin', 'SYSTEMMANAGER')
+INSERT INTO restaurant_manager(id, email, name, password) VALUES ('1', 'mi', 'milenko', 'milenko')
