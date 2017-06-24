@@ -4,6 +4,7 @@
 	<groupId>xml</groupId>
 	<artifactId>CentralBank</artifactId>
 	<version>0.0.1.</version>
+	<packaging>war</packaging>
 
 	<parent>
 		<groupId>org.springframework.boot</groupId>
@@ -38,30 +39,71 @@
 			<scope>test</scope>
 		</dependency>
 
+		<dependency>
+			<groupId>org.springframework.boot</groupId>
+			<artifactId>spring-boot-starter-web-services</artifactId>
+		</dependency>
+
+		<dependency>
+			<groupId>wsdl4j</groupId>
+			<artifactId>wsdl4j</artifactId>
+		</dependency>
+		
+		<dependency>
+               <groupId>org.springframework.ws</groupId>
+               <artifactId>spring-ws-core</artifactId>
+        </dependency>
+        
+        <dependency>
+		    <groupId>com.sun.xml.ws</groupId>
+		    <artifactId>jaxws-rt</artifactId>
+		    <version>2.2.10</version>
+		</dependency>
+		
 	</dependencies>
 
 	<build>
-		<plugins>
-			<plugin>
-				<groupId>org.springframework.boot</groupId>
-				<artifactId>spring-boot-maven-plugin</artifactId>
-			</plugin>
-			<plugin>
-				<groupId>org.apache.maven.plugins</groupId>
-				<artifactId>maven-war-plugin</artifactId>
-				<configuration>
-					<warSourceDirectory>WebContent</warSourceDirectory>
-					<warName>CentralBank</warName>
-					<failOnMissingWebXml>false</failOnMissingWebXml>
-				</configuration>
-			</plugin>
-			<plugin>
-				<groupId>org.apache.tomcat.maven</groupId>
-				<artifactId>tomcat7-maven-plugin</artifactId>
-				<version>2.2</version>
-			</plugin>
-		</plugins>
+			<plugins>
+				<plugin>
+					<groupId>org.springframework.boot</groupId>
+					<artifactId>spring-boot-maven-plugin</artifactId>
+				</plugin>
+				<plugin>
+					<groupId>org.apache.maven.plugins</groupId>
+					<artifactId>maven-war-plugin</artifactId>
+					<configuration>
+						<warSourceDirectory>WebContent</warSourceDirectory>
+						<warName>CentralBank</warName>
+						<failOnMissingWebXml>false</failOnMissingWebXml>
+					</configuration>
+				</plugin>
+				<plugin>
+					<groupId>org.apache.tomcat.maven</groupId>
+					<artifactId>tomcat7-maven-plugin</artifactId>
+					<version>2.2</version>
+				</plugin>
+
+				<plugin>
+					<groupId>org.codehaus.mojo</groupId>
+					<artifactId>jaxb2-maven-plugin</artifactId>
+					<executions>
+						<execution>
+							<id>xjc</id>
+							<goals>
+								<goal>xjc</goal>
+							</goals>
+						</execution>
+					</executions>
+					<configuration>
+						<schemaDirectory>${basedir}/src/main/xsd</schemaDirectory>
+						<outputDirectory>${basedir}/src/main/java</outputDirectory>
+						<packageName>centralbank.bean</packageName>
+						<clearOutputDir>false</clearOutputDir>
+					</configuration>
+
+				</plugin>
+
+			</plugins>
 	</build>
 
-	<packaging>war</packaging>
 </project>

@@ -1,0 +1,145 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<xs:schema xmlns:xs="http://www.w3.org/2001/XMLSchema" elementFormDefault="qualified"
+    targetNamespace="http://www.ftn.uns.ac.rs/faktura" xmlns:fk="http://www.ftn.uns.ac.rs/faktura"
+    xmlns:gl="http://www.ftn.uns.ac.rs/xml">
+    <xs:import namespace="http://www.ftn.uns.ac.rs/xml" schemaLocation="Globals.xsd"/>
+    <xs:element name="faktura">
+        <xs:complexType>
+            <xs:sequence>
+                <xs:element name="zaglavlje_fakture">
+                    <xs:complexType>
+                        <xs:sequence>
+                            <xs:element name="id_poruke" type="gl:TIDPoruke"> </xs:element>
+                            <xs:element name="broj_racuna">
+                                <xs:simpleType>
+                                    <xs:restriction base="xs:positiveInteger">
+                                        <xs:totalDigits value="6"/>
+                                        <xs:pattern value=""/>
+                                    </xs:restriction>
+                                </xs:simpleType>
+                            </xs:element>
+                            <xs:element name="datum_racuna" type="xs:date"/>
+                            <xs:element name="vrednost_robe" type="gl:TIznos"> </xs:element>
+                            <xs:element name="vrednost_usluga" type="gl:TIznos"> </xs:element>
+                            <xs:element name="ukupno_roba_i_usluge" type="gl:TIznos"> </xs:element>
+                            <xs:element name="ukupan_rabat" type="gl:TIznos"> </xs:element>
+                            <xs:element name="ukupan_porez" type="gl:TIznos"> </xs:element>
+                            <xs:element name="oznaka_valute">
+                                <xs:simpleType>
+                                    <xs:restriction base="gl:TOznaka_valute">
+                                        <xs:pattern value="[a-z]{3}|[A-Z]{3}"/>
+                                    </xs:restriction>
+                                </xs:simpleType>
+                            </xs:element>
+                            <xs:element name="iznos_za_uplatu" type="gl:TIznos"> </xs:element>
+                            <xs:element name="uplata_na_racun">
+                                <xs:simpleType>
+                                    <xs:restriction base="gl:TBrojRacuna"> </xs:restriction>
+                                </xs:simpleType>
+                            </xs:element>
+                            <xs:element name="datum_valute" type="xs:date"/>
+                            <xs:element name="kupac" type="fk:TPreduzece"> </xs:element>
+                            <xs:element name="dobavljac" type="fk:TPreduzece"> </xs:element>
+                        </xs:sequence>
+                    </xs:complexType>
+                </xs:element>
+                <xs:element maxOccurs="unbounded" name="stavka_fakture">
+                    <xs:complexType>
+                        <xs:sequence>
+                            <xs:element name="redni_broj">
+                                <xs:simpleType>
+                                    <xs:restriction base="xs:positiveInteger">
+                                        <xs:totalDigits value="3"/>
+                                    </xs:restriction>
+                                </xs:simpleType>
+                            </xs:element>
+                            <xs:element name="naziv_robe_ili_usluge">
+                                <xs:simpleType>
+                                    <xs:restriction base="xs:string">
+                                        <xs:maxLength value="120"/>
+                                    </xs:restriction>
+                                </xs:simpleType>
+                            </xs:element>
+                            <xs:element name="kolicina">
+                                <xs:simpleType>
+                                    <xs:restriction base="xs:decimal">
+                                        <xs:totalDigits value="10"/>
+                                        <xs:fractionDigits value="2"/>
+                                    </xs:restriction>
+                                </xs:simpleType>
+                            </xs:element>
+                            <xs:element name="jedinica_mere">
+                                <xs:simpleType>
+                                    <xs:restriction base="xs:string">
+                                        <xs:maxLength value="6"/>
+                                    </xs:restriction>
+                                </xs:simpleType>
+                            </xs:element>
+                            <xs:element name="jedinicna_cena">
+                                <xs:simpleType>
+                                    <xs:restriction base="xs:decimal">
+                                        <xs:totalDigits value="10"/>
+                                        <xs:fractionDigits value="2"/>
+                                    </xs:restriction>
+                                </xs:simpleType>
+                            </xs:element>
+                            <xs:element name="vrednost">
+                                <xs:simpleType>
+                                    <xs:restriction base="xs:decimal">
+                                        <xs:totalDigits value="12"/>
+                                        <xs:fractionDigits value="2"/>
+                                    </xs:restriction>
+                                </xs:simpleType>
+                            </xs:element>
+                            <xs:element name="procenat_rabata">
+                                <xs:simpleType>
+                                    <xs:restriction base="xs:decimal">
+                                        <xs:totalDigits value="5"/>
+                                        <xs:fractionDigits value="2"/>
+                                    </xs:restriction>
+                                </xs:simpleType>
+                            </xs:element>
+                            <xs:element name="iznos_rabata">
+                                <xs:simpleType>
+                                    <xs:restriction base="xs:decimal">
+                                        <xs:totalDigits value="12"/>
+                                        <xs:fractionDigits value="2"/>
+                                    </xs:restriction>
+                                </xs:simpleType>
+                            </xs:element>
+                            <xs:element name="umanjeno_za_rabat">
+                                <xs:simpleType>
+                                    <xs:restriction base="xs:decimal">
+                                        <xs:totalDigits value="12"/>
+                                        <xs:fractionDigits value="2"/>
+                                    </xs:restriction>
+                                </xs:simpleType>
+                            </xs:element>
+                            <xs:element name="ukupan_porez">
+                                <xs:simpleType>
+                                    <xs:restriction base="xs:decimal">
+                                        <xs:totalDigits value="12"/>
+                                        <xs:fractionDigits value="2"/>
+                                    </xs:restriction>
+                                </xs:simpleType>
+                            </xs:element>
+                        </xs:sequence>
+                    </xs:complexType>
+                </xs:element>
+            </xs:sequence>
+        </xs:complexType>
+    </xs:element>
+    <xs:complexType name="TPreduzece">
+        <xs:sequence>
+            <xs:element name="naziv">
+                <xs:simpleType>
+                    <xs:restriction base="xs:string">
+                        <xs:maxLength value="55"/>
+                    </xs:restriction>
+                </xs:simpleType>
+            </xs:element>
+            <xs:element name="adresa" type="gl:TAdresa"> </xs:element>
+            <xs:element name="pib" type="gl:TPIB"> </xs:element>
+        </xs:sequence>
+    </xs:complexType>
+</xs:schema>
