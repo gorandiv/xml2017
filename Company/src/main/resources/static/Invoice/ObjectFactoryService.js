@@ -28,6 +28,8 @@ invoiceModule.service('objectFactoryService', function() {
 	}
 	
 	this.InvoiceItem = function() {
+		this.proizvodIliUsluga = null    // strip before send
+		this.show = false;				// strip before send
 		this.redniBroj = -1;
 		this.nazivRobeIliUsluge = "";
 		this.kolicina = 1;

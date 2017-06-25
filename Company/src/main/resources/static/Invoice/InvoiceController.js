@@ -4,10 +4,10 @@ invoiceModule.controller('invoiceController', [
 		'objectFactoryService',
 		'invoiceService',
 		'companyService',
+		'productOrServiceService',
 		function($scope, $interval, objectFactoryService, invoiceService,
-				companyService) {
+				companyService, productOrServiceService) {
 
-			// load first two
 			$scope.sentInvoices = [];
 			$scope.receivedInvoices = [];
 			$scope.createdInvoices = [];
@@ -30,6 +30,7 @@ invoiceModule.controller('invoiceController', [
 				});
 
 			}
+			
 			getSentInvoices();
 			getReceivedInvoices();
 
@@ -38,11 +39,23 @@ invoiceModule.controller('invoiceController', [
 			$scope.receivedInvoicesInterval = $interval(getReceivedInvoices,
 					intervalInMS);
 
-			// load companies and goods, set this company and remove from
-			// companies
 			$scope.thisCompany = {};
 			$scope.companies = [];
-			$scope.servicesOrGoods = [];
+			$scope.productsOrServices = [];
+			
+			companyService.getThisCompany().then(function(response) {
+				$scope.thisCompany = response.data;
+			});
+			
+			companyService.getCompanies().then(function(response) {
+				console.log(response.data)
+				$scope.companies = response.data;
+			});
+			
+			productOrServiceService.getCompanyProductsOrServices().then(function(response) {
+				$scope.productsOrServices = response.data;
+			});
+			
 
 			$scope.data = new objectFactoryService.Data();
 			$scope.invoice = new objectFactoryService.Invoice($scope.thisCompany);
@@ -51,5 +64,23 @@ invoiceModule.controller('invoiceController', [
 				$scope.invoice.stavkaFakture
 						.push(new objectFactoryService.InvoiceItem());
 			}
+			
+			$scope.removeInvoiceItem = function(invoiceItem) {
+				$scope.invoice.stavkaFakture
+				.splice($scope.invoice.stavkaFakture.indexOf(invoiceItem), 1);
+			}
+			
+			$scope.setInvoiceItemValues = function(invoiceItem, check) {
+				invoiceService.setInvoiceItemValues(invoiceItem, check);
+				
+			}
+			$scope.sendInvoice = function(invoice) {
+				invoiceService.sendInvoice(invoice);
+			}
+			
+			$scope.$on('$destroy',function(){
+				$interval.cancel($scope.sentInvoicesInterval);
+				$interval.cancel($scope.receivedInvoicesInterval);
+			});
 
 		} ]);

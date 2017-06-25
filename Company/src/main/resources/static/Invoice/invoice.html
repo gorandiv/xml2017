@@ -1,12 +1,34 @@
+
 <div class="container-fluid">
 
 	<div class="form-group">
 		<button type="button" class="btn btn-primary" data-toggle="modal"
 			data-target="#invoiceModal">Kreiraj fakturu</button>
 	</div>
-
-	<div class="page-header">Primljene fakture:</div>
-	<table class="table table-hover">
+	<h3>Kreirane fakture:</h3>
+	<table class="table table-bordered">
+		<thead>
+			<tr>
+				<th>Naziv kupca</th>
+				<th>Adresa kupca</th>
+				<th>Iznos za uplatu</th>
+				<th></th>
+			</tr>
+		</thead>
+		<tbody>
+			<tr ng-repeat="invoice in createdInvoices">
+				<td>{{ invoice.zaglavljeFakture.nazivKupca }}</td>
+				<td>{{ invoice.zaglavljeFakture.adresaKupca }}</td>
+				<td>{{ invoice.zaglavljeFakture.iznosZaUplatu }}</td>
+				<td><div class="form-group">
+						<button type="button" class="btn btn-primary btn-sm"
+							ng-click="sendInvoice(invoice)">Posalji fakturu</button>
+					</div></td>
+			</tr>
+		</tbody>
+	</table>
+	<h3>Primljene fakture:</h3>
+	<table class="table table-bordered">
 		<thead>
 			<tr>
 				<th>Datum</th>
@@ -25,8 +47,8 @@
 			</tr>
 		</tbody>
 	</table>
-	<div class="page-header">Poslate fakture:</div>
-	<table class="table table-hover">
+	<h3>Poslate fakture:</h3>
+	<table class="table table-bordered">
 		<thead>
 			<tr>
 				<th>Datum</th>
@@ -62,52 +84,74 @@
 						</select>
 					</div>
 					<div class="form-group">
-						<button type="button" class="btn btn-primary btn-small">Dodaj
-							stavku</button>
+						<button type="button" class="btn btn-primary btn-sm"
+							ng-click="addInvoiceItem()">Dodaj stavku</button>
 					</div>
 					<div ng-repeat="invoiceItem in invoice.stavkaFakture">
+						<hr
+							style="height: 1px; border: none; color: #333; background-color: #333;" />
+						<button type="button" class="close" aria-label="Close"
+							ng-click="removeInvoiceItem(invoiceItem)">
+							<span aria-hidden="true">&times;</span>
+						</button>
 						<div class="form-group">
 							<label for="productOrService" class="control-label">
-								Kupac: </label> <select
-								ng-options="productOrService as productOrService.ime for productOrService in productOrServices track by productOrService.id"
+								Proizvod ili usluga: </label> <select
+								ng-options="productOrService as productOrService.ime for productOrService in productsOrServices track by productOrService.id"
 								class="form-control" id="productOrService"
-								ng-change="setInvoiceItemValues(invoice, 1)"
-								ng-model="data.invoiceItem">
+								ng-change="setInvoiceItemValues(invoiceItem, true)"
+								ng-model="invoiceItem.proizvodIliUsluga">
 								<option style="background-color: #ccc" value="">Izaberi
 									proizvod ili uslugu...</option>
 							</select>
 						</div>
-						<div class="form-group row">
-							<label for="amount" class="control-label"> Količina: </label> <input
-								type="number" min="1" class="form-control col-md-1" id="amount"
-								ng-change="setInvoiceItemValues(invoice, 2)" ng-model="data.amount"
-								placeholder="Unesi količinu">
+						<div ng-show="invoiceItem.show">
+							<div class="row">
+								<div class="col-md-3">
+									<div class="form-group">
+										<label for="amount" class="control-label"> Količina: </label>
+										<input type="number" min="1" class="form-control" id="amount"
+											ng-change="setInvoiceItemValues(invoiceItem, false)"
+											ng-model="invoiceItem.kolicina" placeholder="Unesi količinu">
+									</div>
+									<div class="form-group">
+										<label for="rebate" class="control-label"> Rabat
+											uprocentima: </label> <input type="number" min="0" max="100"
+											class="form-control" id="rebate"
+											ng-change="setInvoiceItemValues(invoiceItem, false)"
+											ng-model="invoiceItem.procenatRabata"
+											placeholder="Unesi rabat">
+									</div>
+								</div>
+								<div class="col-md-9">
+									<div class="row">
+										<label class="col-md-6">Jedinica mere:
+											{{invoiceItem.jedinicaMere}}</label> <label class="col-md-6">Jedinicna
+											cena: {{invoiceItem.jedinicnaCena}}</label>
+									</div>
+									<div class="row">
+										<label class="col-md-6">Ukupno:
+											{{invoiceItem.vrednost}}</label> <label class="col-md-6">Iznos
+											rabata: {{invoiceItem.iznosRabata}}</label>
+									</div>
+									<div class="row">
+										<label class="col-md-6">Umanjeno za rabat:
+											{{invoiceItem.umanjenoZaRabat}}</label> <label class="col-md-6">Ukupan
+											porez: {{invoiceItem.ukupanPorez}}</label>
+									</div>
+								</div>
+							</div>
 						</div>
-						<div class="form-group row">
-							<label for="rebate" class="control-label"> Rabat u procentima: </label> <input
-								type="number" min="0" max="100" class="form-control col-md-1" id="rebate"
-								ng-change="setInvoiceItemValues(invoice, 3)" ng-model="data.rebate"
-								placeholder="Unesi rabat">
-						</div>
-						<label>
-							Jedinica mere: {{invoice.jedinicaMere}} Jedinicna cena: {{invoice.jedinicnaCena}}
-						</label>
-						<label>
-							
-						</label>
-						
-
 					</div>
-
 				</div>
 				<div class="modal-footer">
+					<button type="button" class="btn btn-default pull-left"
+						data-dismiss="modal" ng-click="createInvoice()">Pošalji</button>
 					<button type="button" class="btn btn-default pull-right"
 						data-dismiss="modal">Odustani</button>
-					<button type="button" class="btn btn-default" data-dismiss="modal"
-						ng-click="createInvoice()">Pošalji</button>
 				</div>
 			</div>
 
 		</div>
-
 	</div>
+</div>
