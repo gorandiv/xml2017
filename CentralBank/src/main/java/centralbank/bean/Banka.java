@@ -12,6 +12,8 @@ import javax.persistence.Id;
 import javax.persistence.OneToMany;
 import javax.persistence.Table;
 
+import com.fasterxml.jackson.annotation.JsonManagedReference;
+
 @Entity
 @Table(name = "banka")
 public class Banka implements Serializable {
@@ -33,7 +35,11 @@ public class Banka implements Serializable {
 	private String adresaCentralneBanke;
 
 	@OneToMany(cascade = CascadeType.ALL, mappedBy = "banka")
+	@JsonManagedReference
 	private List<Firma> firme;
+
+	@Column(name = "swift_kod", unique = true, nullable = false)
+	private String swiftKod;
 
 	public Banka() {
 	}
@@ -76,6 +82,14 @@ public class Banka implements Serializable {
 
 	public void setFirme(List<Firma> firme) {
 		this.firme = firme;
+	}
+
+	public String getSwiftKod() {
+		return swiftKod;
+	}
+
+	public void setSwiftKod(String swiftKod) {
+		this.swiftKod = swiftKod;
 	}
 
 }

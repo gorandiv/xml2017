@@ -9,8 +9,11 @@ import javax.persistence.Entity;
 import javax.persistence.GeneratedValue;
 import javax.persistence.GenerationType;
 import javax.persistence.Id;
+import javax.persistence.JoinColumn;
 import javax.persistence.ManyToOne;
 import javax.persistence.Table;
+
+import com.fasterxml.jackson.annotation.JsonBackReference;
 
 @Entity
 @Table(name = "proizvod_ili_usluga")
@@ -36,6 +39,8 @@ public class ProizvodIliUsluga implements Serializable {
 	private BigDecimal porez;
 
 	@ManyToOne(cascade = CascadeType.ALL)
+	@JoinColumn(name="firma_id")
+	@JsonBackReference
 	private Firma firma;
 
 	public ProizvodIliUsluga() {

@@ -22,7 +22,6 @@ public class SpringHibernateInit {
 		properties.put("spring.datasource.platform", "c");
 		app.setDefaultProperties(properties);
 		app.run(args);
-		System.out.println("egg");
 	}
 	public static void bankD(String[] args) {
 		SpringApplication app = new SpringApplication(SpringHibernateInit.class);
@@ -31,7 +30,6 @@ public class SpringHibernateInit {
 		properties.put("spring.datasource.platform", "d");
 		app.setDefaultProperties(properties);
 		app.run(args);
-		System.out.println("eg412g");
 	}
 }
 

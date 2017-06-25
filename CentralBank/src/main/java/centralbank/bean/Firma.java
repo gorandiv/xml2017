@@ -9,9 +9,13 @@ import javax.persistence.Entity;
 import javax.persistence.GeneratedValue;
 import javax.persistence.GenerationType;
 import javax.persistence.Id;
+import javax.persistence.JoinColumn;
 import javax.persistence.ManyToOne;
 import javax.persistence.OneToMany;
 import javax.persistence.Table;
+
+import com.fasterxml.jackson.annotation.JsonBackReference;
+import com.fasterxml.jackson.annotation.JsonManagedReference;
 
 @Entity
 @Table(name = "firma")
@@ -37,12 +41,15 @@ public class Firma implements Serializable {
 	private String brojRacuna;
 
 	@ManyToOne(cascade = CascadeType.ALL)
+	@JoinColumn(name="banka_id")
+	@JsonBackReference
 	private Banka banka;
 
 	@Column(name = "ip", unique = true, nullable = false)
 	private String ip;
 
 	@OneToMany(cascade = CascadeType.ALL, mappedBy = "firma")
+	@JsonManagedReference
 	private List<ProizvodIliUsluga> proizvodiIliUsluge;
 
 	public Firma() {
