@@ -1,0 +1,113 @@
+<div class="container-fluid">
+
+	<div class="form-group">
+		<button type="button" class="btn btn-primary" data-toggle="modal"
+			data-target="#invoiceModal">Kreiraj fakturu</button>
+	</div>
+
+	<div class="page-header">Primljene fakture:</div>
+	<table class="table table-hover">
+		<thead>
+			<tr>
+				<th>Datum</th>
+				<th>Naziv dobavljaca</th>
+				<th>Adresa dobavljaca</th>
+				<th>Iznos za uplatu</th>
+			</tr>
+		</thead>
+		<tbody>
+			<tr ng-repeat="invoice in receivedInvoices"
+				ng-click="showInvoice(invoice);">
+				<td>{{ invoice.datumRacuna }}</td>
+				<td>{{ invoice.nazivDobavljaca }}</td>
+				<td>{{ invoice.adresaDobavljaca }}</td>
+				<td>{{ invoice.iznosZaUplatu }}</td>
+			</tr>
+		</tbody>
+	</table>
+	<div class="page-header">Poslate fakture:</div>
+	<table class="table table-hover">
+		<thead>
+			<tr>
+				<th>Datum</th>
+				<th>Naziv kupca</th>
+				<th>Adresa kupca</th>
+				<th>Iznos za uplatu</th>
+			</tr>
+		</thead>
+		<tbody>
+			<tr ng-repeat="invoice in sentInvoices"
+				ng-click="showInvoice(invoice);">
+				<td>{{ invoice.datumRacuna }}</td>
+				<td>{{ invoice.nazivKupca }}</td>
+				<td>{{ invoice.adresaKupca }}</td>
+				<td>{{ invoice.iznosZaUplatu }}</td>
+			</tr>
+		</tbody>
+	</table>
+	<!-- Invoice Modal -->
+	<div id="invoiceModal" class="modal fade" role="dialog">
+		<div class="modal-dialog">
+			<div class="modal-header">Faktura</div>
+			<!-- Modal content-->
+			<div class="modal-content">
+				<div class="modal-body">
+
+					<div class="form-group">
+						<label for="buyer" class="control-label"> Kupac: </label> <select
+							ng-options="company as company.ime for company in companies track by company.id"
+							class="form-control" id="buyer" ng-model="buyer">
+							<option style="background-color: #ccc" value="">Izaberi
+								kupca...</option>
+						</select>
+					</div>
+					<div class="form-group">
+						<button type="button" class="btn btn-primary btn-small">Dodaj
+							stavku</button>
+					</div>
+					<div ng-repeat="invoiceItem in invoice.stavkaFakture">
+						<div class="form-group">
+							<label for="productOrService" class="control-label">
+								Kupac: </label> <select
+								ng-options="productOrService as productOrService.ime for productOrService in productOrServices track by productOrService.id"
+								class="form-control" id="productOrService"
+								ng-change="setInvoiceItemValues(invoice, 1)"
+								ng-model="data.invoiceItem">
+								<option style="background-color: #ccc" value="">Izaberi
+									proizvod ili uslugu...</option>
+							</select>
+						</div>
+						<div class="form-group row">
+							<label for="amount" class="control-label"> Količina: </label> <input
+								type="number" min="1" class="form-control col-md-1" id="amount"
+								ng-change="setInvoiceItemValues(invoice, 2)" ng-model="data.amount"
+								placeholder="Unesi količinu">
+						</div>
+						<div class="form-group row">
+							<label for="rebate" class="control-label"> Rabat u procentima: </label> <input
+								type="number" min="0" max="100" class="form-control col-md-1" id="rebate"
+								ng-change="setInvoiceItemValues(invoice, 3)" ng-model="data.rebate"
+								placeholder="Unesi rabat">
+						</div>
+						<label>
+							Jedinica mere: {{invoice.jedinicaMere}} Jedinicna cena: {{invoice.jedinicnaCena}}
+						</label>
+						<label>
+							
+						</label>
+						
+
+					</div>
+
+				</div>
+				<div class="modal-footer">
+					<button type="button" class="btn btn-default pull-right"
+						data-dismiss="modal">Odustani</button>
+					<button type="button" class="btn btn-default" data-dismiss="modal"
+						ng-click="createInvoice()">Pošalji</button>
+				</div>
+			</div>
+
+		</div>
+
+	</div>

@@ -1,0 +1,1 @@
+var invoiceModule = angular.module('invoice', []);
