@@ -37,17 +37,6 @@
             <xs:minLength value="1"/>
         </xs:restriction>
     </xs:simpleType>
-    <xs:simpleType name="TNaziv">
-        <xs:restriction base="xs:string">
-            <xs:maxLength value="255"/>
-            <xs:minLength value="1"/>
-        </xs:restriction>
-    </xs:simpleType>
-     <xs:simpleType name="TAdresa">
-        <xs:restriction base="xs:string">
-            <xs:maxLength value="255"/>
-        </xs:restriction>
-    </xs:simpleType>
     <xs:simpleType name="TPIB">
         <xs:restriction base="xs:string">
             <xs:length value="11"/>
@@ -59,10 +48,14 @@
             <xs:pattern value="[A-Z]{6}[A-Z1-9]{2}"/>
         </xs:restriction>
     </xs:simpleType>
+    <xs:simpleType name="TAdresa">
+        <xs:restriction base="xs:string">
+            <xs:maxLength value="255"/>
+        </xs:restriction>
+    </xs:simpleType>
     <xs:simpleType name="TOznaka_valute">
         <xs:restriction base="xs:string">
             <xs:length value="3"/>
-            <xs:pattern value="[a-z]{3}|[A-Z]{3}"/>
         </xs:restriction>
     </xs:simpleType>
     <xs:simpleType name="TIznos">
@@ -71,4 +64,12 @@
             <xs:fractionDigits value="2"/>
         </xs:restriction>
     </xs:simpleType>
+    <xs:element name="status">
+        <xs:complexType>
+            <xs:sequence>
+                <xs:element name="statusCode" type="xs:int"/>
+                <xs:element name="statusText" type="xs:string"/>
+            </xs:sequence>
+        </xs:complexType>
+    </xs:element>
 </xs:schema>
