@@ -6,9 +6,8 @@ invoiceModule.controller('invoiceController', [
 		'companyService',
 		function($scope, $interval, objectFactoryService, invoiceService,
 				companyService) {
-			
-			
-			//load first two
+
+			// load first two
 			$scope.sentInvoices = [];
 			$scope.receivedInvoices = [];
 			$scope.createdInvoices = [];
@@ -31,19 +30,22 @@ invoiceModule.controller('invoiceController', [
 				});
 
 			}
+			getSentInvoices();
+			getReceivedInvoices();
 
 			$scope.sentInvoicesInterval = $interval(getSentInvoices,
 					intervalInMS);
 			$scope.receivedInvoicesInterval = $interval(getReceivedInvoices,
 					intervalInMS);
 
-			//load companies and goods, set this company and remove from companies
-			$scope.thisCompany = null;
+			// load companies and goods, set this company and remove from
+			// companies
+			$scope.thisCompany = {};
 			$scope.companies = [];
 			$scope.servicesOrGoods = [];
 
 			$scope.data = new objectFactoryService.Data();
-			$scope.invoice = new objectFactoryService.Invoice();
+			$scope.invoice = new objectFactoryService.Invoice($scope.thisCompany);
 
 			$scope.addInvoiceItem = function() {
 				$scope.invoice.stavkaFakture

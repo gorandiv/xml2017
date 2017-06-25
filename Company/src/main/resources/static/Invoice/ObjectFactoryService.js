@@ -6,7 +6,8 @@ invoiceModule.service('objectFactoryService', function() {
 		this.rebate = 0;
 	}
 	
-	this.Invoice = function() {
+	
+	this.Invoice = function(thisCompany) {
 		this.imeDobavljaca = thisCompany.ime;
 		this.adresaDobavljaca = thisCompany.adresa;
 		this.pibDobavljaca = thisCompany.pib;

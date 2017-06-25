@@ -18,10 +18,10 @@
 		<tbody>
 			<tr ng-repeat="invoice in receivedInvoices"
 				ng-click="showInvoice(invoice);">
-				<td>{{ invoice.datumRacuna }}</td>
-				<td>{{ invoice.nazivDobavljaca }}</td>
-				<td>{{ invoice.adresaDobavljaca }}</td>
-				<td>{{ invoice.iznosZaUplatu }}</td>
+				<td>{{ invoice.zaglavljeFakture.datumRacuna }}</td>
+				<td>{{ invoice.zaglavljeFakture.nazivDobavljaca }}</td>
+				<td>{{ invoice.zaglavljeFakture.adresaDobavljaca }}</td>
+				<td>{{ invoice.zaglavljeFakture.iznosZaUplatu }}</td>
 			</tr>
 		</tbody>
 	</table>
@@ -38,10 +38,10 @@
 		<tbody>
 			<tr ng-repeat="invoice in sentInvoices"
 				ng-click="showInvoice(invoice);">
-				<td>{{ invoice.datumRacuna }}</td>
-				<td>{{ invoice.nazivKupca }}</td>
-				<td>{{ invoice.adresaKupca }}</td>
-				<td>{{ invoice.iznosZaUplatu }}</td>
+				<td>{{ invoice.zaglavljeFakture.datumRacuna }}</td>
+				<td>{{ invoice.zaglavljeFakture.nazivKupca }}</td>
+				<td>{{ invoice.zaglavljeFakture.adresaKupca }}</td>
+				<td>{{ invoice.zaglavljeFakture.iznosZaUplatu }}</td>
 			</tr>
 		</tbody>
 	</table>

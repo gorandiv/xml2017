@@ -42,7 +42,7 @@ public class Firma implements Serializable {
 	@Column(name = "ip", unique = true, nullable = false)
 	private String ip;
 
-	@OneToMany(cascade = CascadeType.ALL, mappedBy = "kompanija")
+	@OneToMany(cascade = CascadeType.ALL, mappedBy = "firma")
 	private List<ProizvodIliUsluga> proizvodiIliUsluge;
 
 	public Firma() {

@@ -871,3 +871,8 @@ RemoteSystemsTempFiles/.project
 .metadata/.bak_2.log
 .metadata/.bak_1.log
 .metadata/.bak_0.log
+.metadata/
+.recommenders/
+Bank/.settings/
+CentralBank/.settings/
+Company/.settings/

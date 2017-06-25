@@ -88,5 +88,7 @@ public class ProizvodIliUsluga implements Serializable {
 	public void setFirma(Firma firma) {
 		this.firma = firma;
 	}
+	
+	
 
 }
