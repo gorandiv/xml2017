@@ -33,8 +33,8 @@ public class PaymentOrderController {
 		return paymentOrderService.getSentPaymentOrders();
 	}
 	
-	@PostMapping(path = "/create", consumes = MediaType.APPLICATION_JSON_VALUE)
-	public NalogZaPrenos createPaymentOrder(@RequestBody NalogZaPrenos paymentOrder) {
+	@PostMapping(path = "/create", consumes = MediaType.APPLICATION_JSON_VALUE, produces = MediaType.APPLICATION_JSON_VALUE)
+	public @ResponseBody NalogZaPrenos createPaymentOrder(@RequestBody NalogZaPrenos paymentOrder) {
 		return paymentOrderService.createPaymentOrder(paymentOrder);
 	}
 	

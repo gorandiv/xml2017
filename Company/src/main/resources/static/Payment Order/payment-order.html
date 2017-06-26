@@ -1,5 +1,10 @@
 <div class="container-fluid">
 
+	<div class="form-group">
+		<button type="button" class="btn btn-primary" data-toggle="modal"
+			data-target="#paymentOrderModal">Kreiraj nalog za uplatu</button>
+	</div>
+
 	<h3>Kreirani nalozi:</h3>
 
 	<table class="table table-bordered">
@@ -10,10 +15,12 @@
 				<th>Račun poverioca</th>
 				<th>Iznos</th>
 				<th>Hitno</th>
+				<th></th>
+				<th></th>
 			</tr>
 		</thead>
 		<tbody>
-			<tr ng-repeat="paymentOrder in paymentOrders">
+			<tr ng-repeat="paymentOrder in createdPaymentOrders">
 				<td>{{ paymentOrder.poverilac }}</td>
 				<td>{{ paymentOrder.svrhaPlacanja }}</td>
 				<td>{{ paymentOrder.podaciOUplati.racunPoverioca.brojRacuna }}</td>
@@ -45,7 +52,7 @@
 			</tr>
 		</thead>
 		<tbody>
-			<tr ng-repeat="paymentOrder in paymentOrders"
+			<tr ng-repeat="paymentOrder in sentPaymentOrders"
 				ng-click="showPaymentOrder(paymentOrder);">
 				<td>{{ paymentOrder.poverilac }}</td>
 				<td>{{ paymentOrder.svrhaPlacanja }}</td>
@@ -67,7 +74,7 @@
 					<div class="form-group">
 						<label for="invoice" class="control-label"> Faktura sa
 							brojem: </label> <select
-							ng-options="invoice as invoice.brojRacuna for invoice in receivedInvoices track by invoice.id"
+							ng-options="invoice as invoice.zaglavljeFakture.brojRacuna for invoice in receivedInvoices track by invoice.id"
 							ng-model="selectedInvoice" class="form-control" id="invoice"
 							ng-change="setPaymentOrderInvoiceValues(selectedInvoice)">
 							<option style="background-color: #ccc" value="">Izaberi
@@ -84,7 +91,7 @@
 
 					<div class="form-group">
 						<label for="indebtednessModel" class="control-label">
-							Model zaduženja: </label> <input type="number" min="1" max="100"
+							Model zaduženja: </label> <input type="number" min="1" max="99"
 							class="form-control" id="indebtednessModel"
 							ng-model="paymentOrder.podaciOUplati.racunDuznika.brojModela"
 							placeholder="Unesi model zaduženja">
@@ -100,7 +107,7 @@
 
 					<div class="form-group">
 						<label for="approvalModel" class="control-label"> Model
-							odobrenja: </label> <input type="number" min="1" max="100"
+							odobrenja: </label> <input type="number" min="1" max="99"
 							class="form-control" id="approvalModel"
 							ng-model="paymentOrder.podaciOUplati.racunPoverioca.brojModela"
 							placeholder="Unesi model odobrenja">
@@ -115,7 +122,8 @@
 					</div>
 					<div class="form-group">
 						<div class="checkbox">
-							<label><input type="checkbox" ng-model="paymentOrder.podaciOUplati.hitno"value="">Hitno?</label>
+							<label><input type="checkbox"
+								ng-model="paymentOrder.podaciOUplati.hitno" value="">Hitno?</label>
 						</div>
 					</div>
 

@@ -1,4 +1,4 @@
-invoiceModule.service('objectFactoryService', function() {
+invoiceModule.service('invoiceObjectFactoryService', function() {
 	
 	this.Data = function() {
 		this.invoiceItem = null;

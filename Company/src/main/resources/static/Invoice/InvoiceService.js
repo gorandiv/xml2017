@@ -105,10 +105,10 @@ invoiceModule.service('invoiceService', ['$http', function($http) {
 		invoice.zaglavljeFakture.pibDobavljaca = thisCompany.pib;
 		invoice.zaglavljeFakture.uplataNaRacun = thisCompany.brojRacuna;
 		
-		if(invoice.zaglavljeFakture.nazivDobavljaca == null || invoice.zaglavljeFakture.nazivKupca == null || invoice.stavkaFakture.length == 0){
+		if(invoice.zaglavljeFakture.nazivDobavljaca == null || invoice.zaglavljeFakture.nazivDobavljaca == "" || invoice.zaglavljeFakture.nazivKupca == null || invoice.zaglavljeFakture.nazivKupca == "" || invoice.stavkaFakture.length == 0){
 			toastr.warning("Nepotpuna faktura.");
+			return;
 		}
-		
 		for(var i = 0; i < invoice.stavkaFakture.length; i++) {
 			delete invoice.stavkaFakture[i].isProizvod;
 			delete invoice.stavkaFakture[i].proizvodIliUsluga;

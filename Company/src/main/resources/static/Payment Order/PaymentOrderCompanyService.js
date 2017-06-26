@@ -1,4 +1,4 @@
-paymentOrderModule.service('companyService', function() {
+paymentOrderModule.service('paymentOrderCompanyService', ['$http', function($http) {
 
 	this.getThisCompany = function() {
 		return $http({
@@ -14,4 +14,4 @@ paymentOrderModule.service('companyService', function() {
 		});
 	}
 
-});
+}]);

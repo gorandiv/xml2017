@@ -1,4 +1,4 @@
-paymentOrderModule.service('paymentOrderService', function() {
+paymentOrderModule.service('paymentOrderService', ['$http', function($http) {
 	
 	
 	this.getCreatedPaymentOrders = function() {
@@ -76,4 +76,4 @@ paymentOrderModule.service('paymentOrderService', function() {
 	}
 	
 	
-});
+}]);

@@ -57,6 +57,7 @@ public class PaymentOrderServiceImpl implements PaymentOrderService {
 	@Override
 	public void sendPaymentOrderToBank() {
 		// TODO MILENKO OVDE MECE
+		
 
 	}
 

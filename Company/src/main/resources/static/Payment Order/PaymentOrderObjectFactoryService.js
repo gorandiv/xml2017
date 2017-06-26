@@ -1,4 +1,4 @@
-paymentOrderModule.service('objectFactoryService', function() {
+paymentOrderModule.service('paymentOrderObjectFactoryService', function() {
 	
 	
 	this.PaymentOrder = function(paymentInfo) {
@@ -6,6 +6,7 @@ paymentOrderModule.service('objectFactoryService', function() {
 		 this.duznik = "";
 		 this.svrhaPlacanja = "";
 		 this.poverilac = "";
+		 this.poslat = false;
 		 this.podaciOUplati = paymentInfo;
 	}
 	
@@ -21,7 +22,7 @@ paymentOrderModule.service('objectFactoryService', function() {
 	
 	this.Account = function() {
 		this.brojRacuna = "";
-		this.brojModela = 0;
+		this.brojModela = 1;
 		this.pozivNaBroj = "";
 	}
 	
