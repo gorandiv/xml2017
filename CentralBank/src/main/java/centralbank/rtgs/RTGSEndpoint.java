@@ -30,8 +30,8 @@ public class RTGSEndpoint {
 	@ResponsePayload
 	public StrukturaRtgsNaloga getCountry(@RequestPayload StrukturaRtgsNaloga request) {
 		
-		Banka b1=bankDao.findBySwiftCode(request.getSwiftKodBankeDuznika());
-		Banka b2=bankDao.findBySwiftCode(request.getSwiftKodBankePoverioca());
+		Banka b1=bankDao.findBySwiftKod(request.getSwiftKodBankeDuznika());
+		Banka b2=bankDao.findBySwiftKod(request.getSwiftKodBankePoverioca());
 
 		Function f=new Function();
 		
