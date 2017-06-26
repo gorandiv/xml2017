@@ -1,12 +1,12 @@
 invoiceModule.controller('invoiceController', [
 		'$scope',
 		'$interval',
-		'objectFactoryService',
+		'invoiceObjectFactoryService',
 		'invoiceService',
-		'companyService',
+		'invoiceCompanyService',
 		'productOrServiceService',
-		function($scope, $interval, objectFactoryService, invoiceService,
-				companyService, productOrServiceService) {
+		function($scope, $interval, invoiceObjectFactoryService, invoiceService,
+				invoiceCompanyService, productOrServiceService) {
 
 			$scope.createdInvoices = [];
 			$scope.sentInvoices = [];
@@ -55,11 +55,11 @@ invoiceModule.controller('invoiceController', [
 			$scope.companies = [];
 			$scope.productsOrServices = [];
 			
-			companyService.getThisCompany().then(function(response) {
+			invoiceCompanyService.getThisCompany().then(function(response) {
 				$scope.thisCompany = response.data;
 			});
 			
-			companyService.getCompanies().then(function(response) {
+			invoiceCompanyService.getCompanies().then(function(response) {
 				$scope.companies = response.data;
 			});
 			
@@ -68,8 +68,8 @@ invoiceModule.controller('invoiceController', [
 			});
 			
 
-			$scope.data = new objectFactoryService.Data();
-			$scope.invoice = new objectFactoryService.Invoice(new objectFactoryService.InvoiceHeader());
+			$scope.data = new invoiceObjectFactoryService.Data();
+			$scope.invoice = new invoiceObjectFactoryService.Invoice(new invoiceObjectFactoryService.InvoiceHeader());
 			
 			$scope.setInvoiceHeaderBuyer = function(company) {
 				invoiceService.setInvoiceHeaderBuyer($scope.invoice, company);
@@ -82,10 +82,10 @@ invoiceModule.controller('invoiceController', [
 			$scope.addInvoiceItem = function() {
 				if($scope.invoice.stavkaFakture.length == 0)
 					$scope.invoice.stavkaFakture
-					.push(new objectFactoryService.InvoiceItem(1));
+					.push(new invoiceObjectFactoryService.InvoiceItem(1));
 				else {
 					$scope.invoice.stavkaFakture
-					.push(new objectFactoryService.InvoiceItem($scope.invoice.stavkaFakture[$scope.invoice.stavkaFakture.length - 1].redniBroj + 1));
+					.push(new invoiceObjectFactoryService.InvoiceItem($scope.invoice.stavkaFakture[$scope.invoice.stavkaFakture.length - 1].redniBroj + 1));
 				}
 					
 			}
@@ -103,7 +103,7 @@ invoiceModule.controller('invoiceController', [
 					invoiceService.createInvoice($scope.invoice, $scope.thisCompany).then(function(response) {
 						console.log(response.data)
 						$scope.createdInvoices.push(response.data);
-						$scope.invoice = new objectFactoryService.Invoice(new objectFactoryService.InvoiceHeader());
+						$scope.invoice = new invoiceObjectFactoryService.Invoice(new invoiceObjectFactoryService.InvoiceHeader());
 						toastr.info("Faktura uspešno kreirana.");
 					});
 			}

@@ -1,12 +1,12 @@
 paymentOrderModule.controller('paymentOrderController', [
 		'$scope',
 		'$interval',
-		'objectFactoryService',
+		'paymentOrderObjectFactoryService',
 		'paymentOrderService',
-		'invoiceService',
-		'companyService',
-		function($scope, $interval, objectFactoryService, paymentOrderService,
-				invoiceService, companyService) {
+		'paymentOrderInvoiceService',
+		'paymentOrderCompanyService',
+		function($scope, $interval, paymentOrderObjectFactoryService, paymentOrderService,
+				paymentOrderInvoiceService, paymentOrderCompanyService) {
 
 			$scope.createdPaymentOrders = [];
 			$scope.sentPaymentOrders = [];
@@ -37,21 +37,21 @@ paymentOrderModule.controller('paymentOrderController', [
 			$scope.receivedInvoices = [];
 			$scope.thisCompany = {};
 			
-			companyService.getThisCompany().then(function(response) {
+			paymentOrderCompanyService.getThisCompany().then(function(response) {
 				$scope.thisCompany = response.data;
 			});
 
-			$scope.paymentOrder = new objectFactoryService.PaymentOrder(
-					new objectFactoryService.PaymentInfo(
-							new objectFactoryService.Account(),
-							new objectFactoryService.Account()));
+			$scope.paymentOrder = new paymentOrderObjectFactoryService.PaymentOrder(
+					new paymentOrderObjectFactoryService.PaymentInfo(
+							new paymentOrderObjectFactoryService.Account(),
+							new paymentOrderObjectFactoryService.Account()));
 
-			invoiceService.getReceivedInvoices().then(function(response) {
+			paymentOrderInvoiceService.getReceivedInvoices().then(function(response) {
 				$scope.receivedInvoices = response.data;
 			});
 
 			$scope.setPaymentOrderInvoiceValues = function(invoice) {
-				paymentOrderService.setPaymentOrderInvoiceValues($paymentOrder,
+				paymentOrderService.setPaymentOrderInvoiceValues($scope.paymentOrder,
 						invoice);
 			}
 
@@ -62,12 +62,11 @@ paymentOrderModule.controller('paymentOrderController', [
 			
 			$scope.createPaymentOrder = function() {
 				paymentOrderService.createPaymentOrder($scope.paymentOrder, $scope.thisCompany).then(function(response) {
-					console.log(response.data)
 					$scope.createdPaymentOrders.push(response.data);
-					$scope.paymentOrder = new objectFactoryService.PaymentOrder(
-							new objectFactoryService.PaymentInfo(
-									new objectFactoryService.Account(),
-									new objectFactoryService.Account()));
+					$scope.paymentOrder = new paymentOrderObjectFactoryService.PaymentOrder(
+							new paymentOrderObjectFactoryService.PaymentInfo(
+									new paymentOrderObjectFactoryService.Account(),
+									new paymentOrderObjectFactoryService.Account()));
 					toastr.info("Nalog za plaćanje je uspešno kreiran.");
 				});
 			}

@@ -1,4 +1,4 @@
-paymentOrderModule.service('invoiceService', [ '$http', function($http) {
+paymentOrderModule.service('paymentOrderInvoiceService', [ '$http', function($http) {
 
 	this.getReceivedInvoices = function() {
 		return $http({
