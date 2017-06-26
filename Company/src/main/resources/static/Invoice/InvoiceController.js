@@ -8,11 +8,19 @@ invoiceModule.controller('invoiceController', [
 		function($scope, $interval, objectFactoryService, invoiceService,
 				companyService, productOrServiceService) {
 
+			$scope.createdInvoices = [];
 			$scope.sentInvoices = [];
 			$scope.receivedInvoices = [];
-			$scope.createdInvoices = [];
 
 			var intervalInMS = 10000;
+			
+			var getCreatedInvoices = function() {
+				invoiceService.getCreatedInvoices().then(function(response) {
+					if (response.status == -1)
+						$interval.cancel($scope.createdInvoicesInterval);
+					$scope.createdInvoices = response.data;
+				});
+			}
 
 			var getSentInvoices = function() {
 				invoiceService.getSentInvoices().then(function(response) {
@@ -31,9 +39,13 @@ invoiceModule.controller('invoiceController', [
 
 			}
 			
+			getCreatedInvoices();
 			getSentInvoices();
 			getReceivedInvoices();
-
+			
+			
+			$scope.createdInvoicesInterval = $interval(getCreatedInvoices,
+					intervalInMS);
 			$scope.sentInvoicesInterval = $interval(getSentInvoices,
 					intervalInMS);
 			$scope.receivedInvoicesInterval = $interval(getReceivedInvoices,
@@ -48,7 +60,6 @@ invoiceModule.controller('invoiceController', [
 			});
 			
 			companyService.getCompanies().then(function(response) {
-				console.log(response.data)
 				$scope.companies = response.data;
 			});
 			
@@ -58,11 +69,25 @@ invoiceModule.controller('invoiceController', [
 			
 
 			$scope.data = new objectFactoryService.Data();
-			$scope.invoice = new objectFactoryService.Invoice($scope.thisCompany);
+			$scope.invoice = new objectFactoryService.Invoice(new objectFactoryService.InvoiceHeader());
+			
+			$scope.setInvoiceHeaderBuyer = function(company) {
+				invoiceService.setInvoiceHeaderBuyer($scope.invoice, company);
+			}
+			
+			$scope.$watch('invoice.stavkaFakture', function(newVal, oldVal){
+		        invoiceService.setInvoiceHeaderValues($scope.invoice);
+		    }, true);
 
 			$scope.addInvoiceItem = function() {
-				$scope.invoice.stavkaFakture
-						.push(new objectFactoryService.InvoiceItem());
+				if($scope.invoice.stavkaFakture.length == 0)
+					$scope.invoice.stavkaFakture
+					.push(new objectFactoryService.InvoiceItem(1));
+				else {
+					$scope.invoice.stavkaFakture
+					.push(new objectFactoryService.InvoiceItem($scope.invoice.stavkaFakture[$scope.invoice.stavkaFakture.length - 1].redniBroj + 1));
+				}
+					
 			}
 			
 			$scope.removeInvoiceItem = function(invoiceItem) {
@@ -74,11 +99,33 @@ invoiceModule.controller('invoiceController', [
 				invoiceService.setInvoiceItemValues(invoiceItem, check);
 				
 			}
+			$scope.createInvoice = function() {
+					invoiceService.createInvoice($scope.invoice, $scope.thisCompany).then(function(response) {
+						console.log(response.data)
+						$scope.createdInvoices.push(response.data);
+						$scope.invoice = new objectFactoryService.Invoice(new objectFactoryService.InvoiceHeader());
+						toastr.info("Faktura uspešno kreirana.");
+					});
+			}
+			
 			$scope.sendInvoice = function(invoice) {
-				invoiceService.sendInvoice(invoice);
+				invoiceService.sendInvoice(invoice).then(function(response) {
+					$scope.sentInvoices.push(response.data);
+					$scope.createdInvoices.splice($scope.createdInvoices.indexOf(invoice), 1);
+					invoice = response.data;
+					toastr.info("Faktura uspešno poslata.");
+				});
+			}
+			
+			$scope.removeInvoice = function(invoice) {
+				invoiceService.removeInvoice(invoice).then(function(response) {
+					$scope.createdInvoices.splice($scope.createdInvoices.indexOf(invoice), 1);
+					toastr.info("Faktura uspešno obrisana.");
+				});
 			}
 			
 			$scope.$on('$destroy',function(){
+				$interval.cancel($scope.createdInvoicesInterval);
 				$interval.cancel($scope.sentInvoicesInterval);
 				$interval.cancel($scope.receivedInvoicesInterval);
 			});

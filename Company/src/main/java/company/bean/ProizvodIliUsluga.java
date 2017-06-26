@@ -38,8 +38,11 @@ public class ProizvodIliUsluga implements Serializable {
 	@Column(name = "porez", nullable = false)
 	private BigDecimal porez;
 
+	@Column(name = "jel_proizvod", nullable = false) 
+	private Boolean jelProizvod;
+
 	@ManyToOne(cascade = CascadeType.ALL)
-	@JoinColumn(name="firma_id")
+	@JoinColumn(name = "firma_id")
 	@JsonBackReference
 	private Firma firma;
 
@@ -93,7 +96,13 @@ public class ProizvodIliUsluga implements Serializable {
 	public void setFirma(Firma firma) {
 		this.firma = firma;
 	}
-	
-	
+
+	public Boolean getJelProizvod() {
+		return jelProizvod;
+	}
+
+	public void setJelProizvod(Boolean jelProizvod) {
+		this.jelProizvod = jelProizvod;
+	}
 
 }

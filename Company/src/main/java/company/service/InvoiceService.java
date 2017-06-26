@@ -10,4 +10,14 @@ public interface InvoiceService {
 
 	List<Faktura> getSentInvoices();
 
+	Faktura createInvoice(Faktura invoice);
+
+	List<Faktura> getCreatedInvoices();
+
+	Faktura sendInvoice(Integer invoiceId);
+
+	void removeInvoice(Integer invoiceId);
+
+	void sendInvoiceToBank();
+
 }

@@ -10,7 +10,6 @@ package centralbank.bean;
 import java.math.BigDecimal;
 import java.math.BigInteger;
 import java.util.ArrayList;
-import java.util.Date;
 import java.util.List;
 
 import javax.persistence.CascadeType;
@@ -26,7 +25,6 @@ import javax.xml.bind.annotation.XmlAccessType;
 import javax.xml.bind.annotation.XmlAccessorType;
 import javax.xml.bind.annotation.XmlElement;
 import javax.xml.bind.annotation.XmlRootElement;
-import javax.xml.bind.annotation.XmlSchemaType;
 import javax.xml.bind.annotation.XmlType;
 import javax.xml.datatype.XMLGregorianCalendar;
 
@@ -185,6 +183,9 @@ public class Faktura {
 	@GeneratedValue(strategy = GenerationType.AUTO)
 	private Integer id;
 
+	@Column(name = "poslata", nullable = false)
+	private Boolean poslata;
+
 	public Integer getId() {
 		return id;
 	}
@@ -246,6 +247,14 @@ public class Faktura {
 			stavkaFakture = new ArrayList<Faktura.StavkaFakture>();
 		}
 		return this.stavkaFakture;
+	}
+
+	public Boolean getPoslata() {
+		return poslata;
+	}
+
+	public void setPoslata(Boolean poslata) {
+		this.poslata = poslata;
 	}
 
 	/**
@@ -644,7 +653,7 @@ public class Faktura {
 			"ukupnoRobaIUsluge", "ukupanRabat", "ukupanPorez", "oznakaValute", "iznosZaUplatu", "uplataNaRacun",
 			"datumValute" })
 	@Entity
-	@Table(name="zaglavlje_fakture")
+	@Table(name = "zaglavlje_fakture")
 	public static class ZaglavljeFakture {
 
 		@XmlElement(name = "id_poruke", required = true)
@@ -683,7 +692,7 @@ public class Faktura {
 		protected String uplataNaRacun;
 		@XmlElement(name = "datum_valute", required = true)
 		protected String datumValute;
-		
+
 		@Id
 		@Column(name = "id")
 		@GeneratedValue(strategy = GenerationType.AUTO)
@@ -1065,6 +1074,14 @@ public class Faktura {
 		 */
 		public void setDatumValute(String value) {
 			this.datumValute = value;
+		}
+
+		public Integer getId() {
+			return id;
+		}
+
+		public void setId(Integer id) {
+			this.id = id;
 		}
 
 	}
