@@ -5,7 +5,7 @@
 // Generated on: 2017.06.24 at 02:52:09 PM CEST 
 //
 
-package centralbank.bean;
+package bank.bean;
 
 import java.math.BigDecimal;
 

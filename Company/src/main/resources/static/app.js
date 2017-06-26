@@ -3,15 +3,15 @@ var appModule = angular.module('app' , ['ngRoute', 'invoice', 'paymentOrder', 'o
 appModule.config(function($routeProvider, $locationProvider) {
 	$locationProvider.hashPrefix('');
     $routeProvider
-        .when('/invoice', {
+        .when('/fakture', {
             templateUrl : 'Firma/Invoice/invoice.html',
             controller  : 'invoiceController'
         })
-        .when('/payment-order', {
+        .when('/nalozi', {
             templateUrl : 'Firma/Payment Order/payment-order.html',
             controller  : 'paymentOrderController'
         })
-        .when('/overview', {
+        .when('/izvod', {
             templateUrl : 'Firma/Overview/overview.html',
             controller  : 'overviewController'
         })
