@@ -40,7 +40,7 @@ public class PaymentOrderController {
 	
 	@PutMapping(path = "/send/{paymentOrderId}")
 	public @ResponseBody NalogZaPrenos sendPaymentOrder(@PathVariable("paymentOrderId") Integer paymentOrderId) {
-		paymentOrderService.sendPaymentOrderToBank();
+		paymentOrderService.sendPaymentOrderToBank(paymentOrderId);
 		return paymentOrderService.sendPaymentOrder(paymentOrderId);
 	}
 	

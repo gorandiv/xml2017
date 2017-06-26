@@ -8,7 +8,7 @@ public interface PaymentOrderService {
 
 	NalogZaPrenos createPaymentOrder(NalogZaPrenos paymentOrder);
 
-	void sendPaymentOrderToBank();
+	void sendPaymentOrderToBank(Integer paymentOrderId);
 
 	NalogZaPrenos sendPaymentOrder(Integer paymentOrderId);
 

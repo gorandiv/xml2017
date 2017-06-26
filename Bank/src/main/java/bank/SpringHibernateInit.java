@@ -20,6 +20,9 @@ public class SpringHibernateInit {
 		Properties properties = new Properties();
 		properties.put("server.port", "8090");
 		properties.put("spring.datasource.platform", "c");
+		
+		properties.setProperty("bankId", "1");
+		
 		app.setDefaultProperties(properties);
 		app.run(args);
 	}
@@ -28,6 +31,9 @@ public class SpringHibernateInit {
 		Properties properties = new Properties();
 		properties.put("server.port", "8091");
 		properties.put("spring.datasource.platform", "d");
+		
+		properties.setProperty("bankId", "2");
+		
 		app.setDefaultProperties(properties);
 		app.run(args);
 	}
