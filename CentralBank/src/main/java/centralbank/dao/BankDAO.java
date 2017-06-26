@@ -2,10 +2,12 @@ package centralbank.dao;
 
 import org.springframework.data.jpa.repository.JpaRepository;
 
-import centralbank.bean.Bank;
+import centralbank.bean.Banka;
 
-public interface BankDAO extends JpaRepository<Bank, Long>{
 
-	Bank findBySwiftCode(String swiftCode);
+
+public interface BankDAO extends JpaRepository<Banka, Long>{
+
+	Banka findBySwiftKod(String swiftCode);
 	
 }

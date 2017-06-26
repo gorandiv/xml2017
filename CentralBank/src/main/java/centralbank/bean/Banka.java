@@ -40,6 +40,20 @@ public class Banka implements Serializable {
 
 	@Column(name = "swift_kod", unique = true, nullable = false)
 	private String swiftKod;
+	
+	
+	@OneToMany(cascade=CascadeType.ALL)
+	private List<RacunFirme> racuniFirme;
+	
+	
+
+	public List<RacunFirme> getRacuniFirme() {
+		return racuniFirme;
+	}
+
+	public void setRacuniFirme(List<RacunFirme> racuniFirme) {
+		this.racuniFirme = racuniFirme;
+	}
 
 	public Banka() {
 	}

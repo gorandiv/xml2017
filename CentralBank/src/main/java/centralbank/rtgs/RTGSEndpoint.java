@@ -10,9 +10,10 @@ import com.strukturartgsnaloga.Mt900;
 import com.strukturartgsnaloga.Mt910;
 import com.strukturartgsnaloga.StrukturaRtgsNaloga;
 
-import centralbank.bean.Bank;
+import centralbank.bean.Banka;
 import centralbank.centralToBank.Function;
 import centralbank.dao.BankDAO;
+
 
 
 
@@ -29,14 +30,14 @@ public class RTGSEndpoint {
 	@ResponsePayload
 	public StrukturaRtgsNaloga getCountry(@RequestPayload StrukturaRtgsNaloga request) {
 		
-		Bank b1=bankDao.findBySwiftCode(request.getSwiftKodBankeDuznika());
-		Bank b2=bankDao.findBySwiftCode(request.getSwiftKodBankePoverioca());
+		Banka b1=bankDao.findBySwiftKod(request.getSwiftKodBankeDuznika());
+		Banka b2=bankDao.findBySwiftKod(request.getSwiftKodBankePoverioca());
 
 		Function f=new Function();
 		
-		f.sendNalog(new StrukturaRtgsNaloga(),b2.getAddress());
-		f.sendNalog1(new Mt900(), b1.getAddress());
-		f.sendNalog2(new Mt910(),b2.getAddress());
+		f.sendNalog(new StrukturaRtgsNaloga(),b2.getAdresa());
+		f.sendNalog1(new Mt900(), b1.getAdresa());
+		f.sendNalog2(new Mt910(),b2.getAdresa());
 		
 		System.out.println("jebes mi mater");
 		return request;

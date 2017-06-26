@@ -4,6 +4,7 @@ import org.springframework.oxm.jaxb.Jaxb2Marshaller;
 import org.springframework.stereotype.Controller;
 import org.springframework.ws.client.core.WebServiceTemplate;
 
+import com.example.bankxml.bankxml.mt102.Mt102;
 import com.strukturartgsnaloga.Mt900;
 import com.strukturartgsnaloga.Mt910;
 import com.strukturartgsnaloga.StrukturaRtgsNaloga;
@@ -56,6 +57,17 @@ public class Function {
         WebServiceTemplate webServiceTemplate = configWebServiceTemplate("com.strukturartgsnaloga",
         		url);
         Mt910 nalogResponse = (Mt910) webServiceTemplate.marshalSendAndReceive(nalog);
+        System.out.println("-----------------------------Primeljen Nalog--------------------");
+    }
+    
+    
+    public void sendNalog3(Mt102 nalog,String destinationAddress){
+    	String url = String.format("http://%s/ws/mt102", destinationAddress);
+        System.out.println("-----------------------------Poslat Nalog----------------------");
+        System.out.println(url);
+        WebServiceTemplate webServiceTemplate = configWebServiceTemplate("com.example.bankxml.bankxml.mt102",
+        		url);
+        Mt102 nalogResponse = (Mt102) webServiceTemplate.marshalSendAndReceive(nalog);
         System.out.println("-----------------------------Primeljen Nalog--------------------");
     }
 }
