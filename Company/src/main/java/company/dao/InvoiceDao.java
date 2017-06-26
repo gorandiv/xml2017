@@ -13,23 +13,23 @@ import company.bean.Faktura;
 
 public interface InvoiceDao extends Repository<Faktura, Integer> {
 
-	public Faktura findById(Integer id);
+	Faktura findById(Integer id);
 
-	public Faktura save(Faktura invoice);
+	Faktura save(Faktura invoice);
 
-	public List<Faktura> findByZaglavljeFakturePibDobavljacaAndPoslataFalse(String companyPib);
+	List<Faktura> findByZaglavljeFakturePibDobavljacaAndPoslataFalse(String companyPib);
 
-	public List<Faktura> findByZaglavljeFakturePibDobavljacaAndPoslataTrue(String companyPib);
+	List<Faktura> findByZaglavljeFakturePibDobavljacaAndPoslataTrue(String companyPib);
 
-	public List<Faktura> findByZaglavljeFakturePibKupcaAndPoslataTrue(String companyPib);
+	List<Faktura> findByZaglavljeFakturePibKupcaAndPoslataTrue(String companyPib);
 
 	@Modifying
 	@Transactional
-	public List<Faktura> removeById(Integer invoiceId);
+	List<Faktura> removeById(Integer invoiceId);
 
 	@Modifying
 	@Transactional
 	@Query("update Faktura f set f.poslata = true where f.id = :invoiceId")
-	public void setPoslataById(@Param("invoiceId") Integer invoiceId);
+	void setPoslataById(@Param("invoiceId") Integer invoiceId);
 
 }

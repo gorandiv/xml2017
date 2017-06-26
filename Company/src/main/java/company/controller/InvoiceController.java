@@ -47,7 +47,7 @@ public class InvoiceController {
 	
 	@PutMapping(path = "/send/{invoiceId}")
 	public @ResponseBody Faktura sendInvoice(@PathVariable("invoiceId") Integer invoiceId) {
-		invoiceService.sendInvoiceToBank();
+		invoiceService.sendInvoiceToBuyer();
 		return invoiceService.sendInvoice(invoiceId);
 	}
 	

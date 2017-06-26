@@ -23,6 +23,7 @@ public class SpringHibernateInit {
 		
 		properties.setProperty("companyId", "1");
 		properties.setProperty("companyPib", "11111111111");
+		properties.setProperty("companyName", "A");
 		
 		app.setDefaultProperties(properties);
 		
@@ -33,8 +34,10 @@ public class SpringHibernateInit {
 		Properties properties = new Properties();
 		properties.put("server.port", "8101");
 		properties.put("spring.datasource.platform", "b");
+		
 		properties.setProperty("companyId", "2");
 		properties.setProperty("companyPib", "22222222222");
+		properties.setProperty("companyName", "B");
 		
 		app.setDefaultProperties(properties);
 		

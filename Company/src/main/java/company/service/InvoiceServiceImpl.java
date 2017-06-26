@@ -58,8 +58,8 @@ public class InvoiceServiceImpl implements InvoiceService {
 	}
 
 	@Override
-	public void sendInvoiceToBank() {
-		// TODO MILJENKO OVDE MECE
+	public void sendInvoiceToBuyer() {
+		// TODO GORAN OVDE MECE
 
 	}
 

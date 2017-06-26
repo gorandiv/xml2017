@@ -8,6 +8,6 @@ import company.bean.ProizvodIliUsluga;
 
 public interface ProductOrServiceDao extends Repository<ProizvodIliUsluga, Integer> {
 	
-	public List<ProizvodIliUsluga> findByFirmaId(Integer id);
+	List<ProizvodIliUsluga> findByFirmaId(Integer id);
 	
 }

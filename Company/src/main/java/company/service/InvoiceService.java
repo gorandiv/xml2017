@@ -18,6 +18,6 @@ public interface InvoiceService {
 
 	void removeInvoice(Integer invoiceId);
 
-	void sendInvoiceToBank();
+	void sendInvoiceToBuyer();
 
 }

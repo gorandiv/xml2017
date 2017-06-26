@@ -1,1 +1,134 @@
-PAYMENT ORDER
+<div class="container-fluid">
+
+	<h3>Kreirani nalozi:</h3>
+
+	<table class="table table-bordered">
+		<thead>
+			<tr>
+				<th>Poverilac</th>
+				<th>Svrha plaćanja</th>
+				<th>Račun poverioca</th>
+				<th>Iznos</th>
+				<th>Hitno</th>
+			</tr>
+		</thead>
+		<tbody>
+			<tr ng-repeat="paymentOrder in paymentOrders">
+				<td>{{ paymentOrder.poverilac }}</td>
+				<td>{{ paymentOrder.svrhaPlacanja }}</td>
+				<td>{{ paymentOrder.podaciOUplati.racunPoverioca.brojRacuna }}</td>
+				<td>{{ paymentOrder.podaciOUplati.iznos }}</td>
+				<td>{{ paymentOrder.podaciOUplati.hitno }}</td>
+				<td><div class="row">
+						<div class="form-group col-md-6">
+							<button type="button" class="btn btn-primary btn-sm"
+								ng-click="sendPaymentOrder(paymentOrder)">Pošalji</button>
+						</div>
+						<div class="form-group col-md-6">
+							<button type="button" class="btn btn-danger btn-sm"
+								ng-click="removePaymentOrder(paymentOrder)">Obriši</button>
+						</div>
+					</div></td>
+			</tr>
+		</tbody>
+	</table>
+	<h3>Poslati nalozi:</h3>
+	<table class="table table-bordered">
+		<thead>
+			<tr>
+				<th>Poverilac</th>
+				<th>Svrha plaćanja</th>
+				<th>Račun poverioca</th>
+				<th>Iznos</th>
+				<th>Hitno</th>
+				<th>Datum</th>
+			</tr>
+		</thead>
+		<tbody>
+			<tr ng-repeat="paymentOrder in paymentOrders"
+				ng-click="showPaymentOrder(paymentOrder);">
+				<td>{{ paymentOrder.poverilac }}</td>
+				<td>{{ paymentOrder.svrhaPlacanja }}</td>
+				<td>{{ paymentOrder.podaciOUplati.racunPoverioca.brojRacuna }}</td>
+				<td>{{ paymentOrder.podaciOUplati.iznos }}</td>
+				<td>{{ paymentOrder.podaciOUplati.hitno }}</td>
+				<td>{{ paymentOrder.podaciOUplati.datumNaloga }}</td>
+			</tr>
+		</tbody>
+	</table>
+
+	<div id="paymentOrderModal" class="modal fade" role="dialog">
+		<div class="modal-dialog">
+			<div class="modal-header">Nalog</div>
+			<!-- Modal content-->
+			<div class="modal-content">
+				<div class="modal-body">
+
+					<div class="form-group">
+						<label for="invoice" class="control-label"> Faktura sa
+							brojem: </label> <select
+							ng-options="invoice as invoice.brojRacuna for invoice in receivedInvoices track by invoice.id"
+							ng-model="selectedInvoice" class="form-control" id="invoice"
+							ng-change="setPaymentOrderInvoiceValues(selectedInvoice)">
+							<option style="background-color: #ccc" value="">Izaberi
+								fakturu...</option>
+						</select>
+					</div>
+
+					<div class="form-group">
+						<label for="purposeOfPayment" class="control-label"> Svrha
+							plaćanja: </label> <input type="text" class="form-control"
+							id="purposeOfPayment" ng-model="paymentOrder.svrhaPlacanja"
+							placeholder="Unesi svrhu plaćanja">
+					</div>
+
+					<div class="form-group">
+						<label for="indebtednessModel" class="control-label">
+							Model zaduženja: </label> <input type="number" min="1" max="100"
+							class="form-control" id="indebtednessModel"
+							ng-model="paymentOrder.podaciOUplati.racunDuznika.brojModela"
+							placeholder="Unesi model zaduženja">
+					</div>
+
+					<div class="form-group">
+						<label for="indebtednessReferenceNumber" class="control-label">
+							Poziv na broj zaduženja:</label> <input type="number"
+							class="form-control" id="indebtednessReferenceNumber"
+							ng-model="paymentOrder.podaciOUplati.racunDuznika.pozivNaBroj"
+							placeholder="Unesi poziv na broj zaduženja">
+					</div>
+
+					<div class="form-group">
+						<label for="approvalModel" class="control-label"> Model
+							odobrenja: </label> <input type="number" min="1" max="100"
+							class="form-control" id="approvalModel"
+							ng-model="paymentOrder.podaciOUplati.racunPoverioca.brojModela"
+							placeholder="Unesi model odobrenja">
+					</div>
+
+					<div class="form-group">
+						<label for="approvalReferenceNumber" class="control-label">
+							Poziv na broj odobrenja:</label> <input type="number"
+							class="form-control" id="approvalReferenceNumber"
+							ng-model="paymentOrder.podaciOUplati.racunPoverioca.pozivNaBroj"
+							placeholder="Unesi poziv na broj odobrenja">
+					</div>
+					<div class="form-group">
+						<div class="checkbox">
+							<label><input type="checkbox" ng-model="paymentOrder.podaciOUplati.hitno"value="">Hitno?</label>
+						</div>
+					</div>
+
+				</div>
+				<div class="modal-footer">
+					<button type="button" class="btn btn-default pull-left"
+						data-dismiss="modal" ng-click="createPaymentOrder()">Kreiraj</button>
+					<button type="button" class="btn btn-default pull-right"
+						data-dismiss="modal">Odustani</button>
+				</div>
+			</div>
+		</div>
+
+
+	</div>
+</div>

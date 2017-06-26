@@ -8,9 +8,9 @@ import company.bean.Firma;
 
 public interface CompanyDao extends Repository<Firma, Integer> {
 	
-	public Firma findById(Integer id);
+	Firma findById(Integer id);
 	
-	public List<Firma> findAll();
+	List<Firma> findAll();
 
 
 }

@@ -21,7 +21,7 @@ invoiceModule.service('objectFactoryService', function() {
 		this.ukupnoRobaIUsluge = 0;
 		this.ukupanRabat = 0;
 		this.ukupanPorez = 0;
-		this.oznakaValute = "din";
+		this.oznakaValute = "rsd";
 		this.iznosZaUplatu = 0;
 		this.uplataNaRacun = null;
 		this.datumValute = "";
