@@ -1,4 +1,4 @@
-package centralbank.bean;
+package bank.bean;
 
 import java.io.Serializable;
 import java.math.BigDecimal;
@@ -37,6 +37,7 @@ public class RacunFirme implements Serializable{
 		super();
 		// TODO Auto-generated constructor stub
 	}
+	
 	
 	public Integer getId() {
 		return id;
