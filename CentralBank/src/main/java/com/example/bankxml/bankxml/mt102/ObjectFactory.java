@@ -6,7 +6,7 @@
 //
 
 
-package io.spring.guides.gs_producing_web_service;
+package com.example.bankxml.bankxml.mt102;
 
 import javax.xml.bind.annotation.XmlRegistry;
 
@@ -14,7 +14,7 @@ import javax.xml.bind.annotation.XmlRegistry;
 /**
  * This object contains factory methods for each 
  * Java content interface and Java element interface 
- * generated in the io.spring.guides.gs_producing_web_service package. 
+ * generated in the com.example.bankxml.bankxml.mt102 package. 
  * <p>An ObjectFactory allows you to programatically 
  * construct new instances of the Java representation 
  * for XML content. The Java representation of XML 
@@ -30,34 +30,34 @@ public class ObjectFactory {
 
 
     /**
-     * Create a new ObjectFactory that can be used to create new instances of schema derived classes for package: io.spring.guides.gs_producing_web_service
+     * Create a new ObjectFactory that can be used to create new instances of schema derived classes for package: com.example.bankxml.bankxml.mt102
      * 
      */
     public ObjectFactory() {
     }
 
     /**
-     * Create an instance of {@link GetCountryRequest }
+     * Create an instance of {@link GetMt102Request }
      * 
      */
-    public GetCountryRequest createGetCountryRequest() {
-        return new GetCountryRequest();
+    public GetMt102Request createGetMt102Request() {
+        return new GetMt102Request();
     }
 
     /**
-     * Create an instance of {@link GetCountryResponse }
+     * Create an instance of {@link Mt102 }
      * 
      */
-    public GetCountryResponse createGetCountryResponse() {
-        return new GetCountryResponse();
+    public Mt102 createMt102() {
+        return new Mt102();
     }
 
     /**
-     * Create an instance of {@link Country }
+     * Create an instance of {@link NalogZaMT102 }
      * 
      */
-    public Country createCountry() {
-        return new Country();
+    public NalogZaMT102 createNalogZaMT102() {
+        return new NalogZaMT102();
     }
 
 }

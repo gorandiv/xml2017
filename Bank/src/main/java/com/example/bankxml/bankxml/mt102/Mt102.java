@@ -6,9 +6,11 @@
 //
 
 
-package com.strukturartgsnaloga;
+package com.example.bankxml.bankxml.mt102;
 
 import java.math.BigDecimal;
+import java.util.ArrayList;
+import java.util.List;
 import javax.xml.bind.annotation.XmlAccessType;
 import javax.xml.bind.annotation.XmlAccessorType;
 import javax.xml.bind.annotation.XmlAttribute;
@@ -20,12 +22,12 @@ import javax.xml.datatype.XMLGregorianCalendar;
 
 
 /**
- * <p>Java class for mt900 complex type.
+ * <p>Java class for mt102 complex type.
  * 
  * <p>The following schema fragment specifies the expected content contained within this class.
  * 
  * <pre>
- * &lt;complexType name="mt900">
+ * &lt;complexType name="mt102">
  *   &lt;complexContent>
  *     &lt;restriction base="{http://www.w3.org/2001/XMLSchema}anyType">
  *       &lt;sequence>
@@ -36,7 +38,7 @@ import javax.xml.datatype.XMLGregorianCalendar;
  *             &lt;/restriction>
  *           &lt;/simpleType>
  *         &lt;/element>
- *         &lt;element name="swift_banke_duznika">
+ *         &lt;element name="swift_kod_banke_duznika">
  *           &lt;simpleType>
  *             &lt;restriction base="{http://www.w3.org/2001/XMLSchema}string">
  *               &lt;length value="8"/>
@@ -50,14 +52,21 @@ import javax.xml.datatype.XMLGregorianCalendar;
  *             &lt;/restriction>
  *           &lt;/simpleType>
  *         &lt;/element>
- *         &lt;element name="id_poruke_naloga">
+ *         &lt;element name="SWIFT_kod_banke_poverioca">
  *           &lt;simpleType>
  *             &lt;restriction base="{http://www.w3.org/2001/XMLSchema}string">
- *               &lt;maxLength value="50"/>
+ *               &lt;length value="8"/>
  *             &lt;/restriction>
  *           &lt;/simpleType>
  *         &lt;/element>
- *         &lt;element name="iznos">
+ *         &lt;element name="obracunski_racun_banke_poverioca">
+ *           &lt;simpleType>
+ *             &lt;restriction base="{http://www.w3.org/2001/XMLSchema}string">
+ *               &lt;length value="18"/>
+ *             &lt;/restriction>
+ *           &lt;/simpleType>
+ *         &lt;/element>
+ *         &lt;element name="ukupan_iznos">
  *           &lt;simpleType>
  *             &lt;restriction base="{http://www.w3.org/2001/XMLSchema}decimal">
  *               &lt;totalDigits value="15"/>
@@ -65,7 +74,9 @@ import javax.xml.datatype.XMLGregorianCalendar;
  *             &lt;/restriction>
  *           &lt;/simpleType>
  *         &lt;/element>
+ *         &lt;element name="nalogZaMT102" type="{http://mt102.BankXml.bankXml.example.com}nalogZaMT102" maxOccurs="unbounded"/>
  *       &lt;/sequence>
+ *       &lt;attribute name="datum" type="{http://www.w3.org/2001/XMLSchema}date" />
  *       &lt;attribute name="datum_valute" type="{http://www.w3.org/2001/XMLSchema}date" />
  *       &lt;attribute name="sifra_valute">
  *         &lt;simpleType>
@@ -82,26 +93,35 @@ import javax.xml.datatype.XMLGregorianCalendar;
  * 
  */
 @XmlAccessorType(XmlAccessType.FIELD)
-@XmlType(name = "mt900", propOrder = {
+@XmlType(name = "mt102", propOrder = {
     "idPoruke",
-    "swiftBankeDuznika",
+    "swiftKodBankeDuznika",
     "obracunskiRacunBankeDuznika",
-    "idPorukeNaloga",
-    "iznos"
+    "swiftKodBankePoverioca",
+    "obracunskiRacunBankePoverioca",
+    "ukupanIznos",
+    "nalogZaMT102"
 })
 @XmlRootElement
-public class Mt900 {
+public class Mt102 {
 
     @XmlElement(name = "id_poruke", required = true)
     protected String idPoruke;
-    @XmlElement(name = "swift_banke_duznika", required = true)
-    protected String swiftBankeDuznika;
+    @XmlElement(name = "swift_kod_banke_duznika", required = true)
+    protected String swiftKodBankeDuznika;
     @XmlElement(name = "obracunski_racun_banke_duznika", required = true)
     protected String obracunskiRacunBankeDuznika;
-    @XmlElement(name = "id_poruke_naloga", required = true)
-    protected String idPorukeNaloga;
+    @XmlElement(name = "SWIFT_kod_banke_poverioca", required = true)
+    protected String swiftKodBankePoverioca;
+    @XmlElement(name = "obracunski_racun_banke_poverioca", required = true)
+    protected String obracunskiRacunBankePoverioca;
+    @XmlElement(name = "ukupan_iznos", required = true)
+    protected BigDecimal ukupanIznos;
     @XmlElement(required = true)
-    protected BigDecimal iznos;
+    protected List<NalogZaMT102> nalogZaMT102;
+    @XmlAttribute(name = "datum")
+    @XmlSchemaType(name = "date")
+    protected XMLGregorianCalendar datum;
     @XmlAttribute(name = "datum_valute")
     @XmlSchemaType(name = "date")
     protected XMLGregorianCalendar datumValute;
@@ -133,27 +153,27 @@ public class Mt900 {
     }
 
     /**
-     * Gets the value of the swiftBankeDuznika property.
+     * Gets the value of the swiftKodBankeDuznika property.
      * 
      * @return
      *     possible object is
      *     {@link String }
      *     
      */
-    public String getSwiftBankeDuznika() {
-        return swiftBankeDuznika;
+    public String getSwiftKodBankeDuznika() {
+        return swiftKodBankeDuznika;
     }
 
     /**
-     * Sets the value of the swiftBankeDuznika property.
+     * Sets the value of the swiftKodBankeDuznika property.
      * 
      * @param value
      *     allowed object is
      *     {@link String }
      *     
      */
-    public void setSwiftBankeDuznika(String value) {
-        this.swiftBankeDuznika = value;
+    public void setSwiftKodBankeDuznika(String value) {
+        this.swiftKodBankeDuznika = value;
     }
 
     /**
@@ -181,51 +201,128 @@ public class Mt900 {
     }
 
     /**
-     * Gets the value of the idPorukeNaloga property.
+     * Gets the value of the swiftKodBankePoverioca property.
      * 
      * @return
      *     possible object is
      *     {@link String }
      *     
      */
-    public String getIdPorukeNaloga() {
-        return idPorukeNaloga;
+    public String getSWIFTKodBankePoverioca() {
+        return swiftKodBankePoverioca;
     }
 
     /**
-     * Sets the value of the idPorukeNaloga property.
+     * Sets the value of the swiftKodBankePoverioca property.
      * 
      * @param value
      *     allowed object is
      *     {@link String }
      *     
      */
-    public void setIdPorukeNaloga(String value) {
-        this.idPorukeNaloga = value;
+    public void setSWIFTKodBankePoverioca(String value) {
+        this.swiftKodBankePoverioca = value;
     }
 
     /**
-     * Gets the value of the iznos property.
+     * Gets the value of the obracunskiRacunBankePoverioca property.
+     * 
+     * @return
+     *     possible object is
+     *     {@link String }
+     *     
+     */
+    public String getObracunskiRacunBankePoverioca() {
+        return obracunskiRacunBankePoverioca;
+    }
+
+    /**
+     * Sets the value of the obracunskiRacunBankePoverioca property.
+     * 
+     * @param value
+     *     allowed object is
+     *     {@link String }
+     *     
+     */
+    public void setObracunskiRacunBankePoverioca(String value) {
+        this.obracunskiRacunBankePoverioca = value;
+    }
+
+    /**
+     * Gets the value of the ukupanIznos property.
      * 
      * @return
      *     possible object is
      *     {@link BigDecimal }
      *     
      */
-    public BigDecimal getIznos() {
-        return iznos;
+    public BigDecimal getUkupanIznos() {
+        return ukupanIznos;
     }
 
     /**
-     * Sets the value of the iznos property.
+     * Sets the value of the ukupanIznos property.
      * 
      * @param value
      *     allowed object is
      *     {@link BigDecimal }
      *     
      */
-    public void setIznos(BigDecimal value) {
-        this.iznos = value;
+    public void setUkupanIznos(BigDecimal value) {
+        this.ukupanIznos = value;
+    }
+
+    /**
+     * Gets the value of the nalogZaMT102 property.
+     * 
+     * <p>
+     * This accessor method returns a reference to the live list,
+     * not a snapshot. Therefore any modification you make to the
+     * returned list will be present inside the JAXB object.
+     * This is why there is not a <CODE>set</CODE> method for the nalogZaMT102 property.
+     * 
+     * <p>
+     * For example, to add a new item, do as follows:
+     * <pre>
+     *    getNalogZaMT102().add(newItem);
+     * </pre>
+     * 
+     * 
+     * <p>
+     * Objects of the following type(s) are allowed in the list
+     * {@link NalogZaMT102 }
+     * 
+     * 
+     */
+    public List<NalogZaMT102> getNalogZaMT102() {
+        if (nalogZaMT102 == null) {
+            nalogZaMT102 = new ArrayList<NalogZaMT102>();
+        }
+        return this.nalogZaMT102;
+    }
+
+    /**
+     * Gets the value of the datum property.
+     * 
+     * @return
+     *     possible object is
+     *     {@link XMLGregorianCalendar }
+     *     
+     */
+    public XMLGregorianCalendar getDatum() {
+        return datum;
+    }
+
+    /**
+     * Sets the value of the datum property.
+     * 
+     * @param value
+     *     allowed object is
+     *     {@link XMLGregorianCalendar }
+     *     
+     */
+    public void setDatum(XMLGregorianCalendar value) {
+        this.datum = value;
     }
 
     /**

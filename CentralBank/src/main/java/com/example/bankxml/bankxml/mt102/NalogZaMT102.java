@@ -6,12 +6,11 @@
 //
 
 
-package com.strukturartgsnaloga;
+package com.example.bankxml.bankxml.mt102;
 
 import java.math.BigDecimal;
 import javax.xml.bind.annotation.XmlAccessType;
 import javax.xml.bind.annotation.XmlAccessorType;
-import javax.xml.bind.annotation.XmlAttribute;
 import javax.xml.bind.annotation.XmlElement;
 import javax.xml.bind.annotation.XmlSchemaType;
 import javax.xml.bind.annotation.XmlType;
@@ -19,47 +18,19 @@ import javax.xml.datatype.XMLGregorianCalendar;
 
 
 /**
- * <p>Java class for struktura_rtgs_naloga complex type.
+ * <p>Java class for nalogZaMT102 complex type.
  * 
  * <p>The following schema fragment specifies the expected content contained within this class.
  * 
  * <pre>
- * &lt;complexType name="struktura_rtgs_naloga">
+ * &lt;complexType name="nalogZaMT102">
  *   &lt;complexContent>
  *     &lt;restriction base="{http://www.w3.org/2001/XMLSchema}anyType">
  *       &lt;sequence>
- *         &lt;element name="id_poruke">
+ *         &lt;element name="id_naloga_za_placanje">
  *           &lt;simpleType>
  *             &lt;restriction base="{http://www.w3.org/2001/XMLSchema}string">
  *               &lt;maxLength value="50"/>
- *             &lt;/restriction>
- *           &lt;/simpleType>
- *         &lt;/element>
- *         &lt;element name="swift_kod_banke_duznika">
- *           &lt;simpleType>
- *             &lt;restriction base="{http://www.w3.org/2001/XMLSchema}string">
- *               &lt;length value="8"/>
- *             &lt;/restriction>
- *           &lt;/simpleType>
- *         &lt;/element>
- *         &lt;element name="obracunski_racun_banke_duznika">
- *           &lt;simpleType>
- *             &lt;restriction base="{http://www.w3.org/2001/XMLSchema}string">
- *               &lt;pattern value="\d{3}-\d{13}-\d{2}"/>
- *             &lt;/restriction>
- *           &lt;/simpleType>
- *         &lt;/element>
- *         &lt;element name="swift_kod_banke_poverioca">
- *           &lt;simpleType>
- *             &lt;restriction base="{http://www.w3.org/2001/XMLSchema}string">
- *               &lt;length value="8"/>
- *             &lt;/restriction>
- *           &lt;/simpleType>
- *         &lt;/element>
- *         &lt;element name="obracunski_racun_banke_poverioca">
- *           &lt;simpleType>
- *             &lt;restriction base="{http://www.w3.org/2001/XMLSchema}string">
- *               &lt;pattern value="\d{3}-\d{13}-\d{2}"/>
  *             &lt;/restriction>
  *           &lt;/simpleType>
  *         &lt;/element>
@@ -84,6 +55,7 @@ import javax.xml.datatype.XMLGregorianCalendar;
  *             &lt;/restriction>
  *           &lt;/simpleType>
  *         &lt;/element>
+ *         &lt;element name="datum_naloga" type="{http://www.w3.org/2001/XMLSchema}date"/>
  *         &lt;element name="racun_duznika">
  *           &lt;simpleType>
  *             &lt;restriction base="{http://www.w3.org/2001/XMLSchema}string">
@@ -136,16 +108,14 @@ import javax.xml.datatype.XMLGregorianCalendar;
  *             &lt;/restriction>
  *           &lt;/simpleType>
  *         &lt;/element>
+ *         &lt;element name="sifra_valute">
+ *           &lt;simpleType>
+ *             &lt;restriction base="{http://www.w3.org/2001/XMLSchema}string">
+ *               &lt;length value="3"/>
+ *             &lt;/restriction>
+ *           &lt;/simpleType>
+ *         &lt;/element>
  *       &lt;/sequence>
- *       &lt;attribute name="datum_naloga" type="{http://www.w3.org/2001/XMLSchema}date" />
- *       &lt;attribute name="datum_valute" type="{http://www.w3.org/2001/XMLSchema}date" />
- *       &lt;attribute name="sifra_valute">
- *         &lt;simpleType>
- *           &lt;restriction base="{http://www.w3.org/2001/XMLSchema}string">
- *             &lt;length value="3"/>
- *           &lt;/restriction>
- *         &lt;/simpleType>
- *       &lt;/attribute>
  *     &lt;/restriction>
  *   &lt;/complexContent>
  * &lt;/complexType>
@@ -154,41 +124,34 @@ import javax.xml.datatype.XMLGregorianCalendar;
  * 
  */
 @XmlAccessorType(XmlAccessType.FIELD)
-@XmlType(name = "struktura_rtgs_naloga", propOrder = {
-    "idPoruke",
-    "swiftKodBankeDuznika",
-    "obracunskiRacunBankeDuznika",
-    "swiftKodBankePoverioca",
-    "obracunskiRacunBankePoverioca",
+@XmlType(name = "nalogZaMT102", propOrder = {
+    "idNalogaZaPlacanje",
     "duznikNalogodavac",
     "svrhaPlacanja",
     "primalacPoverilac",
+    "datumNaloga",
     "racunDuznika",
     "modelZaduzenja",
     "pozivNaBrojZaduzenja",
     "racunPoverioca",
     "modelOdobrenja",
     "pozivNaBrojOdobrenja",
-    "iznos"
+    "iznos",
+    "sifraValute"
 })
-public class StrukturaRtgsNaloga {
+public class NalogZaMT102 {
 
-    @XmlElement(name = "id_poruke", required = true)
-    protected String idPoruke;
-    @XmlElement(name = "swift_kod_banke_duznika", required = true)
-    protected String swiftKodBankeDuznika;
-    @XmlElement(name = "obracunski_racun_banke_duznika", required = true)
-    protected String obracunskiRacunBankeDuznika;
-    @XmlElement(name = "swift_kod_banke_poverioca", required = true)
-    protected String swiftKodBankePoverioca;
-    @XmlElement(name = "obracunski_racun_banke_poverioca", required = true)
-    protected String obracunskiRacunBankePoverioca;
+    @XmlElement(name = "id_naloga_za_placanje", required = true)
+    protected String idNalogaZaPlacanje;
     @XmlElement(name = "duznik_nalogodavac", required = true)
     protected String duznikNalogodavac;
     @XmlElement(name = "svrha_placanja", required = true)
     protected String svrhaPlacanja;
     @XmlElement(name = "primalac_poverilac", required = true)
     protected String primalacPoverilac;
+    @XmlElement(name = "datum_naloga", required = true)
+    @XmlSchemaType(name = "date")
+    protected XMLGregorianCalendar datumNaloga;
     @XmlElement(name = "racun_duznika", required = true)
     protected String racunDuznika;
     @XmlElement(name = "model_zaduzenja")
@@ -203,133 +166,31 @@ public class StrukturaRtgsNaloga {
     protected String pozivNaBrojOdobrenja;
     @XmlElement(required = true)
     protected BigDecimal iznos;
-    @XmlAttribute(name = "datum_naloga")
-    @XmlSchemaType(name = "date")
-    protected XMLGregorianCalendar datumNaloga;
-    @XmlAttribute(name = "datum_valute")
-    @XmlSchemaType(name = "date")
-    protected XMLGregorianCalendar datumValute;
-    @XmlAttribute(name = "sifra_valute")
+    @XmlElement(name = "sifra_valute", required = true)
     protected String sifraValute;
 
     /**
-     * Gets the value of the idPoruke property.
+     * Gets the value of the idNalogaZaPlacanje property.
      * 
      * @return
      *     possible object is
      *     {@link String }
      *     
      */
-    public String getIdPoruke() {
-        return idPoruke;
+    public String getIdNalogaZaPlacanje() {
+        return idNalogaZaPlacanje;
     }
 
     /**
-     * Sets the value of the idPoruke property.
+     * Sets the value of the idNalogaZaPlacanje property.
      * 
      * @param value
      *     allowed object is
      *     {@link String }
      *     
      */
-    public void setIdPoruke(String value) {
-        this.idPoruke = value;
-    }
-
-    /**
-     * Gets the value of the swiftKodBankeDuznika property.
-     * 
-     * @return
-     *     possible object is
-     *     {@link String }
-     *     
-     */
-    public String getSwiftKodBankeDuznika() {
-        return swiftKodBankeDuznika;
-    }
-
-    /**
-     * Sets the value of the swiftKodBankeDuznika property.
-     * 
-     * @param value
-     *     allowed object is
-     *     {@link String }
-     *     
-     */
-    public void setSwiftKodBankeDuznika(String value) {
-        this.swiftKodBankeDuznika = value;
-    }
-
-    /**
-     * Gets the value of the obracunskiRacunBankeDuznika property.
-     * 
-     * @return
-     *     possible object is
-     *     {@link String }
-     *     
-     */
-    public String getObracunskiRacunBankeDuznika() {
-        return obracunskiRacunBankeDuznika;
-    }
-
-    /**
-     * Sets the value of the obracunskiRacunBankeDuznika property.
-     * 
-     * @param value
-     *     allowed object is
-     *     {@link String }
-     *     
-     */
-    public void setObracunskiRacunBankeDuznika(String value) {
-        this.obracunskiRacunBankeDuznika = value;
-    }
-
-    /**
-     * Gets the value of the swiftKodBankePoverioca property.
-     * 
-     * @return
-     *     possible object is
-     *     {@link String }
-     *     
-     */
-    public String getSwiftKodBankePoverioca() {
-        return swiftKodBankePoverioca;
-    }
-
-    /**
-     * Sets the value of the swiftKodBankePoverioca property.
-     * 
-     * @param value
-     *     allowed object is
-     *     {@link String }
-     *     
-     */
-    public void setSwiftKodBankePoverioca(String value) {
-        this.swiftKodBankePoverioca = value;
-    }
-
-    /**
-     * Gets the value of the obracunskiRacunBankePoverioca property.
-     * 
-     * @return
-     *     possible object is
-     *     {@link String }
-     *     
-     */
-    public String getObracunskiRacunBankePoverioca() {
-        return obracunskiRacunBankePoverioca;
-    }
-
-    /**
-     * Sets the value of the obracunskiRacunBankePoverioca property.
-     * 
-     * @param value
-     *     allowed object is
-     *     {@link String }
-     *     
-     */
-    public void setObracunskiRacunBankePoverioca(String value) {
-        this.obracunskiRacunBankePoverioca = value;
+    public void setIdNalogaZaPlacanje(String value) {
+        this.idNalogaZaPlacanje = value;
     }
 
     /**
@@ -402,6 +263,30 @@ public class StrukturaRtgsNaloga {
      */
     public void setPrimalacPoverilac(String value) {
         this.primalacPoverilac = value;
+    }
+
+    /**
+     * Gets the value of the datumNaloga property.
+     * 
+     * @return
+     *     possible object is
+     *     {@link XMLGregorianCalendar }
+     *     
+     */
+    public XMLGregorianCalendar getDatumNaloga() {
+        return datumNaloga;
+    }
+
+    /**
+     * Sets the value of the datumNaloga property.
+     * 
+     * @param value
+     *     allowed object is
+     *     {@link XMLGregorianCalendar }
+     *     
+     */
+    public void setDatumNaloga(XMLGregorianCalendar value) {
+        this.datumNaloga = value;
     }
 
     /**
@@ -554,54 +439,6 @@ public class StrukturaRtgsNaloga {
      */
     public void setIznos(BigDecimal value) {
         this.iznos = value;
-    }
-
-    /**
-     * Gets the value of the datumNaloga property.
-     * 
-     * @return
-     *     possible object is
-     *     {@link XMLGregorianCalendar }
-     *     
-     */
-    public XMLGregorianCalendar getDatumNaloga() {
-        return datumNaloga;
-    }
-
-    /**
-     * Sets the value of the datumNaloga property.
-     * 
-     * @param value
-     *     allowed object is
-     *     {@link XMLGregorianCalendar }
-     *     
-     */
-    public void setDatumNaloga(XMLGregorianCalendar value) {
-        this.datumNaloga = value;
-    }
-
-    /**
-     * Gets the value of the datumValute property.
-     * 
-     * @return
-     *     possible object is
-     *     {@link XMLGregorianCalendar }
-     *     
-     */
-    public XMLGregorianCalendar getDatumValute() {
-        return datumValute;
-    }
-
-    /**
-     * Sets the value of the datumValute property.
-     * 
-     * @param value
-     *     allowed object is
-     *     {@link XMLGregorianCalendar }
-     *     
-     */
-    public void setDatumValute(XMLGregorianCalendar value) {
-        this.datumValute = value;
     }
 
     /**

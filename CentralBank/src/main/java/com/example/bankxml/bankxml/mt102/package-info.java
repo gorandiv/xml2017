@@ -5,5 +5,5 @@
 // Generated on: 2017.06.26 at 03:46:52 PM CEST 
 //
 
-@javax.xml.bind.annotation.XmlSchema(namespace = "http://spring.io/guides/gs-producing-web-service", elementFormDefault = javax.xml.bind.annotation.XmlNsForm.QUALIFIED)
-package io.spring.guides.gs_producing_web_service;
+@javax.xml.bind.annotation.XmlSchema(namespace = "http://mt102.BankXml.bankXml.example.com", elementFormDefault = javax.xml.bind.annotation.XmlNsForm.QUALIFIED)
+package com.example.bankxml.bankxml.mt102;
