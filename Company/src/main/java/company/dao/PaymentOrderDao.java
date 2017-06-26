@@ -27,7 +27,7 @@ public interface PaymentOrderDao extends Repository<NalogZaPrenos, Integer> {
 	
 	@Modifying
 	@Transactional
-	@Query("update NalogZaPrenos nzp set nzp.poslata = true where nzp.id = :paymentOrderId")
+	@Query("update NalogZaPrenos nzp set nzp.poslat = true where nzp.id = :paymentOrderId")
 	void setPoslatById(@Param("paymentOrderId")  Integer paymentOrderId);
 
 

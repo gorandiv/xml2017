@@ -9,11 +9,13 @@ package company.bean;
 
 import java.math.BigDecimal;
 
+import javax.persistence.CascadeType;
 import javax.persistence.Column;
 import javax.persistence.Entity;
 import javax.persistence.GeneratedValue;
 import javax.persistence.GenerationType;
 import javax.persistence.Id;
+import javax.persistence.ManyToOne;
 import javax.persistence.Table;
 import javax.xml.bind.annotation.XmlAccessType;
 import javax.xml.bind.annotation.XmlAccessorType;
@@ -98,6 +100,7 @@ public class NalogZaPrenos {
 	@XmlElement(namespace = "http://www.ftn.uns.ac.rs/nalogZaPrenos", required = true)
 	protected String poverilac;
 	@XmlElement(name = "podaci_o_uplati", namespace = "http://www.ftn.uns.ac.rs/nalogZaPrenos", required = true)
+	@ManyToOne(cascade = CascadeType.ALL)
 	protected NalogZaPrenos.PodaciOUplati podaciOUplati;
 
 	@Id
@@ -269,8 +272,10 @@ public class NalogZaPrenos {
 		@XmlElement(namespace = "http://www.ftn.uns.ac.rs/nalogZaPrenos", required = true)
 		protected BigDecimal iznos;
 		@XmlElement(name = "racun_duznika", namespace = "http://www.ftn.uns.ac.rs/nalogZaPrenos", required = true)
+		@ManyToOne(cascade = CascadeType.ALL)
 		protected TRacun racunDuznika;
 		@XmlElement(name = "racun_poverioca", namespace = "http://www.ftn.uns.ac.rs/nalogZaPrenos", required = true)
+		@ManyToOne(cascade = CascadeType.ALL)
 		protected TRacun racunPoverioca;
 		@XmlElement(name = "datum_valute", namespace = "http://www.ftn.uns.ac.rs/nalogZaPrenos", required = true)
 		protected String datumValute;
