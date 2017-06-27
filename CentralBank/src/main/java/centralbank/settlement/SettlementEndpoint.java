@@ -26,8 +26,8 @@ public class SettlementEndpoint {
 	@ResponsePayload
 	public Mt102 getCountry(@RequestPayload Mt102 request) {
 		
-		Banka b1=bankDao.findBySwiftCode(request.getSwiftKodBankeDuznika());
-		Banka b2=bankDao.findBySwiftCode(request.getSWIFTKodBankePoverioca());
+		Banka b1=bankDao.findBySwiftKod(request.getSwiftKodBankeDuznika());
+		Banka b2=bankDao.findBySwiftKod(request.getSWIFTKodBankePoverioca());
 
 		Function f=new Function();
 		
