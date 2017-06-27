@@ -15,10 +15,7 @@ import javax.persistence.Table;
 @Entity
 @Table(name="racun_firme")
 public class RacunFirme implements Serializable{
-
-	/**
-	 * 
-	 */
+	
 	private static final long serialVersionUID = 1L;
 
 	@Id
@@ -29,13 +26,15 @@ public class RacunFirme implements Serializable{
 	@ManyToOne(cascade=CascadeType.ALL)
 	private Firma firma;
 	
+	@Column(name = "broj_racuna", unique = true, nullable = false)
+	private String brojRacuna;
+	
 	@Column(name="stanje_racuna",nullable=false)
 	private BigDecimal stanjeRacuna;
-
+	
 	
 	public RacunFirme() {
-		super();
-		// TODO Auto-generated constructor stub
+	
 	}
 	
 	

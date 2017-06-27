@@ -6,14 +6,11 @@ import java.util.List;
 import javax.persistence.CascadeType;
 import javax.persistence.Column;
 import javax.persistence.Entity;
-import javax.persistence.FetchType;
 import javax.persistence.GeneratedValue;
 import javax.persistence.GenerationType;
 import javax.persistence.Id;
 import javax.persistence.OneToMany;
 import javax.persistence.Table;
-
-import com.fasterxml.jackson.annotation.JsonManagedReference;
 
 @Entity
 @Table(name = "banka")
@@ -35,13 +32,19 @@ public class Banka implements Serializable {
 	@Column(name = "cb_adr", nullable = false)
 	private String adresaCentralneBanke;
 
-	@OneToMany(cascade = CascadeType.ALL, fetch= FetchType.EAGER, mappedBy = "banka")
-	@JsonManagedReference
-	private List<Firma> firme;
-
-	
 	@Column(name = "swift_kod", unique = true, nullable = false)
 	private String swiftKod;
+
+	@OneToMany(cascade = CascadeType.ALL)
+	private List<RacunFirme> racuniFirme;
+
+	public List<RacunFirme> getRacuniFirme() {
+		return racuniFirme;
+	}
+
+	public void setRacuniFirme(List<RacunFirme> racuniFirme) {
+		this.racuniFirme = racuniFirme;
+	}
 
 	public Banka() {
 	}
@@ -76,14 +79,6 @@ public class Banka implements Serializable {
 
 	public void setAdresaCentralneBanke(String adresaCentralneBanke) {
 		this.adresaCentralneBanke = adresaCentralneBanke;
-	}
-
-	public List<Firma> getFirme() {
-		return firme;
-	}
-
-	public void setFirme(List<Firma> firme) {
-		this.firme = firme;
 	}
 
 	public String getSwiftKod() {

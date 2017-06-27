@@ -37,16 +37,10 @@ public class Firma implements Serializable {
 	@Column(name = "adresa", unique = true, nullable = false)
 	private String adresa;
 
-	@Column(name = "broj_racuna", unique = true, nullable = false)
-	private String brojRacuna;
-
 	@ManyToOne(cascade = CascadeType.ALL)
-	@JoinColumn(name="banka_id")
+	@JoinColumn(name = "banka_id")
 	@JsonBackReference
 	private Banka banka;
-
-	@Column(name = "ip", unique = true, nullable = false)
-	private String ip;
 
 	@OneToMany(cascade = CascadeType.ALL, mappedBy = "firma")
 	@JsonManagedReference
@@ -87,28 +81,12 @@ public class Firma implements Serializable {
 		this.adresa = adresa;
 	}
 
-	public String getBrojRacuna() {
-		return brojRacuna;
-	}
-
-	public void setBrojRacuna(String brojRacuna) {
-		this.brojRacuna = brojRacuna;
-	}
-
 	public Banka getBanka() {
 		return banka;
 	}
 
 	public void setBanka(Banka banka) {
 		this.banka = banka;
-	}
-
-	public String getIp() {
-		return ip;
-	}
-
-	public void setIp(String ip) {
-		this.ip = ip;
 	}
 
 	public List<ProizvodIliUsluga> getProizvodiIliUsluge() {

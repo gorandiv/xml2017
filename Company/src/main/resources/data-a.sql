@@ -1,5 +1,5 @@
-INSERT INTO firma (id, pib, ime, adresa, broj_racuna, banka_id, ip)
-VALUES (1, '11111111111','A', 'Novi Sad, Brace Ribnikar 52a', '123111111111111122', 1, '127.0.0.1:8100')
+INSERT INTO firma (id, pib, ime, adresa, banka_id, adresa)
+VALUES (1, '11111111111','A', 'Novi Sad, Brace Ribnikar 52a', 1, '127.0.0.1:8100')
 ON DUPLICATE KEY UPDATE id=id;
 
 INSERT INTO proizvod_ili_usluga(ime, jedinica_mere, cena, porez, firma_id, jel_proizvod)
@@ -11,3 +11,7 @@ ON DUPLICATE KEY UPDATE id=id;
 INSERT INTO proizvod_ili_usluga(ime, jedinica_mere, cena, porez, firma_id, jel_proizvod)
 VALUES ('Usluga2', 'km', 115.0, 20.5, 1, false)
 ON DUPLICATE KEY UPDATE id=id;
+
+INSERT INTO racun_fime(firma_id, broj_racuna, stanje_racuna) VALUES (1, 123111117711331122, 1000.0) ON DUPLICATE KEY UPDATE id=id;
+INSERT INTO racun_fime(firma_id, broj_racuna, stanje_racuna) VALUES (1, 123112115511111122, 50000.0) ON DUPLICATE KEY UPDATE id=id;
+INSERT INTO racun_fime(firma_id, broj_racuna, stanje_racuna) VALUES (1, 123111112211151122, 101000.0) ON DUPLICATE KEY UPDATE id=id;

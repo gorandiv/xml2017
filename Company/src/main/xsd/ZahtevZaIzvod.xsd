@@ -8,7 +8,7 @@
         <xs:complexType>
             <xs:sequence>
                 <xs:element name="broj_racuna" type="gl:TBrojRacuna"/>
-                <xs:element name="datum" type="xs:date"/>
+                <xs:element name="datum" type="xs:string"/>
                 <xs:element name="redni_broj_preseka">
                     <xs:simpleType>
                         <xs:restriction base="xs:positiveInteger">

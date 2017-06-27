@@ -12,22 +12,29 @@ import java.math.BigInteger;
 import javax.xml.bind.annotation.XmlAccessType;
 import javax.xml.bind.annotation.XmlAccessorType;
 import javax.xml.bind.annotation.XmlElement;
+import javax.xml.bind.annotation.XmlRootElement;
 import javax.xml.bind.annotation.XmlType;
 
 
 /**
- * <p>Java class for TRacun complex type.
+ * <p>Java class for anonymous complex type.
  * 
  * <p>The following schema fragment specifies the expected content contained within this class.
  * 
  * <pre>
- * &lt;complexType name="TRacun">
+ * &lt;complexType>
  *   &lt;complexContent>
  *     &lt;restriction base="{http://www.w3.org/2001/XMLSchema}anyType">
  *       &lt;sequence>
  *         &lt;element name="broj_racuna" type="{http://www.ftn.uns.ac.rs/xml}TBrojRacuna"/>
- *         &lt;element name="broj_modela" type="{http://www.ftn.uns.ac.rs/xml}TModel"/>
- *         &lt;element name="poziv_na_broj" type="{http://www.ftn.uns.ac.rs/xml}TPozivNaBroj"/>
+ *         &lt;element name="datum" type="{http://www.w3.org/2001/XMLSchema}string"/>
+ *         &lt;element name="redni_broj_preseka">
+ *           &lt;simpleType>
+ *             &lt;restriction base="{http://www.w3.org/2001/XMLSchema}positiveInteger">
+ *               &lt;totalDigits value="2"/>
+ *             &lt;/restriction>
+ *           &lt;/simpleType>
+ *         &lt;/element>
  *       &lt;/sequence>
  *     &lt;/restriction>
  *   &lt;/complexContent>
@@ -37,19 +44,20 @@ import javax.xml.bind.annotation.XmlType;
  * 
  */
 @XmlAccessorType(XmlAccessType.FIELD)
-@XmlType(name = "TRacun", namespace = "http://www.ftn.uns.ac.rs/xml", propOrder = {
+@XmlType(name = "", propOrder = {
     "brojRacuna",
-    "brojModela",
-    "pozivNaBroj"
+    "datum",
+    "redniBrojPreseka"
 })
-public class TRacun {
+@XmlRootElement(name = "zahtev_za_izvod")
+public class ZahtevZaIzvod {
 
     @XmlElement(name = "broj_racuna", required = true)
     protected String brojRacuna;
-    @XmlElement(name = "broj_modela", required = true)
-    protected BigInteger brojModela;
-    @XmlElement(name = "poziv_na_broj", required = true)
-    protected String pozivNaBroj;
+    @XmlElement(required = true)
+    protected String datum;
+    @XmlElement(name = "redni_broj_preseka", required = true)
+    protected BigInteger redniBrojPreseka;
 
     /**
      * Gets the value of the brojRacuna property.
@@ -76,51 +84,51 @@ public class TRacun {
     }
 
     /**
-     * Gets the value of the brojModela property.
-     * 
-     * @return
-     *     possible object is
-     *     {@link BigInteger }
-     *     
-     */
-    public BigInteger getBrojModela() {
-        return brojModela;
-    }
-
-    /**
-     * Sets the value of the brojModela property.
-     * 
-     * @param value
-     *     allowed object is
-     *     {@link BigInteger }
-     *     
-     */
-    public void setBrojModela(BigInteger value) {
-        this.brojModela = value;
-    }
-
-    /**
-     * Gets the value of the pozivNaBroj property.
+     * Gets the value of the datum property.
      * 
      * @return
      *     possible object is
      *     {@link String }
      *     
      */
-    public String getPozivNaBroj() {
-        return pozivNaBroj;
+    public String getDatum() {
+        return datum;
     }
 
     /**
-     * Sets the value of the pozivNaBroj property.
+     * Sets the value of the datum property.
      * 
      * @param value
      *     allowed object is
      *     {@link String }
      *     
      */
-    public void setPozivNaBroj(String value) {
-        this.pozivNaBroj = value;
+    public void setDatum(String value) {
+        this.datum = value;
+    }
+
+    /**
+     * Gets the value of the redniBrojPreseka property.
+     * 
+     * @return
+     *     possible object is
+     *     {@link BigInteger }
+     *     
+     */
+    public BigInteger getRedniBrojPreseka() {
+        return redniBrojPreseka;
+    }
+
+    /**
+     * Sets the value of the redniBrojPreseka property.
+     * 
+     * @param value
+     *     allowed object is
+     *     {@link BigInteger }
+     *     
+     */
+    public void setRedniBrojPreseka(BigInteger value) {
+        this.redniBrojPreseka = value;
     }
 
 }
