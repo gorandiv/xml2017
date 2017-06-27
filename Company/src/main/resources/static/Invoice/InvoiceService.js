@@ -131,8 +131,9 @@ invoiceModule.service('invoiceService', ['$http', function($http) {
 	
 	this.sendInvoice = function(invoice) {
 		return $http({
-			  method: 'PUT',
-			  url: '../Firma/invoice/send/' + invoice.id,
+			  method: 'POST',
+			  url: '../Firma/invoice/send',
+			  data: angular.toJson(invoice),
 			  headers: { 'Accept': 'application/json' }
 			}).then(function successCallback(response) {
 				return response;

@@ -11,6 +11,8 @@ public interface CompanyDao extends Repository<Firma, Integer> {
 	Firma findById(Integer id);
 	
 	List<Firma> findAll();
+	
+	Firma findByPib(String pib);
 
 
 }

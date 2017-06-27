@@ -45,10 +45,14 @@ public class InvoiceController {
 		return invoiceService.createInvoice(invoice);
 	}
 	
-	@PutMapping(path = "/send/{invoiceId}")
-	public @ResponseBody Faktura sendInvoice(@PathVariable("invoiceId") Integer invoiceId) {
-		invoiceService.sendInvoiceToBuyer();
-		return invoiceService.sendInvoice(invoiceId);
+	@PostMapping(path = "/send", consumes = MediaType.APPLICATION_JSON_VALUE)
+	public void sendInvoice(@RequestBody Faktura invoice) {
+		invoiceService.sendInvoice(invoice);
+	}
+	
+	@PostMapping(path = "/receive", consumes = MediaType.APPLICATION_XML_VALUE)
+	public void receiveInvoice(@RequestBody Faktura invoice) {
+		invoiceService.receiveInvoice(invoice);
 	}
 	
 	@PutMapping(path = "/remove/{invoiceId}")

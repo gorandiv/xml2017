@@ -14,10 +14,11 @@ public interface InvoiceService {
 
 	List<Faktura> getCreatedInvoices();
 
-	Faktura sendInvoice(Integer invoiceId);
-
+	void receiveInvoice(Faktura invoice);
+	
 	void removeInvoice(Integer invoiceId);
 
-	void sendInvoiceToBuyer();
+	void sendInvoice(Faktura invoice);
+
 
 }
