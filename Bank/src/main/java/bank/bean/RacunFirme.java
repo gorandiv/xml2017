@@ -29,6 +29,7 @@ public class RacunFirme implements Serializable{
 	@Column(name = "broj_racuna", unique = true, nullable = false)
 	private String brojRacuna;
 	
+
 	@Column(name="stanje_racuna",nullable=false)
 	private BigDecimal stanjeRacuna;
 	
@@ -37,6 +38,14 @@ public class RacunFirme implements Serializable{
 	
 	}
 	
+	public String getBrojRacuna() {
+		return brojRacuna;
+	}
+	
+	
+	public void setBrojRacuna(String brojRacuna) {
+		this.brojRacuna = brojRacuna;
+	}
 	
 	public Integer getId() {
 		return id;

@@ -52,20 +52,30 @@ public class NalogEndpoint {
 	public NalogZaPrenos handleRequest(@RequestPayload NalogZaPrenos request) {		
 		Banka thisBank = bankDAO.findById(Integer.parseInt(bankId));
 		try{
-			Firma poverilac = companyDAO.findByIme(request.getPoverilac());
-			Firma duznik  = companyDAO.findByIme(request.getDuznik());
-			RacunFirme racunPoverioca = racuniDAO.findByFirma_Id(poverilac.getId());
-			RacunFirme racunDuznika = racuniDAO.findByFirma_Id(duznik.getId());
-			if (poverilac.getBanka().getId().equals(duznik.getBanka().getId())){
+			
+			String racunDuznika = request.getPodaciOUplati().getRacunDuznika().getBrojRacuna();
+			String racunPoverioca = request.getPodaciOUplati().getRacunPoverioca().getBrojRacuna();
+			RacunFirme racunPoverioc = null;
+			RacunFirme racunDuznik = null;
+			for(RacunFirme racun : thisBank.getRacuniFirme()){
+				if(racun.getBrojRacuna().equals(racunPoverioca)){
+					racunPoverioc = racun;
+				}else if(racun.getBrojRacuna().equals(racunDuznika)){
+					racunDuznik = racun;
+				}
+			}
+			
+			
+			if (racunPoverioc != null){
 				System.out.println("----------------------Firme se nalaze u istoj banci.-----------------------------");
 				
 				System.out.println("----------------------Skidam sa racuna.------------------------------------------");
-				racunDuznika.setStanjeRacuna(racunDuznika.getStanjeRacuna().subtract(request.getPodaciOUplati().getIznos()));
-				racuniDAO.save(racunDuznika);
+				racunDuznik.setStanjeRacuna(racunDuznik.getStanjeRacuna().subtract(request.getPodaciOUplati().getIznos()));
+				racuniDAO.save(racunDuznik);
 				System.out.println("----------------------Dodajem na racun.------------------------------------------");
-				racunPoverioca.setStanjeRacuna(racunPoverioca.getStanjeRacuna().add(request.getPodaciOUplati().getIznos()));
-				racuniDAO.save(racunPoverioca);
-			}else sendRequestToCentralBank(thisBank, poverilac.getBanka(),request,racunDuznika,racunPoverioca);
+				racunPoverioc.setStanjeRacuna(racunPoverioc.getStanjeRacuna().add(request.getPodaciOUplati().getIznos()));
+				racuniDAO.save(racunPoverioc);
+			}else sendRequestToCentralBank(thisBank, racunPoverioc.getFirma().getBanka(),request,racunDuznik,racunPoverioc);
 		}catch(Exception e){
 			System.out.println("Nepostojeca firma!");
 		}	
