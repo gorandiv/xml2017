@@ -61,7 +61,7 @@ public class Function {
 		x.setPrimalacPoverilac("bankaD");
 		NalogZaMT102 y=new NalogZaMT102();
 		y.setPrimalacPoverilac("bankaD");
-		
+		/*
 		Mt102 z=mt102Repository.putInMap(x);
 		if(z!=null){
 			
@@ -71,7 +71,7 @@ public class Function {
 		if(z!=null){
 		
 			sendNalog1(z);
-		}
+		}*/
 		
     }
     

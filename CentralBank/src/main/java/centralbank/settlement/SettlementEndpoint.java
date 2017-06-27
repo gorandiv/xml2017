@@ -31,11 +31,21 @@ public class SettlementEndpoint {
 
 		Function f=new Function();
 		
-		f.sendNalog3(new Mt102(),b2.getAdresa());
-		f.sendNalog1(new Mt900(), b1.getAdresa());
-		f.sendNalog2(new Mt910(),b2.getAdresa());
+		Mt900 mt900=new Mt900();
+		mt900.setSwiftBankeDuznika(request.getSwiftKodBankeDuznika());
+		mt900.setIdPorukeNaloga(request.getIdPoruke());
+		mt900.setIznos(request.getUkupanIznos());
 		
-		System.out.println("jebes mi mater");
+		Mt910 mt910=new Mt910();
+		mt910.setSwiftKodBankePoverioca(request.getSWIFTKodBankePoverioca());
+		mt910.setIdPorukeNaloga(request.getIdPoruke());
+		mt910.setIznos(request.getUkupanIznos());
+		
+		f.sendNalog3(request,b2.getAdresa());
+		f.sendNalog1(mt900, b1.getAdresa());
+		f.sendNalog2(mt910,b2.getAdresa());
+		
+		
 		return request;
 	}
 	
