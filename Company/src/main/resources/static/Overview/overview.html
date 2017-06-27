@@ -1,12 +1,36 @@
 <div class="container-fluid">
 
+	<h1>Izvod računa</h1>
+
+	<div class="form-group">
+		<label for="thisCompanyBill" class="control-label"> Broj računa: </label> <select
+			ng-options="racunFirme.brojRacuna as racunFirme.brojRacuna for racunFirme in thisCompany.banka.racuniFirme"
+			ng-model="overviewSectionRequest.brojRacuna"
+			class="form-control" id="thisCompanyBill">
+			<option style="background-color: #ccc" value="">Izaberi
+				račun...</option>
+		</select>
+	</div>
 	
+	<div class="form-group">
+		<label for="date" class="control-label"> Datum: </label> <input
+			type="date" min="1" class="form-control" id="amount"
+			ng-model="overviewSectionRequest.datum">
+	</div>
 	
+	<div class="form-group">
+		<label for="ordinal" class="control-label"> Redni broj preseka: </label> <input
+			type="number" min="1" class="form-control" id="ordinal"
+			ng-model="overviewSectionRequest.redniBrojPreseka"
+			placeholder="Unesi redni broj preseka">
+	</div>
+	<div class="form-group">
+		<button type="button" class="btn btn-primary" ng-click="sendOverviewSectionRequest()">Pošalji zahtev za presek</button>
+	</div>
 	
-	
-	<div ng-repeat="overview in overviews">
-	
-		
+
+	<div ng-repeat="overviewSection in overviewSections">
+	<hr/>
 	
 	
 	</div>

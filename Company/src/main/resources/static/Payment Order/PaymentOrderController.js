@@ -4,9 +4,9 @@ paymentOrderModule.controller('paymentOrderController', [
 		'paymentOrderObjectFactoryService',
 		'paymentOrderService',
 		'paymentOrderInvoiceService',
-		'paymentOrderCompanyService',
+		'companyService',
 		function($scope, $interval, paymentOrderObjectFactoryService, paymentOrderService,
-				paymentOrderInvoiceService, paymentOrderCompanyService) {
+				paymentOrderInvoiceService, companyService) {
 
 			$scope.createdPaymentOrders = [];
 			$scope.sentPaymentOrders = [];
@@ -37,7 +37,7 @@ paymentOrderModule.controller('paymentOrderController', [
 			$scope.receivedInvoices = [];
 			$scope.thisCompany = {};
 			
-			paymentOrderCompanyService.getThisCompany().then(function(response) {
+			companyService.getThisCompany().then(function(response) {
 				$scope.thisCompany = response.data;
 			});
 

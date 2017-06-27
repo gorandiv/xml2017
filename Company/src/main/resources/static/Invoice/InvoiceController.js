@@ -3,10 +3,10 @@ invoiceModule.controller('invoiceController', [
 		'$interval',
 		'invoiceObjectFactoryService',
 		'invoiceService',
-		'invoiceCompanyService',
+		'companyService',
 		'productOrServiceService',
 		function($scope, $interval, invoiceObjectFactoryService, invoiceService,
-				invoiceCompanyService, productOrServiceService) {
+				companyService, productOrServiceService) {
 
 			$scope.createdInvoices = [];
 			$scope.sentInvoices = [];
@@ -55,11 +55,11 @@ invoiceModule.controller('invoiceController', [
 			$scope.companies = [];
 			$scope.productsOrServices = [];
 			
-			invoiceCompanyService.getThisCompany().then(function(response) {
+			companyService.getThisCompany().then(function(response) {
 				$scope.thisCompany = response.data;
 			});
 			
-			invoiceCompanyService.getCompanies().then(function(response) {
+			companyService.getCompanies().then(function(response) {
 				$scope.companies = response.data;
 			});
 			

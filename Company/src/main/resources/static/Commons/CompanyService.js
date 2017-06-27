@@ -1,4 +1,4 @@
-invoiceModule.service('invoiceCompanyService', ['$http', function($http) {
+appModule.service('companyService', ['$http', function($http) {
 	
 	this.getCompanies = function() {
 		return $http({
