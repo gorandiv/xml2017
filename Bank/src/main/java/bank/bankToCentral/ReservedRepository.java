@@ -2,8 +2,11 @@ package bank.bankToCentral;
 
 import java.util.HashMap;
 
+import org.springframework.stereotype.Component;
+
 import bank.bean.Reservation;
 
+@Component
 public class ReservedRepository {
 
 	private HashMap<String,Reservation> map=new HashMap<>();

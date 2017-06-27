@@ -15,14 +15,7 @@ import javax.persistence.Table;
 @Entity
 @Table(name="racun_firme")
 public class RacunFirme implements Serializable{
-<<<<<<< HEAD
 
-	/**
-	 * 
-	 */
-=======
-	
->>>>>>> 6463503ba504adefd5375b30a2bc120251e5a286
 	private static final long serialVersionUID = 1L;
 
 	@Id
@@ -32,18 +25,7 @@ public class RacunFirme implements Serializable{
 
 	@ManyToOne(cascade=CascadeType.ALL)
 	private Firma firma;
-	
-<<<<<<< HEAD
-	@Column(name="stanje_racuna",nullable=false)
-	private BigDecimal stanjeRacuna;
 
-	
-	public RacunFirme() {
-		super();
-		// TODO Auto-generated constructor stub
-	}
-	
-=======
 	@Column(name = "broj_racuna", unique = true, nullable = false)
 	private String brojRacuna;
 	
@@ -54,9 +36,7 @@ public class RacunFirme implements Serializable{
 	public RacunFirme() {
 	
 	}
-	
-	
->>>>>>> 6463503ba504adefd5375b30a2bc120251e5a286
+
 	public Integer getId() {
 		return id;
 	}
