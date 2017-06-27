@@ -2,21 +2,22 @@ package company;
 
 import org.springframework.oxm.jaxb.Jaxb2Marshaller;
 import org.springframework.ws.client.core.WebServiceTemplate;
-import company.bean.ZahtevZaIzvod;
+
+import company.bean.NalogZaPrenos;
 
 public class Function {
 
 	
 	public static void main(String[] args){
 		Function f=new Function();
-		ZahtevZaIzvod zahtev = new ZahtevZaIzvod();
+		NalogZaPrenos zahtev = new NalogZaPrenos();
 		f.sendZahtev(zahtev);
 	}
 	
-	private void sendZahtev(ZahtevZaIzvod zahtev){
+	private void sendZahtev(NalogZaPrenos zahtev){
 	    System.out.println("-----------------------------Poslat Nalog----------------------");
         WebServiceTemplate webServiceTemplate = configWebServiceTemplate("company.bean",
-        		"http://localhost:8090/ws/zahtev_za_izvod");
+        		"http://localhost:8090/ws/nalog_za_prenos");
        webServiceTemplate.marshalSendAndReceive(zahtev);
         System.out.println("-----------------------------Primeljen Nalog--------------------");
   

@@ -51,5 +51,13 @@ public class ObjectFactory {
     public TRacun createTRacun() {
         return new TRacun();
     }
+    
+    public NalogZaPrenos createNalogZaPrenos(){
+    	return new NalogZaPrenos();
+    }
+    
+    public NalogZaPrenos.PodaciOUplati createPodaciOUplati(){
+    	return new NalogZaPrenos.PodaciOUplati();
+    }
 
 }
