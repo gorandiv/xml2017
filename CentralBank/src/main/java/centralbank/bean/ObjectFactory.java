@@ -36,28 +36,7 @@ public class ObjectFactory {
     public ObjectFactory() {
     }
 
-    /**
-     * Create an instance of {@link GetCountryRequest }
-     * 
-     */
-    public GetCountryRequest createGetCountryRequest() {
-        return new GetCountryRequest();
-    }
 
-    /**
-     * Create an instance of {@link GetCountryResponse }
-     * 
-     */
-    public GetCountryResponse createGetCountryResponse() {
-        return new GetCountryResponse();
-    }
 
-    /**
-     * Create an instance of {@link Country }
-     * 
-     */
-    public Country createCountry() {
-        return new Country();
-    }
 
 }
