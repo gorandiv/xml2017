@@ -7,7 +7,7 @@
 
 	<h3>Kreirani nalozi:</h3>
 
-	<table class="table table-bordered">
+	<table class="table table-hover table-bordered">
 		<thead>
 			<tr>
 				<th>Poverilac</th>
@@ -20,7 +20,9 @@
 			</tr>
 		</thead>
 		<tbody>
-			<tr ng-repeat="paymentOrder in createdPaymentOrders">
+			<tr ng-repeat="paymentOrder in createdPaymentOrders"
+				ng-click="showPaymentOrder(paymentOrder)" data-toggle="modal"
+				data-target="#showPaymentOrderModal">
 				<td>{{ paymentOrder.poverilac }}</td>
 				<td>{{ paymentOrder.svrhaPlacanja }}</td>
 				<td>{{ paymentOrder.podaciOUplati.racunPoverioca.brojRacuna }}</td>
@@ -40,7 +42,7 @@
 		</tbody>
 	</table>
 	<h3>Poslati nalozi:</h3>
-	<table class="table table-bordered">
+	<table class="table table-hover table-bordered">
 		<thead>
 			<tr>
 				<th>Poverilac</th>
@@ -53,7 +55,8 @@
 		</thead>
 		<tbody>
 			<tr ng-repeat="paymentOrder in sentPaymentOrders"
-				ng-click="showPaymentOrder(paymentOrder);">
+				ng-click="showPaymentOrder(paymentOrder)" data-toggle="modal"
+				data-target="#showPaymentOrderModal">
 				<td>{{ paymentOrder.poverilac }}</td>
 				<td>{{ paymentOrder.svrhaPlacanja }}</td>
 				<td>{{ paymentOrder.podaciOUplati.racunPoverioca.brojRacuna }}</td>
@@ -139,4 +142,61 @@
 
 
 	</div>
-</div>
+
+	<div id="showPaymentOrderModal" class="modal fade" role="dialog">
+		<div class="modal-dialog">
+			<div class="modal-header">Nalog</div>
+			<!-- Modal content-->
+			<div class="modal-content">
+				<div class="modal-body">
+
+					<div class="row">
+						<div class="col-md-6">
+							<h4>
+								<b>Dužnik:</b> {{paymentOrderToShow.duznik}}
+							</h4>
+							<h4>
+								<b>Svrha plaćanja:</b> {{paymentOrderToShow.svrhaPlacanja}}
+							</h4>
+							<h4>
+								<b>Poverilac:</b> {{paymentOrderToShow.poverilac}}
+							</h4>
+							<h4>
+								<b>Iznos: </b>{{paymentOrderToShow.podaciOUplati.iznos}}
+								{{paymentOrderToShow.podaciOUplati.oznakaValute}}
+							</h4>
+							<h4>
+								<b>Datum valute:</b>
+								{{paymentOrderToShow.podaciOUplati.datumValute}}
+							</h4>
+							<h4>
+								<b>Datum naloga:</b>
+								{{paymentOrderToShow.podaciOUplati.datumNaloga}}
+							</h4>
+						</div>
+						<div class="col-md-6">
+							<h4>
+								<b>Račun dužnika:</b> </h4>
+								<h4>{{paymentOrderToShow.podaciOUplati.racunDuznika.brojRacuna}} </h4>
+							<h4>	{{paymentOrderToShow.podaciOUplati.racunDuznika.brojModela}}
+								{{paymentOrderToShow.podaciOUplati.racunDuznika.pozivNaBroj}} </h4>
+							<h4>
+								<b>Račun poverioca:</b> </h4>
+								<h4>
+								{{paymentOrderToShow.podaciOUplati.racunPoverioca.brojRacuna}} </h4>
+							<h4>	{{paymentOrderToShow.podaciOUplati.racunPoverioca.brojModela}}
+								{{paymentOrderToShow.podaciOUplati.racunPoverioca.pozivNaBroj}} </h4>
+							<div ng-show="paymentOrderToShow.podaciOUplati.hitno"><h4><b>Hitno? </b> DA</h4></div><div ng-show="!paymentOrderToShow.podaciOUplati.hitno"><h4><b>Hitno? </b> NE</h4></div>
+
+						</div>
+					</div>
+				</div>
+				<div class="modal-footer">
+					<button type="button" class="btn btn-default pull-right"
+						data-dismiss="modal">Izađi</button>
+				</div>
+			</div>
+
+
+		</div>
+	</div>

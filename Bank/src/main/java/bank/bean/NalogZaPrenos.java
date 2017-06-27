@@ -21,6 +21,7 @@ import javax.xml.bind.annotation.XmlAccessType;
 import javax.xml.bind.annotation.XmlAccessorType;
 import javax.xml.bind.annotation.XmlElement;
 import javax.xml.bind.annotation.XmlRootElement;
+import javax.xml.bind.annotation.XmlTransient;
 import javax.xml.bind.annotation.XmlType;
 import javax.xml.datatype.XMLGregorianCalendar;
 
@@ -85,7 +86,7 @@ import javax.xml.datatype.XMLGregorianCalendar;
  * 
  */
 @XmlAccessorType(XmlAccessType.FIELD)
-@XmlType(name = "", propOrder = { "idPoruke", "duznik", "svrhaPlacanja", "primalac", "podaciOUplati" })
+@XmlType(name = "nalog_za_prenos", propOrder = { "idPoruke", "duznik", "svrhaPlacanja","poverilac", "podaciOUplati" })
 @XmlRootElement(name = "nalog_za_prenos", namespace = "http://www.ftn.uns.ac.rs/nalogZaPrenos")
 @Entity
 @Table(name = "nalog_za_prenos")
@@ -103,11 +104,13 @@ public class NalogZaPrenos {
 	@ManyToOne(cascade = CascadeType.ALL)
 	protected NalogZaPrenos.PodaciOUplati podaciOUplati;
 
+	@XmlTransient
 	@Id
 	@Column(name = "id")
 	@GeneratedValue(strategy = GenerationType.AUTO)
 	private Integer id;
 
+	@XmlTransient
 	@Column(name = "poslat", nullable = false)
 	private Boolean poslat;
 
@@ -283,7 +286,7 @@ public class NalogZaPrenos {
 		protected boolean hitno;
 		@XmlElement(name = "datum_naloga", namespace = "http://www.ftn.uns.ac.rs/nalogZaPrenos", required = true)
 		protected String datumNaloga;
-		
+		@XmlTransient
 		@Id
 		@Column(name = "id")
 		@GeneratedValue(strategy = GenerationType.AUTO)

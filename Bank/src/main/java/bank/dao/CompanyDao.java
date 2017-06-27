@@ -1,10 +1,10 @@
-package company.dao;
+package bank.dao;
 
 import java.util.List;
 
 import org.springframework.data.repository.Repository;
 
-import company.bean.Firma;
+import bank.bean.Firma;
 
 public interface CompanyDao extends Repository<Firma, Integer> {
 	
@@ -12,7 +12,7 @@ public interface CompanyDao extends Repository<Firma, Integer> {
 	
 	List<Firma> findAll();
 	
-	Firma findByPib(String pib);
+	Firma findByIme(String ime);
 
 
 }

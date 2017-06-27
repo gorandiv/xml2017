@@ -86,6 +86,10 @@ paymentOrderModule.controller('paymentOrderController', [
 						toastr.info("Nalog za plaćanje uspešno obrisan.");
 					});
 			}
+			
+			$scope.showPaymentOrder = function(paymentOrder) {
+				$scope.paymentOrderToShow = paymentOrder;
+			}
 
 			$scope.$on('$destroy', function() {
 				$interval.cancel($scope.createdPaymentOrdersInterval);

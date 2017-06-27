@@ -5,7 +5,7 @@
 			data-target="#invoiceModal">Kreiraj fakturu</button>
 	</div>
 	<h3>Kreirane fakture:</h3>
-	<table class="table table-bordered">
+	<table class="table table-hover table-bordered">
 		<thead>
 			<tr>
 				<th>Naziv kupca</th>
@@ -15,7 +15,9 @@
 			</tr>
 		</thead>
 		<tbody>
-			<tr ng-repeat="invoice in createdInvoices">
+			<tr ng-repeat="invoice in createdInvoices"
+				ng-click="showInvoice(invoice)" data-toggle="modal"
+				data-target="#showInvoiceModal">
 				<td>{{ invoice.zaglavljeFakture.nazivKupca }}</td>
 				<td>{{ invoice.zaglavljeFakture.adresaKupca }}</td>
 				<td>{{ invoice.zaglavljeFakture.iznosZaUplatu }}</td>
@@ -33,7 +35,7 @@
 		</tbody>
 	</table>
 	<h3>Primljene fakture:</h3>
-	<table class="table table-bordered">
+	<table class="table table-hover table-bordered">
 		<thead>
 			<tr>
 				<th>Datum</th>
@@ -44,7 +46,8 @@
 		</thead>
 		<tbody>
 			<tr ng-repeat="invoice in receivedInvoices"
-				ng-click="showInvoice(invoice);">
+				ng-click="showInvoice(invoice)" data-toggle="modal"
+				data-target="#showInvoiceModal">
 				<td>{{ invoice.zaglavljeFakture.datumRacuna }}</td>
 				<td>{{ invoice.zaglavljeFakture.nazivDobavljaca }}</td>
 				<td>{{ invoice.zaglavljeFakture.adresaDobavljaca }}</td>
@@ -53,7 +56,7 @@
 		</tbody>
 	</table>
 	<h3>Poslate fakture:</h3>
-	<table class="table table-bordered">
+	<table class="table table-hover table-bordered">
 		<thead>
 			<tr>
 				<th>Datum</th>
@@ -64,7 +67,8 @@
 		</thead>
 		<tbody>
 			<tr ng-repeat="invoice in sentInvoices"
-				ng-click="showInvoice(invoice);">
+				ng-click="showInvoice(invoice)" data-toggle="modal"
+				data-target="#showInvoiceModal">
 				<td>{{ invoice.zaglavljeFakture.datumRacuna }}</td>
 				<td>{{ invoice.zaglavljeFakture.nazivKupca }}</td>
 				<td>{{ invoice.zaglavljeFakture.adresaKupca }}</td>
@@ -72,6 +76,7 @@
 			</tr>
 		</tbody>
 	</table>
+
 	<!-- Invoice Modal -->
 	<div id="invoiceModal" class="modal fade" role="dialog">
 		<div class="modal-dialog">
@@ -135,11 +140,12 @@
 										<label for="amount" class="control-label"> Količina: </label>
 										<input type="number" min="1" class="form-control" id="amount"
 											ng-change="setInvoiceItemValues(invoiceItem, false)"
-											ng-model="invoiceItem.kolicina" placeholder="Unesi koliÃ„ï¿½inu">
+											ng-model="invoiceItem.kolicina"
+											placeholder="Unesi koliÃ„ï¿½inu">
 									</div>
 									<div class="form-group">
-										<label for="rebate" class="control-label"> Rabat
-											u procentima: </label> <input type="number" min="0" max="100"
+										<label for="rebate" class="control-label"> Rabat u
+											procentima: </label> <input type="number" min="0" max="100"
 											class="form-control" id="rebate"
 											ng-change="setInvoiceItemValues(invoiceItem, false)"
 											ng-model="invoiceItem.procenatRabata"
@@ -177,4 +183,107 @@
 
 		</div>
 	</div>
+
+
+	<div id="showInvoiceModal" class="modal fade" role="dialog">
+		<div class="modal-dialog">
+			<div class="modal-header">Faktura</div>
+			<!-- Modal content-->
+			<div class="modal-content">
+				<div class="modal-body">
+
+					<div class="row">
+						<div class="col-md-6">
+							<h4>
+								<b>Broj računa:</b>
+								{{invoiceToShow.zaglavljeFakture.brojRacuna}}
+							</h4>
+							<h4>
+								<b>Dobavljač:</b>
+							</h4>
+							<h4>{{invoiceToShow.zaglavljeFakture.nazivDobavljaca}}</h4>
+							<h4>{{invoiceToShow.zaglavljeFakture.adresaDobavljaca}}</h4>
+							<h4>{{invoiceToShow.zaglavljeFakture.pibDobavljaca}}</h4>
+							<h4>
+								<b>Kupac:</b>
+							</h4>
+							<h4>{{invoiceToShow.zaglavljeFakture.nazivKupca}}</h4>
+							<h4>{{invoiceToShow.zaglavljeFakture.adresaKupca}}</h4>
+							<h4>{{invoiceToShow.zaglavljeFakture.pibKupca}}</h4>
+							<h4>
+								<b>Datum računa: </b>{{invoiceToShow.zaglavljeFakture.datumRacuna}}
+							</h4>
+						</div>
+						<div class="col-md-6">
+							<h4>
+								<b>Vrednost robe: </b>{{invoiceToShow.zaglavljeFakture.vrednostRobe}}
+							</h4>
+							<h4>
+								<b>Vrednost usluga: </b>{{invoiceToShow.zaglavljeFakture.vrednostUsluga}}
+							</h4>
+							<h4>
+								<b>Ukupno roba i usluge: </b>{{invoiceToShow.zaglavljeFakture.ukupnoRobaIUsluge}}
+							</h4>
+							<h4>
+								<b>Ukupan rabat: </b>{{invoiceToShow.zaglavljeFakture.ukupanRabat}}
+							</h4>
+							<h4>
+								<b>Ukupan Porez: </b>{{invoiceToShow.zaglavljeFakture.ukupanPorez}}
+							</h4>
+							<h4>
+								<b>Iznos za uplatu: </b>{{invoiceToShow.zaglavljeFakture.iznosZaUplatu}}
+								{{invoiceToShow.zaglavljeFakture.oznakaValute}}
+							</h4>
+							<h4>
+								<b>Datum valute: </b>{{invoiceToShow.zaglavljeFakture.datumValute}}
+							</h4>
+						</div>
+					</div>
+					<div class="row"
+						ng-repeat="invoiceItem in invoiceToShow.stavkaFakture">
+						<hr />
+						<div class="col-md-6">
+							<h4>
+								<b>Redni broj: </b>{{invoiceItem.redniBroj}}
+							</h4>
+							<h4>
+								<b>Naziv robe/usluge: </b>{{invoiceItem.nazivRobeIliUsluge}}
+							</h4>
+							<h4>
+								<b>Količina: </b>{{invoiceItem.kolicina}} {{invoiceItem.jedinicaMere}}
+							</h4>
+							<h4>
+								<b>Jedinična cena: </b>{{invoiceItem.jedinicnaCena}}
+							</h4>
+							<h4>
+								<b>Ukupna vrednost: </b>{{invoiceItem.vrednost}}
+							</h4>
+						</div>
+						<div col-md-6>
+							<h4>
+								<b>Procenat rabata: </b>{{invoiceItem.vrednost}}
+							</h4>
+							<h4>
+								<b>Iznos rabata: </b>{{invoiceItem.vrednost}}
+							</h4>
+							<h4>
+								<b>Umanjeno za rabat: </b>{{invoiceItem.vrednost}}
+							</h4>
+							<h4>
+								<b>Porez: </b>{{invoiceItem.ukupanPorez}}
+							</h4>
+
+
+						</div>
+					</div>
+
+				</div>
+				<div class="modal-footer">
+					<button type="button" class="btn btn-default pull-right"
+						data-dismiss="modal">Izađi</button>
+				</div>
+			</div>
+		</div>
+	</div>
+
 </div>

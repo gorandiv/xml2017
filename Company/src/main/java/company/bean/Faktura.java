@@ -25,6 +25,7 @@ import javax.xml.bind.annotation.XmlAccessType;
 import javax.xml.bind.annotation.XmlAccessorType;
 import javax.xml.bind.annotation.XmlElement;
 import javax.xml.bind.annotation.XmlRootElement;
+import javax.xml.bind.annotation.XmlTransient;
 import javax.xml.bind.annotation.XmlType;
 import javax.xml.datatype.XMLGregorianCalendar;
 
@@ -178,11 +179,13 @@ public class Faktura {
 	@OneToMany(cascade = CascadeType.ALL)
 	protected List<Faktura.StavkaFakture> stavkaFakture;
 
+	@XmlTransient
 	@Id
 	@Column(name = "id")
 	@GeneratedValue(strategy = GenerationType.AUTO)
 	private Integer id;
 
+	@XmlTransient
 	@Column(name = "poslata", nullable = false)
 	private Boolean poslata;
 
@@ -383,6 +386,7 @@ public class Faktura {
 		@XmlElement(name = "ukupan_porez", required = true)
 		protected BigDecimal ukupanPorez;
 
+		@XmlTransient
 		@Id
 		@Column(name = "id")
 		@GeneratedValue(strategy = GenerationType.AUTO)
@@ -693,6 +697,7 @@ public class Faktura {
 		@XmlElement(name = "datum_valute", required = true)
 		protected String datumValute;
 
+		@XmlTransient
 		@Id
 		@Column(name = "id")
 		@GeneratedValue(strategy = GenerationType.AUTO)

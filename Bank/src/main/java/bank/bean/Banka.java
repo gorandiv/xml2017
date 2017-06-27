@@ -1,4 +1,4 @@
-package company.bean;
+package bank.bean;
 
 import java.io.Serializable;
 import java.util.List;
@@ -35,10 +35,11 @@ public class Banka implements Serializable {
 	@Column(name = "cb_adr", nullable = false)
 	private String adresaCentralneBanke;
 
-	@OneToMany(cascade = CascadeType.ALL, mappedBy = "banka", fetch= FetchType.EAGER)
+	@OneToMany(cascade = CascadeType.ALL, fetch= FetchType.EAGER, mappedBy = "banka")
 	@JsonManagedReference
 	private List<Firma> firme;
 
+	
 	@Column(name = "swift_kod", unique = true, nullable = false)
 	private String swiftKod;
 

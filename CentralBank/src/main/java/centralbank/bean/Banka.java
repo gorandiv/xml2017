@@ -6,6 +6,7 @@ import java.util.List;
 import javax.persistence.CascadeType;
 import javax.persistence.Column;
 import javax.persistence.Entity;
+import javax.persistence.FetchType;
 import javax.persistence.GeneratedValue;
 import javax.persistence.GenerationType;
 import javax.persistence.Id;
@@ -34,12 +35,26 @@ public class Banka implements Serializable {
 	@Column(name = "cb_adr", nullable = false)
 	private String adresaCentralneBanke;
 
-	@OneToMany(cascade = CascadeType.ALL, mappedBy = "banka")
+	@OneToMany(cascade = CascadeType.ALL, mappedBy = "banka", fetch= FetchType.EAGER)
 	@JsonManagedReference
 	private List<Firma> firme;
 
 	@Column(name = "swift_kod", unique = true, nullable = false)
 	private String swiftKod;
+	
+	
+	@OneToMany(cascade=CascadeType.ALL)
+	private List<RacunFirme> racuniFirme;
+	
+	
+
+	public List<RacunFirme> getRacuniFirme() {
+		return racuniFirme;
+	}
+
+	public void setRacuniFirme(List<RacunFirme> racuniFirme) {
+		this.racuniFirme = racuniFirme;
+	}
 
 	public Banka() {
 	}

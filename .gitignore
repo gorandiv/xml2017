@@ -876,3 +876,82 @@ RemoteSystemsTempFiles/.project
 Bank/.settings/
 CentralBank/.settings/
 Company/.settings/
+Company/target/m2e-wtp/web-resources/META-INF/maven/xml/Company/pom.xml
+Company/target/m2e-wtp/web-resources/META-INF/maven/xml/Company/pom.properties
+Company/target/m2e-wtp/web-resources/META-INF/MANIFEST.MF
+Company/target/classes/static/index.html
+Company/target/classes/static/app.js
+Company/target/classes/static/Payment Order/payment-order.html
+Company/target/classes/static/Payment Order/PaymentOrderService.js
+Company/target/classes/static/Payment Order/PaymentOrderObjectFactoryService.js
+Company/target/classes/static/Payment Order/PaymentOrderModule.js
+Company/target/classes/static/Payment Order/PaymentOrderInvoiceService.js
+Company/target/classes/static/Payment Order/PaymentOrderController.js
+Company/target/classes/static/Payment Order/PaymentOrderCompanyService.js
+Company/target/classes/static/Overview/overview.html
+Company/target/classes/static/Overview/OverviewModule.js
+Company/target/classes/static/Overview/OverviewController.js
+Company/target/classes/static/Invoice/invoice.html
+Company/target/classes/static/Invoice/ProductOrServiceService.js
+Company/target/classes/static/Invoice/ObjectFactoryService.js
+Company/target/classes/static/Invoice/InvoiceService.js
+Company/target/classes/static/Invoice/InvoiceObjectFactoryService.js
+Company/target/classes/static/Invoice/InvoiceModule.js
+Company/target/classes/static/Invoice/InvoiceController.js
+Company/target/classes/static/Invoice/InvoiceCompanyService.js
+Company/target/classes/static/Invoice/CompanyService.js
+Company/target/classes/io/spring/guides/gs_producing_web_service/package-info.class
+Company/target/classes/io/spring/guides/gs_producing_web_service/ObjectFactory.class
+Company/target/classes/io/spring/guides/gs_producing_web_service/GetCountryResponse.class
+Company/target/classes/io/spring/guides/gs_producing_web_service/GetCountryRequest.class
+Company/target/classes/io/spring/guides/gs_producing_web_service/Currency.class
+Company/target/classes/io/spring/guides/gs_producing_web_service/Country.class
+Company/target/classes/data-b.sql
+Company/target/classes/data-a.sql
+Company/target/classes/company/service/ProductOrServiceServiceImpl.class
+Company/target/classes/company/service/ProductOrServiceService.class
+Company/target/classes/company/service/PaymentOrderServiceImpl.class
+Company/target/classes/company/service/PaymentOrderService.class
+Company/target/classes/company/service/InvoiceServiceImpl.class
+Company/target/classes/company/service/InvoiceService.class
+Company/target/classes/company/service/CompanyServiceImpl.class
+Company/target/classes/company/service/CompanyService.class
+Company/target/classes/company/dao/ProductOrServiceDao.class
+Company/target/classes/company/dao/PaymentOrderDao.class
+Company/target/classes/company/dao/InvoiceDao.class
+Company/target/classes/company/dao/CompanyDao.class
+Company/target/classes/company/controller/TestController.class
+Company/target/classes/company/controller/ProductOrServiceController.class
+Company/target/classes/company/controller/PaymentOrderController.class
+Company/target/classes/company/controller/InvoiceController.class
+Company/target/classes/company/controller/CountryRepository.class
+Company/target/classes/company/controller/CountryEndpoint.class
+Company/target/classes/company/controller/CompanyController.class
+Company/target/classes/company/bean/package-info.class
+Company/target/classes/company/bean/TRacun.class
+Company/target/classes/company/bean/TPreduzece.class
+Company/target/classes/company/bean/Status.class
+Company/target/classes/company/bean/ProizvodIliUsluga.class
+Company/target/classes/company/bean/ObjectFactory.class
+Company/target/classes/company/bean/NalogZaPrenos.class
+Company/target/classes/company/bean/NalogZaPrenos$PodaciOUplati.class
+Company/target/classes/company/bean/GetCountryResponse.class
+Company/target/classes/company/bean/GetCountryRequest.class
+Company/target/classes/company/bean/Firma.class
+Company/target/classes/company/bean/Faktura.class
+Company/target/classes/company/bean/Faktura$ZaglavljeFakture.class
+Company/target/classes/company/bean/Faktura$StavkaFakture.class
+Company/target/classes/company/bean/Currency.class
+Company/target/classes/company/bean/Country.class
+Company/target/classes/company/bean/Banka.class
+Company/target/classes/company/WebServiceConfig.class
+Company/target/classes/company/SpringHibernateInit.class
+Company/target/classes/application.properties
+Company/target/classes/NalogZaPrenos.xsd
+Company/target/classes/META-INF/sun-jaxb.episode
+Company/target/classes/Globals.xsd
+Company/target/classes/Faktura.xsd
+Company/target/classes/Countries.xsd
+Company/src/main/resources/static/Invoice/ObjectFactoryService.js
+Company/src/main/resources/static/Invoice/CompanyService.js
+Company/.tern-project

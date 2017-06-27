@@ -110,7 +110,7 @@ invoiceModule.controller('invoiceController', [
 			
 			$scope.sendInvoice = function(invoice) {
 				invoiceService.sendInvoice(invoice).then(function(response) {
-					$scope.sentInvoices.push(response.data);
+					$scope.sentInvoices.push(invoice);
 					$scope.createdInvoices.splice($scope.createdInvoices.indexOf(invoice), 1);
 					invoice = response.data;
 					toastr.info("Faktura uspešno poslata.");
@@ -122,6 +122,10 @@ invoiceModule.controller('invoiceController', [
 					$scope.createdInvoices.splice($scope.createdInvoices.indexOf(invoice), 1);
 					toastr.info("Faktura uspešno obrisana.");
 				});
+			}
+			
+			$scope.showInvoice = function(invoice) {
+				$scope.invoiceToShow = invoice;
 			}
 			
 			$scope.$on('$destroy',function(){
