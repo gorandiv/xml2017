@@ -5,7 +5,7 @@
 // Generated on: 2017.06.24 at 08:58:12 PM CEST 
 //
 
-package company.bean;
+package bank.bean;
 
 import java.math.BigInteger;
 
