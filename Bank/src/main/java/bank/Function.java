@@ -3,7 +3,6 @@ package bank;
 import org.springframework.oxm.jaxb.Jaxb2Marshaller;
 import org.springframework.ws.client.core.WebServiceTemplate;
 
-import bank.bean.Presek;
 import bank.bean.ZahtevZaIzvod;
 
 public class Function {
@@ -11,16 +10,16 @@ public class Function {
 	
 	public static void main(String[] args){
 		Function f=new Function();
-		Presek zahtev = new Presek();
+		ZahtevZaIzvod zahtev = new ZahtevZaIzvod();
 		f.sendZahtev(zahtev);
 	}
 	
-	private void sendZahtev(Presek zahtev){
+	private void sendZahtev(ZahtevZaIzvod zahtev){
 	    System.out.println("-----------------------------Poslat Nalog----------------------");
         WebServiceTemplate webServiceTemplate = configWebServiceTemplate("bank.bean",
-        		"http://localhost:8100/Firma/ws/presek");
+        		"http://localhost:8100/Firma/ws/zahtev_za_izvod");
        webServiceTemplate.marshalSendAndReceive(zahtev);
-        System.out.println("-----------------------------Primljen Nalog--------------------");
+        System.out.println("-----------------------------Primeljen Nalog--------------------");
   
 	}
 	
