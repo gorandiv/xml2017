@@ -11,8 +11,8 @@
 		<thead>
 			<tr>
 				<th>Poverilac</th>
-				<th>Svrha plaćanja</th>
-				<th>Račun poverioca</th>
+				<th>Svrha plaÄ‡anja</th>
+				<th>RaÄ�un poverioca</th>
 				<th>Iznos</th>
 				<th>Hitno</th>
 				<th></th>
@@ -31,11 +31,11 @@
 				<td><div class="row">
 						<div class="form-group col-md-6">
 							<button type="button" class="btn btn-primary btn-sm"
-								ng-click="sendPaymentOrder(paymentOrder)">Pošalji</button>
+								ng-click="sendPaymentOrder(paymentOrder)">PoÅ¡alji</button>
 						</div>
 						<div class="form-group col-md-6">
 							<button type="button" class="btn btn-danger btn-sm"
-								ng-click="removePaymentOrder(paymentOrder)">Obriši</button>
+								ng-click="removePaymentOrder(paymentOrder)">ObriÅ¡i</button>
 						</div>
 					</div></td>
 			</tr>
@@ -46,8 +46,8 @@
 		<thead>
 			<tr>
 				<th>Poverilac</th>
-				<th>Svrha plaćanja</th>
-				<th>Račun poverioca</th>
+				<th>Svrha plaÄ‡anja</th>
+				<th>RaÄ�un poverioca</th>
 				<th>Iznos</th>
 				<th>Hitno</th>
 				<th>Datum</th>
@@ -84,28 +84,37 @@
 								fakturu...</option>
 						</select>
 					</div>
-
+					
+					<div class="form-group">
+						<label for="thisCompanyBill" class="control-label"> Račun sa kojeg se naplaćuje: </label> <select
+							ng-options="racunFirme.brojRacuna as racunFirme.brojRacuna for racunFirme in thisCompany.banka.racuniFirme"
+							ng-model="paymentOrder.podaciOUplati.racunDuznika.brojRacuna" class="form-control" id="thisCompanyBill">
+							<option style="background-color: #ccc" value="">Izaberi
+								račun...</option>
+						</select>
+					</div>
+					
 					<div class="form-group">
 						<label for="purposeOfPayment" class="control-label"> Svrha
-							plaćanja: </label> <input type="text" class="form-control"
+							plaÄ‡anja: </label> <input type="text" class="form-control"
 							id="purposeOfPayment" ng-model="paymentOrder.svrhaPlacanja"
-							placeholder="Unesi svrhu plaćanja">
+							placeholder="Unesi svrhu plaÄ‡anja">
 					</div>
 
 					<div class="form-group">
 						<label for="indebtednessModel" class="control-label">
-							Model zaduženja: </label> <input type="number" min="1" max="99"
+							Model zaduÅ¾enja: </label> <input type="number" min="1" max="99"
 							class="form-control" id="indebtednessModel"
 							ng-model="paymentOrder.podaciOUplati.racunDuznika.brojModela"
-							placeholder="Unesi model zaduženja">
+							placeholder="Unesi model zaduÅ¾enja">
 					</div>
 
 					<div class="form-group">
 						<label for="indebtednessReferenceNumber" class="control-label">
-							Poziv na broj zaduženja:</label> <input type="number"
+							Poziv na broj zaduÅ¾enja:</label> <input type="number"
 							class="form-control" id="indebtednessReferenceNumber"
 							ng-model="paymentOrder.podaciOUplati.racunDuznika.pozivNaBroj"
-							placeholder="Unesi poziv na broj zaduženja">
+							placeholder="Unesi poziv na broj zaduÅ¾enja">
 					</div>
 
 					<div class="form-group">
@@ -153,10 +162,10 @@
 					<div class="row">
 						<div class="col-md-6">
 							<h4>
-								<b>Dužnik:</b> {{paymentOrderToShow.duznik}}
+								<b>DuÅ¾nik:</b> {{paymentOrderToShow.duznik}}
 							</h4>
 							<h4>
-								<b>Svrha plaćanja:</b> {{paymentOrderToShow.svrhaPlacanja}}
+								<b>Svrha plaÄ‡anja:</b> {{paymentOrderToShow.svrhaPlacanja}}
 							</h4>
 							<h4>
 								<b>Poverilac:</b> {{paymentOrderToShow.poverilac}}
@@ -176,12 +185,12 @@
 						</div>
 						<div class="col-md-6">
 							<h4>
-								<b>Račun dužnika:</b> </h4>
+								<b>RaÄ�un duÅ¾nika:</b> </h4>
 								<h4>{{paymentOrderToShow.podaciOUplati.racunDuznika.brojRacuna}} </h4>
 							<h4>	{{paymentOrderToShow.podaciOUplati.racunDuznika.brojModela}}
 								{{paymentOrderToShow.podaciOUplati.racunDuznika.pozivNaBroj}} </h4>
 							<h4>
-								<b>Račun poverioca:</b> </h4>
+								<b>RaÄ�un poverioca:</b> </h4>
 								<h4>
 								{{paymentOrderToShow.podaciOUplati.racunPoverioca.brojRacuna}} </h4>
 							<h4>	{{paymentOrderToShow.podaciOUplati.racunPoverioca.brojModela}}
@@ -193,7 +202,7 @@
 				</div>
 				<div class="modal-footer">
 					<button type="button" class="btn btn-default pull-right"
-						data-dismiss="modal">Izađi</button>
+						data-dismiss="modal">IzaÄ‘i</button>
 				</div>
 			</div>
 

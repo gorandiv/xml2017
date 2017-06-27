@@ -24,11 +24,11 @@
 				<td><div class="row">
 						<div class="form-group col-md-6">
 							<button type="button" class="btn btn-primary btn-sm"
-								ng-click="sendInvoice(invoice)">Pošalji</button>
+								ng-click="sendInvoice(invoice)">PoÅ¡alji</button>
 						</div>
 						<div class="form-group col-md-6">
 							<button type="button" class="btn btn-danger btn-sm"
-								ng-click="removeInvoice(invoice)">Obriši</button>
+								ng-click="removeInvoice(invoice)">ObriÅ¡i</button>
 						</div>
 					</div></td>
 			</tr>
@@ -94,6 +94,14 @@
 								kupca...</option>
 						</select>
 					</div>
+					<div class="form-group">
+						<label for="thisCompanyBill" class="control-label"> Račun na koji uplaćuje: </label> <select
+							ng-options="racunFirme.brojRacuna as racunFirme.brojRacuna for racunFirme in thisCompany.banka.racuniFirme"
+							ng-model="invoice.zaglavljeFakture.racunDobavljaca" class="form-control" id="thisCompanyBill">
+							<option style="background-color: #ccc" value="">Izaberi
+								račun...</option>
+						</select>
+					</div>
 					<div class="row">
 						<label class="col-md-6">Vrednost robe:
 							{{invoice.zaglavljeFakture.vrednostRobe}}</label> <label class="col-md-6">Vrednost
@@ -137,11 +145,11 @@
 							<div class="row">
 								<div class="col-md-3">
 									<div class="form-group">
-										<label for="amount" class="control-label"> Količina: </label>
+										<label for="amount" class="control-label"> KoliÄ�ina: </label>
 										<input type="number" min="1" class="form-control" id="amount"
 											ng-change="setInvoiceItemValues(invoiceItem, false)"
 											ng-model="invoiceItem.kolicina"
-											placeholder="Unesi koliÃ„ï¿½inu">
+											placeholder="Unesi koliÃƒâ€žÃ¯Â¿Â½inu">
 									</div>
 									<div class="form-group">
 										<label for="rebate" class="control-label"> Rabat u
@@ -195,11 +203,11 @@
 					<div class="row">
 						<div class="col-md-6">
 							<h4>
-								<b>Broj računa:</b>
+								<b>Broj raÄ�una:</b>
 								{{invoiceToShow.zaglavljeFakture.brojRacuna}}
 							</h4>
 							<h4>
-								<b>Dobavljač:</b>
+								<b>DobavljaÄ�:</b>
 							</h4>
 							<h4>{{invoiceToShow.zaglavljeFakture.nazivDobavljaca}}</h4>
 							<h4>{{invoiceToShow.zaglavljeFakture.adresaDobavljaca}}</h4>
@@ -211,7 +219,7 @@
 							<h4>{{invoiceToShow.zaglavljeFakture.adresaKupca}}</h4>
 							<h4>{{invoiceToShow.zaglavljeFakture.pibKupca}}</h4>
 							<h4>
-								<b>Datum računa: </b>{{invoiceToShow.zaglavljeFakture.datumRacuna}}
+								<b>Datum raÄ�una: </b>{{invoiceToShow.zaglavljeFakture.datumRacuna}}
 							</h4>
 						</div>
 						<div class="col-md-6">
@@ -250,10 +258,10 @@
 								<b>Naziv robe/usluge: </b>{{invoiceItem.nazivRobeIliUsluge}}
 							</h4>
 							<h4>
-								<b>Količina: </b>{{invoiceItem.kolicina}} {{invoiceItem.jedinicaMere}}
+								<b>KoliÄ�ina: </b>{{invoiceItem.kolicina}} {{invoiceItem.jedinicaMere}}
 							</h4>
 							<h4>
-								<b>Jedinična cena: </b>{{invoiceItem.jedinicnaCena}}
+								<b>JediniÄ�na cena: </b>{{invoiceItem.jedinicnaCena}}
 							</h4>
 							<h4>
 								<b>Ukupna vrednost: </b>{{invoiceItem.vrednost}}
@@ -280,7 +288,7 @@
 				</div>
 				<div class="modal-footer">
 					<button type="button" class="btn btn-default pull-right"
-						data-dismiss="modal">Izađi</button>
+						data-dismiss="modal">IzaÄ‘i</button>
 				</div>
 			</div>
 		</div>

@@ -103,7 +103,6 @@ invoiceModule.service('invoiceService', ['$http', function($http) {
 		invoice.zaglavljeFakture.nazivDobavljaca = thisCompany.ime;
 		invoice.zaglavljeFakture.adresaDobavljaca = thisCompany.adresa;
 		invoice.zaglavljeFakture.pibDobavljaca = thisCompany.pib;
-		invoice.zaglavljeFakture.uplataNaRacun = thisCompany.brojRacuna;
 		
 		if(invoice.zaglavljeFakture.nazivDobavljaca == null || invoice.zaglavljeFakture.nazivDobavljaca == "" || invoice.zaglavljeFakture.nazivKupca == null || invoice.zaglavljeFakture.nazivKupca == "" || invoice.stavkaFakture.length == 0){
 			toastr.warning("Nepotpuna faktura.");

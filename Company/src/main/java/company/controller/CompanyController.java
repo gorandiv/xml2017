@@ -28,7 +28,6 @@ public class CompanyController {
 	@GetMapping(path = "/this-company", produces = MediaType.APPLICATION_JSON_VALUE)
 	public @ResponseBody Firma getThisCompany() {
 		return companyService.getThisCompany();
-
 	}
 	
 }

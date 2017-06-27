@@ -73,7 +73,7 @@ public class InvoiceServiceImpl implements InvoiceService {
 	public void sendInvoice(Faktura invoice) {
 		Firma company = companyDao.findByPib(invoice.getZaglavljeFakture().getPibKupca());
 		ResteasyClient client = new ResteasyClientBuilder().build();
-		WebTarget target = client.target("http://" + company.getIp() + "/Firma/invoice/receive");
+		WebTarget target = client.target("http://" + company.getAdresa() + "/Firma/invoice/receive");
 		target.request().post(Entity.entity(invoice	, MediaType.APPLICATION_XML));
 	}
 

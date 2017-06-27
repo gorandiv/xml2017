@@ -35,9 +35,7 @@ paymentOrderModule.service('paymentOrderService', ['$http', function($http) {
 	}
 	
 	
-	this.createPaymentOrder = function(paymentOrder, thisCompany) {
-		
-		paymentOrder.podaciOUplati.racunDuznika.brojRacuna = thisCompany.brojRacuna;
+	this.createPaymentOrder = function(paymentOrder) {
 		
 		return $http({
 			  method: 'POST',

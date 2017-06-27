@@ -61,7 +61,7 @@ paymentOrderModule.controller('paymentOrderController', [
 					intervalInMS);
 			
 			$scope.createPaymentOrder = function() {
-				paymentOrderService.createPaymentOrder($scope.paymentOrder, $scope.thisCompany).then(function(response) {
+				paymentOrderService.createPaymentOrder($scope.paymentOrder).then(function(response) {
 					$scope.createdPaymentOrders.push(response.data);
 					$scope.paymentOrder = new paymentOrderObjectFactoryService.PaymentOrder(
 							new paymentOrderObjectFactoryService.PaymentInfo(
