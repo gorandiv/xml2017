@@ -104,7 +104,7 @@ invoiceModule.service('invoiceService', ['$http', function($http) {
 		invoice.zaglavljeFakture.adresaDobavljaca = thisCompany.adresa;
 		invoice.zaglavljeFakture.pibDobavljaca = thisCompany.pib;
 		
-		if(invoice.zaglavljeFakture.nazivDobavljaca == null || invoice.zaglavljeFakture.racunDobavljaca == null || invoice.zaglavljeFakture.racunDobavljaca == "" || invoice.zaglavljeFakture.nazivDobavljaca == "" || invoice.zaglavljeFakture.nazivKupca == null || invoice.zaglavljeFakture.nazivKupca == "" || invoice.stavkaFakture.length == 0){
+		if(invoice.zaglavljeFakture.nazivDobavljaca == null ||  invoice.zaglavljeFakture.uplataNaRacun == "" || invoice.zaglavljeFakture.uplataNaRacun == null || invoice.zaglavljeFakture.nazivKupca == "" || invoice.stavkaFakture.length == 0){
 			toastr.warning("Nepotpuna faktura.");
 			return;
 		}

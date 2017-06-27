@@ -24,4 +24,16 @@ appModule.service('companyService', ['$http', function($http) {
 			  });
 	}
 	
+	this.getThisCompanyBills = function() {
+		return $http({
+			  method: 'GET',
+			  url: '../Firma/company/this-company-bills',
+			  headers: { 'Accept': 'application/json' }
+			}).then(function successCallback(response) {
+				return response;
+			  }, function errorCallback(response) {
+				  return response;
+			  });
+	}
+	
 }]);

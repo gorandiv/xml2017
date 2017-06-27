@@ -10,6 +10,7 @@ import org.springframework.web.bind.annotation.ResponseBody;
 import org.springframework.web.bind.annotation.RestController;
 
 import company.bean.Firma;
+import company.bean.RacunFirme;
 import company.service.CompanyService;
 
 @RestController
@@ -29,5 +30,9 @@ public class CompanyController {
 	public @ResponseBody Firma getThisCompany() {
 		return companyService.getThisCompany();
 	}
-	
+
+	@GetMapping(path = "/this-company-bills", produces = MediaType.APPLICATION_JSON_VALUE)
+	public @ResponseBody List<RacunFirme> getThisCompanyBills() {
+		return companyService.getThisCompanyBills();
+	}
 }

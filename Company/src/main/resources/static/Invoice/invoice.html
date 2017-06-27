@@ -24,11 +24,11 @@
 				<td><div class="row">
 						<div class="form-group col-md-6">
 							<button type="button" class="btn btn-primary btn-sm"
-								ng-click="sendInvoice(invoice)">PoÅ¡alji</button>
+								ng-click="sendInvoice(invoice)">PoÃ…Â¡alji</button>
 						</div>
 						<div class="form-group col-md-6">
 							<button type="button" class="btn btn-danger btn-sm"
-								ng-click="removeInvoice(invoice)">ObriÅ¡i</button>
+								ng-click="removeInvoice(invoice)">ObriÃ…Â¡i</button>
 						</div>
 					</div></td>
 			</tr>
@@ -95,11 +95,11 @@
 						</select>
 					</div>
 					<div class="form-group">
-						<label for="thisCompanyBill" class="control-label"> Račun na koji uplaćuje: </label> <select
-							ng-options="racunFirme.brojRacuna as racunFirme.brojRacuna for racunFirme in thisCompany.banka.racuniFirme"
-							ng-model="invoice.zaglavljeFakture.racunDobavljaca" class="form-control" id="thisCompanyBill">
+						<label for="thisCompanyBill" class="control-label"> RaÄ�un na koji uplaÄ‡uje: </label> <select
+							ng-options="bill.brojRacuna as bill.brojRacuna for bill in thisCompanyBills"
+							ng-model="invoice.zaglavljeFakture.uplataNaRacun" class="form-control" id="thisCompanyBill">
 							<option style="background-color: #ccc" value="">Izaberi
-								račun...</option>
+								raÄ�un...</option>
 						</select>
 					</div>
 					<div class="row">
@@ -145,11 +145,11 @@
 							<div class="row">
 								<div class="col-md-3">
 									<div class="form-group">
-										<label for="amount" class="control-label"> KoliÄ�ina: </label>
+										<label for="amount" class="control-label"> KoliÃ„ï¿½ina: </label>
 										<input type="number" min="1" class="form-control" id="amount"
 											ng-change="setInvoiceItemValues(invoiceItem, false)"
 											ng-model="invoiceItem.kolicina"
-											placeholder="Unesi koliÃƒâ€žÃ¯Â¿Â½inu">
+											placeholder="Unesi koliÃƒÆ’Ã¢â‚¬Å¾ÃƒÂ¯Ã‚Â¿Ã‚Â½inu">
 									</div>
 									<div class="form-group">
 										<label for="rebate" class="control-label"> Rabat u
@@ -203,11 +203,11 @@
 					<div class="row">
 						<div class="col-md-6">
 							<h4>
-								<b>Broj raÄ�una:</b>
+								<b>Broj raÃ„ï¿½una:</b>
 								{{invoiceToShow.zaglavljeFakture.brojRacuna}}
 							</h4>
 							<h4>
-								<b>DobavljaÄ�:</b>
+								<b>DobavljaÃ„ï¿½:</b>
 							</h4>
 							<h4>{{invoiceToShow.zaglavljeFakture.nazivDobavljaca}}</h4>
 							<h4>{{invoiceToShow.zaglavljeFakture.adresaDobavljaca}}</h4>
@@ -219,7 +219,7 @@
 							<h4>{{invoiceToShow.zaglavljeFakture.adresaKupca}}</h4>
 							<h4>{{invoiceToShow.zaglavljeFakture.pibKupca}}</h4>
 							<h4>
-								<b>Datum raÄ�una: </b>{{invoiceToShow.zaglavljeFakture.datumRacuna}}
+								<b>Datum raÃ„ï¿½una: </b>{{invoiceToShow.zaglavljeFakture.datumRacuna}}
 							</h4>
 						</div>
 						<div class="col-md-6">
@@ -258,10 +258,10 @@
 								<b>Naziv robe/usluge: </b>{{invoiceItem.nazivRobeIliUsluge}}
 							</h4>
 							<h4>
-								<b>KoliÄ�ina: </b>{{invoiceItem.kolicina}} {{invoiceItem.jedinicaMere}}
+								<b>KoliÃ„ï¿½ina: </b>{{invoiceItem.kolicina}} {{invoiceItem.jedinicaMere}}
 							</h4>
 							<h4>
-								<b>JediniÄ�na cena: </b>{{invoiceItem.jedinicnaCena}}
+								<b>JediniÃ„ï¿½na cena: </b>{{invoiceItem.jedinicnaCena}}
 							</h4>
 							<h4>
 								<b>Ukupna vrednost: </b>{{invoiceItem.vrednost}}
@@ -288,7 +288,7 @@
 				</div>
 				<div class="modal-footer">
 					<button type="button" class="btn btn-default pull-right"
-						data-dismiss="modal">IzaÄ‘i</button>
+						data-dismiss="modal">IzaÃ„â€˜i</button>
 				</div>
 			</div>
 		</div>

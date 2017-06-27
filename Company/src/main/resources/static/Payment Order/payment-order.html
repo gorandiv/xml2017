@@ -11,8 +11,8 @@
 		<thead>
 			<tr>
 				<th>Poverilac</th>
-				<th>Svrha plaÄ‡anja</th>
-				<th>RaÄ�un poverioca</th>
+				<th>Svrha plaÃ„â€¡anja</th>
+				<th>RaÃ„ï¿½un poverioca</th>
 				<th>Iznos</th>
 				<th>Hitno</th>
 				<th></th>
@@ -31,11 +31,11 @@
 				<td><div class="row">
 						<div class="form-group col-md-6">
 							<button type="button" class="btn btn-primary btn-sm"
-								ng-click="sendPaymentOrder(paymentOrder)">PoÅ¡alji</button>
+								ng-click="sendPaymentOrder(paymentOrder)">PoÃ…Â¡alji</button>
 						</div>
 						<div class="form-group col-md-6">
 							<button type="button" class="btn btn-danger btn-sm"
-								ng-click="removePaymentOrder(paymentOrder)">ObriÅ¡i</button>
+								ng-click="removePaymentOrder(paymentOrder)">ObriÃ…Â¡i</button>
 						</div>
 					</div></td>
 			</tr>
@@ -46,8 +46,8 @@
 		<thead>
 			<tr>
 				<th>Poverilac</th>
-				<th>Svrha plaÄ‡anja</th>
-				<th>RaÄ�un poverioca</th>
+				<th>Svrha plaÃ„â€¡anja</th>
+				<th>RaÃ„ï¿½un poverioca</th>
 				<th>Iznos</th>
 				<th>Hitno</th>
 				<th>Datum</th>
@@ -86,35 +86,35 @@
 					</div>
 					
 					<div class="form-group">
-						<label for="thisCompanyBill" class="control-label"> Račun sa kojeg se naplaćuje: </label> <select
-							ng-options="racunFirme.brojRacuna as racunFirme.brojRacuna for racunFirme in thisCompany.banka.racuniFirme"
+						<label for="thisCompanyBill" class="control-label"> RaÄ�un sa kojeg se naplaÄ‡uje: </label> <select
+							ng-options="bill.brojRacuna as bill.brojRacuna for bill in thisCompanyBills"
 							ng-model="paymentOrder.podaciOUplati.racunDuznika.brojRacuna" class="form-control" id="thisCompanyBill">
 							<option style="background-color: #ccc" value="">Izaberi
-								račun...</option>
+								raÄ�un...</option>
 						</select>
 					</div>
 					
 					<div class="form-group">
 						<label for="purposeOfPayment" class="control-label"> Svrha
-							plaÄ‡anja: </label> <input type="text" class="form-control"
+							plaÃ„â€¡anja: </label> <input type="text" class="form-control"
 							id="purposeOfPayment" ng-model="paymentOrder.svrhaPlacanja"
-							placeholder="Unesi svrhu plaÄ‡anja">
+							placeholder="Unesi svrhu plaÃ„â€¡anja">
 					</div>
 
 					<div class="form-group">
 						<label for="indebtednessModel" class="control-label">
-							Model zaduÅ¾enja: </label> <input type="number" min="1" max="99"
+							Model zaduÃ…Â¾enja: </label> <input type="number" min="1" max="99"
 							class="form-control" id="indebtednessModel"
 							ng-model="paymentOrder.podaciOUplati.racunDuznika.brojModela"
-							placeholder="Unesi model zaduÅ¾enja">
+							placeholder="Unesi model zaduÃ…Â¾enja">
 					</div>
 
 					<div class="form-group">
 						<label for="indebtednessReferenceNumber" class="control-label">
-							Poziv na broj zaduÅ¾enja:</label> <input type="number"
+							Poziv na broj zaduÃ…Â¾enja:</label> <input type="number"
 							class="form-control" id="indebtednessReferenceNumber"
 							ng-model="paymentOrder.podaciOUplati.racunDuznika.pozivNaBroj"
-							placeholder="Unesi poziv na broj zaduÅ¾enja">
+							placeholder="Unesi poziv na broj zaduÃ…Â¾enja">
 					</div>
 
 					<div class="form-group">
@@ -162,10 +162,10 @@
 					<div class="row">
 						<div class="col-md-6">
 							<h4>
-								<b>DuÅ¾nik:</b> {{paymentOrderToShow.duznik}}
+								<b>DuÃ…Â¾nik:</b> {{paymentOrderToShow.duznik}}
 							</h4>
 							<h4>
-								<b>Svrha plaÄ‡anja:</b> {{paymentOrderToShow.svrhaPlacanja}}
+								<b>Svrha plaÃ„â€¡anja:</b> {{paymentOrderToShow.svrhaPlacanja}}
 							</h4>
 							<h4>
 								<b>Poverilac:</b> {{paymentOrderToShow.poverilac}}
@@ -185,12 +185,12 @@
 						</div>
 						<div class="col-md-6">
 							<h4>
-								<b>RaÄ�un duÅ¾nika:</b> </h4>
+								<b>RaÃ„ï¿½un duÃ…Â¾nika:</b> </h4>
 								<h4>{{paymentOrderToShow.podaciOUplati.racunDuznika.brojRacuna}} </h4>
 							<h4>	{{paymentOrderToShow.podaciOUplati.racunDuznika.brojModela}}
 								{{paymentOrderToShow.podaciOUplati.racunDuznika.pozivNaBroj}} </h4>
 							<h4>
-								<b>RaÄ�un poverioca:</b> </h4>
+								<b>RaÃ„ï¿½un poverioca:</b> </h4>
 								<h4>
 								{{paymentOrderToShow.podaciOUplati.racunPoverioca.brojRacuna}} </h4>
 							<h4>	{{paymentOrderToShow.podaciOUplati.racunPoverioca.brojModela}}
@@ -202,7 +202,7 @@
 				</div>
 				<div class="modal-footer">
 					<button type="button" class="btn btn-default pull-right"
-						data-dismiss="modal">IzaÄ‘i</button>
+						data-dismiss="modal">IzaÃ„â€˜i</button>
 				</div>
 			</div>
 

@@ -13,9 +13,9 @@ import javax.persistence.ManyToOne;
 import javax.persistence.Table;
 
 @Entity
-@Table(name="racun_firme")
-public class RacunFirme implements Serializable{
-	
+@Table(name = "racun_firme")
+public class RacunFirme implements Serializable {
+
 	private static final long serialVersionUID = 1L;
 
 	@Id
@@ -23,20 +23,19 @@ public class RacunFirme implements Serializable{
 	@GeneratedValue(strategy = GenerationType.AUTO)
 	private Integer id;
 
-	@ManyToOne(cascade=CascadeType.ALL)
+	@ManyToOne(cascade = CascadeType.ALL)
 	private Firma firma;
-	
+
 	@Column(name = "broj_racuna", unique = true, nullable = false)
 	private String brojRacuna;
-	
-	@Column(name="stanje_racuna",nullable=false)
+
+	@Column(name = "stanje_racuna", nullable = false)
 	private BigDecimal stanjeRacuna;
-	
+
 	public RacunFirme() {
-	
+
 	}
-	
-	
+
 	public Integer getId() {
 		return id;
 	}
@@ -61,7 +60,12 @@ public class RacunFirme implements Serializable{
 		this.stanjeRacuna = stanjeRacuna;
 	}
 
-	
-	
-	
+	public String getBrojRacuna() {
+		return brojRacuna;
+	}
+
+	public void setBrojRacuna(String brojRacuna) {
+		this.brojRacuna = brojRacuna;
+	}
+
 }

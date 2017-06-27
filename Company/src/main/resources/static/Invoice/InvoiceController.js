@@ -52,11 +52,16 @@ invoiceModule.controller('invoiceController', [
 					intervalInMS);
 
 			$scope.thisCompany = {};
+			$scope.thisCompanyBills = [];
 			$scope.companies = [];
 			$scope.productsOrServices = [];
 			
 			companyService.getThisCompany().then(function(response) {
 				$scope.thisCompany = response.data;
+			});
+			
+			companyService.getThisCompanyBills().then(function(response) {
+				$scope.thisCompanyBills = response.data;
 			});
 			
 			companyService.getCompanies().then(function(response) {

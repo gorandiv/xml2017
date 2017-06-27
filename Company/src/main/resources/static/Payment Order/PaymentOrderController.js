@@ -36,11 +36,16 @@ paymentOrderModule.controller('paymentOrderController', [
 
 			$scope.receivedInvoices = [];
 			$scope.thisCompany = {};
+			$scope.thisCompanyBills = {};
 			
 			companyService.getThisCompany().then(function(response) {
 				$scope.thisCompany = response.data;
 			});
 
+			companyService.getThisCompanyBills().then(function(response) {
+				$scope.thisCompanyBills = response.data;
+			});
+			
 			$scope.paymentOrder = new paymentOrderObjectFactoryService.PaymentOrder(
 					new paymentOrderObjectFactoryService.PaymentInfo(
 							new paymentOrderObjectFactoryService.Account(),
