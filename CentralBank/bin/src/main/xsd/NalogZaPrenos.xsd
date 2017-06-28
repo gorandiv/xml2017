@@ -1,0 +1,48 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<xs:schema xmlns:xs="http://www.w3.org/2001/XMLSchema" elementFormDefault="qualified"
+    targetNamespace="http://www.ftn.uns.ac.rs/nalogZaPrenos"
+    xmlns:upl="http://www.ftn.uns.ac.rs/nalogZaPrenos" xmlns:gl="http://www.ftn.uns.ac.rs/xml">
+    <xs:import namespace="http://www.ftn.uns.ac.rs/xml" schemaLocation="Globals.xsd"/>
+    <xs:element name="nalog_za_prenos">
+        <xs:complexType>
+            <xs:sequence>
+                <xs:element name="id_poruke" type="gl:TIDPoruke"> </xs:element>
+                <xs:element name="duznik">
+                    <xs:simpleType>
+                        <xs:restriction base="xs:string">
+                            <xs:maxLength value="255"/>
+                        </xs:restriction>
+                    </xs:simpleType>
+                </xs:element>
+                <xs:element name="svrha_placanja">
+                    <xs:simpleType>
+                        <xs:restriction base="xs:string">
+                            <xs:maxLength value="255"/>
+                        </xs:restriction>
+                    </xs:simpleType>
+                </xs:element>
+                <xs:element name="primalac">
+                    <xs:simpleType>
+                        <xs:restriction base="xs:string">
+                            <xs:maxLength value="255"/>
+                        </xs:restriction>
+                    </xs:simpleType>
+                </xs:element>
+                <xs:element name="podaci_o_uplati">
+                    <xs:complexType>
+                        <xs:sequence>
+                            <xs:element name="oznaka_valute" type="gl:TOznaka_valute"> </xs:element>
+                            <xs:element name="iznos" type="gl:TIznos"> </xs:element>
+                            <xs:element name="racun_duznika" type="gl:TRacun"/>
+                            <xs:element name="racun_poverioca" type="gl:TRacun"/>
+                            <xs:element name="datum_valute" type="xs:date"/>
+                            <xs:element minOccurs="1" name="hitno" type="xs:boolean" default="true"
+                                nillable="false"/>
+                            <xs:element name="datum_naloga" type="xs:date"/>
+                        </xs:sequence>
+                    </xs:complexType>
+                </xs:element>
+            </xs:sequence>
+        </xs:complexType>
+    </xs:element>
+</xs:schema>
