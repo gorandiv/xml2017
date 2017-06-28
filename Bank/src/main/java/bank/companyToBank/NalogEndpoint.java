@@ -18,6 +18,7 @@ import bank.bankToCentral.M102Repository;
 import bank.bankToCentral.ReservedRepository;
 import bank.bean.Banka;
 import bank.bean.NalogZaPrenos;
+import bank.bean.ObjectFactory;
 import bank.bean.RacunFirme;
 import bank.bean.Reservation;
 import bank.dao.BankDAO;
@@ -50,6 +51,7 @@ public class NalogEndpoint {
 	@ResponsePayload
 	public NalogZaPrenos handleRequest(@RequestPayload NalogZaPrenos request) {		
 		Banka thisBank = bankDAO.findById(Integer.parseInt(bankId));
+		
 		try{
 			
 			String racunDuznika = request.getPodaciOUplati().getRacunDuznika().getBrojRacuna();

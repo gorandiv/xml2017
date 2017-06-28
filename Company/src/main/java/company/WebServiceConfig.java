@@ -9,6 +9,8 @@ import org.springframework.ws.config.annotation.EnableWs;
 import org.springframework.ws.config.annotation.WsConfigurerAdapter;
 import org.springframework.ws.transport.http.MessageDispatcherServlet;
 import org.springframework.ws.wsdl.wsdl11.DefaultWsdl11Definition;
+import org.springframework.ws.wsdl.wsdl11.SimpleWsdl11Definition;
+import org.springframework.ws.wsdl.wsdl11.Wsdl11Definition;
 import org.springframework.xml.xsd.SimpleXsdSchema;
 import org.springframework.xml.xsd.XsdSchema;
 
@@ -37,4 +39,12 @@ public class WebServiceConfig extends WsConfigurerAdapter {
 	public XsdSchema countriesSchema() {
 		return new SimpleXsdSchema(new ClassPathResource("Countries.xsd"));
 	}
+	
+	 @Bean(name = "nalogZaPrenos")
+	  public Wsdl11Definition defaultWsdl11Definition() {
+	    SimpleWsdl11Definition wsdl11Definition = new SimpleWsdl11Definition();
+	    wsdl11Definition.setWsdl(new ClassPathResource("NalogZaPrenos.xsd"));
+
+	    return wsdl11Definition;
+	  }
 }
