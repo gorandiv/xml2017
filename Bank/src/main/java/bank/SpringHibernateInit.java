@@ -12,7 +12,7 @@ public class SpringHibernateInit {
 
 	public static void main(String[] args) {
 		bankC(args);
-		bankD(args);
+		//bankD(args);
 	}
 	
 	public static void bankC(String[] args) {

@@ -12,7 +12,7 @@ public class SpringHibernateInit {
 
 	public static void main(String[] args) {
 		companyA(args);
-		companyB(args);
+		//companyB(args);
 	}
 	
 	public static void companyA(String[] args) {

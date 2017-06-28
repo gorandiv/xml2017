@@ -44,12 +44,41 @@ public class ObjectFactory {
         return new ZahtevZaIzvod();
     }
 
+    
+    public Presek createPresek() {
+        return new Presek();
+    }
+
+    /**
+     * Create an instance of {@link Presek.Zaglavlje }
+     * 
+     */
+    public Presek.Zaglavlje createPresekZaglavlje() {
+        return new Presek.Zaglavlje();
+    }
+
+    /**
+     * Create an instance of {@link Presek.Stavka }
+     * 
+     */
+    public Presek.Stavka createPresekStavka() {
+        return new Presek.Stavka();
+    }
+    
     /**
      * Create an instance of {@link TRacun }
      * 
      */
     public TRacun createTRacun() {
         return new TRacun();
+    }
+    
+    public NalogZaPrenos createNalogZaPrenos(){
+    	return new NalogZaPrenos();
+    }
+    
+    public NalogZaPrenos.PodaciOUplati createPodaciOUplati(){
+    	return new NalogZaPrenos.PodaciOUplati();
     }
 
 }
