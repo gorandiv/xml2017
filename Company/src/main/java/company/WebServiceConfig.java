@@ -11,7 +11,6 @@ import org.springframework.ws.transport.http.MessageDispatcherServlet;
 import org.springframework.ws.wsdl.wsdl11.DefaultWsdl11Definition;
 import org.springframework.ws.wsdl.wsdl11.SimpleWsdl11Definition;
 import org.springframework.ws.wsdl.wsdl11.Wsdl11Definition;
-import org.springframework.xml.xsd.SimpleXsdSchema;
 import org.springframework.xml.xsd.XsdSchema;
 
 @EnableWs
@@ -25,26 +24,41 @@ public class WebServiceConfig extends WsConfigurerAdapter {
 		return new ServletRegistrationBean(servlet, "/ws/*");
 	}
 
-	@Bean(name = "countries")
+	@Bean(name = "nalog_za_prenos")
 	public DefaultWsdl11Definition defaultWsdl11Definition(XsdSchema countriesSchema) {
 		DefaultWsdl11Definition wsdl11Definition = new DefaultWsdl11Definition();
-		wsdl11Definition.setPortTypeName("CountriesPort");
+		wsdl11Definition.setPortTypeName("NalogPort");
 		wsdl11Definition.setLocationUri("/ws");
-		wsdl11Definition.setTargetNamespace("http://spring.io/guides/gs-producing-web-service");
+		wsdl11Definition.setTargetNamespace("http://www.ftn.uns.ac.rs/nalogZaPrenos");
 		wsdl11Definition.setSchema(countriesSchema);
 		return wsdl11Definition;
 	}
-
-	@Bean
-	public XsdSchema countriesSchema() {
-		return new SimpleXsdSchema(new ClassPathResource("Countries.xsd"));
+	
+	@Bean(name = "zahtev_za_izvod")
+	public DefaultWsdl11Definition defaultWsdl11Definition1(XsdSchema countriesSchema) {
+		DefaultWsdl11Definition wsdl11Definition = new DefaultWsdl11Definition();
+		wsdl11Definition.setPortTypeName("ZahtevPort");
+		wsdl11Definition.setLocationUri("/ws");
+		wsdl11Definition.setTargetNamespace("http://www.ftn.uns.ac.rs/ZahtevZaIzvod");
+		wsdl11Definition.setSchema(countriesSchema);
+		return wsdl11Definition;
 	}
 	
-	 @Bean(name = "nalogZaPrenos")
-	  public Wsdl11Definition defaultWsdl11Definition() {
-	    SimpleWsdl11Definition wsdl11Definition = new SimpleWsdl11Definition();
-	    wsdl11Definition.setWsdl(new ClassPathResource("NalogZaPrenos.xsd"));
+	@Bean(name = "nalogZaPrenos")
+	public Wsdl11Definition defaultWsdl11Definition1() {
+		SimpleWsdl11Definition wsdl11Definition = new SimpleWsdl11Definition();
+		wsdl11Definition.setWsdl(new ClassPathResource("NalogZaPrenos.xsd"));
 
-	    return wsdl11Definition;
-	  }
+		return wsdl11Definition;
+	}
+	
+	@Bean(name = "zahtevZaIzvod")
+	public Wsdl11Definition defaultWsdl11Definition2() {
+		SimpleWsdl11Definition wsdl11Definition = new SimpleWsdl11Definition();
+		wsdl11Definition.setWsdl(new ClassPathResource("ZahtevZaIzvod.xsd"));
+
+		return wsdl11Definition;
+	}
+	
+	
 }

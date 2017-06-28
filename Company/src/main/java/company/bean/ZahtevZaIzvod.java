@@ -49,7 +49,7 @@ import javax.xml.bind.annotation.XmlType;
     "datum",
     "redniBrojPreseka"
 })
-@XmlRootElement(name = "zahtev_za_izvod")
+@XmlRootElement(name = "zahtev_za_izvod", namespace="http://www.ftn.uns.ac.rs/ZahtevZaIzvod")
 public class ZahtevZaIzvod {
 
     @XmlElement(name = "broj_racuna", required = true)
