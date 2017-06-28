@@ -1,4 +1,4 @@
-package company;
+package bank;
 
 import org.springframework.boot.web.servlet.ServletRegistrationBean;
 import org.springframework.context.ApplicationContext;
@@ -70,7 +70,7 @@ public class WebServiceConfig extends WsConfigurerAdapter {
 		return wsdl11Definition;
 	}
 
-	@Bean(name = "Presek")
+	@Bean(name = "presek")
 	public Wsdl11Definition defaultWsdl11Definition3() {
 		SimpleWsdl11Definition wsdl11Definition = new SimpleWsdl11Definition();
 		wsdl11Definition.setWsdl(new ClassPathResource("Presek.xsd"));

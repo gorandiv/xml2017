@@ -3,37 +3,99 @@
 	<h1>Izvod računa</h1>
 
 	<div class="form-group">
-		<label for="thisCompanyBill" class="control-label"> Broj računa: </label> <select
-			ng-options="racunFirme.brojRacuna as racunFirme.brojRacuna for racunFirme in thisCompany.banka.racuniFirme"
-			ng-model="overviewSectionRequest.brojRacuna"
-			class="form-control" id="thisCompanyBill">
+		<label for="thisCompanyBill" class="control-label"> Broj
+			računa: </label> <select
+			ng-options="bill.brojRacuna as bill.brojRacuna for bill in thisCompanyBills"
+			ng-model="overviewSectionRequest.brojRacuna" class="form-control"
+			id="thisCompanyBill">
 			<option style="background-color: #ccc" value="">Izaberi
 				račun...</option>
 		</select>
 	</div>
-	
+
 	<div class="form-group">
 		<label for="date" class="control-label"> Datum: </label> <input
 			type="date" min="1" class="form-control" id="amount"
 			ng-model="overviewSectionRequest.datum">
 	</div>
-	
+
 	<div class="form-group">
-		<label for="ordinal" class="control-label"> Redni broj preseka: </label> <input
-			type="number" min="1" class="form-control" id="ordinal"
-			ng-model="overviewSectionRequest.redniBrojPreseka"
+		<label for="ordinal" class="control-label"> Redni broj
+			preseka: </label> <input type="number" min="1" class="form-control"
+			id="ordinal" ng-model="overviewSectionRequest.redniBrojPreseka"
 			placeholder="Unesi redni broj preseka">
 	</div>
 	<div class="form-group">
-		<button type="button" class="btn btn-primary" ng-click="sendOverviewSectionRequest()">Pošalji zahtev za presek</button>
+		<button type="button" class="btn btn-primary"
+			ng-click="sendOverviewSectionRequest()">Pošalji zahtev za
+			presek</button>
 	</div>
-	
+
 
 	<div ng-repeat="overviewSection in overviewSections">
-	<hr/>
-	
-	
+		<hr/>
+		<h4>
+			<b>Broj računa:</b> {{overviewSection.zaglavlje.brojRacuna}}
+		</h4>
+		<h4>
+			<b>Datum naloga:</b> {{overviewSection.zaglavlje.datumNaloga}}
+		</h4>
+		<h4>
+			<b>Broj preseka:</b> {{overviewSection.zaglavlje.brojPreseka}}
+		</h4>
+		<h4>
+			<b>Prethodno stanje:</b>
+			{{overviewSection.zaglavlje.prethodnoStanje}}
+		</h4>
+		<h4>
+			<b>Broj promena u korist:</b>
+			{{overviewSection.zaglavlje.brojPromenaUKorist}}
+		</h4>
+		<h4>
+			<b>Broj promena na teret:</b>
+			{{overviewSection.zaglavlje.brojPromenaNaTeret}}
+		</h4>
+		<h4>
+			<b>Ukupno u korist:</b> {{overviewSection.zaglavlje.ukupnoUKorist}}
+		</h4>
+		<h4>
+			<b>Ukupno na teret:</b> {{overviewSection.zaglavlje.ukupnoNaTeret}}
+		</h4>
+		<h4>
+			<b>Novo stanje:</b> {{overviewSection.zaglavlje.novoStanje}}
+		</h4>
+
+		<div ng-repeat="overviewSectionItem in overviewSection.stavka">
+			<hr/>
+
+			<h4>
+				<b>Dužnik:</b> {{overviewSectionItem.duznik}}
+			</h4>
+			<h4>{{overviewSectionItem.racunDuznika.brojModela}}
+				{{overviewSectionItem.racunDuznika.brojRacuna}}
+				{{overviewSectionItem.racunDuznika.pozivNaBroj}}</h4>
+			<h4>
+				<b>Svrha plaćanja:</b> {{overviewSectionItem.svrhaPlacanja}}
+			</h4>
+			<h4>
+				<b>Poverilac:</b> {{overviewSectionItem.poverilac}}
+			</h4>
+			<h4>{{overviewSectionItem.racunPoverioca.brojModela}}
+				{{overviewSectionItem.racunPoverioca.brojRacuna}}
+				{{overviewSectionItem.racunPoverioca.pozivNaBroj}}</h4>
+			<h4>
+				<b>Datum naloga:</b> {{overviewSectionItem.datumNaloga}}
+			</h4>
+			<h4>
+				<b>Datum valute:</b> {{overviewSectionItem.datumValute}}
+			</h4>
+			<h4>
+				<b>Iznos:</b> {{overviewSectionItem.iznos}}
+			</h4>
+			<h4>
+				<b>Smer:</b> {{overviewSectionItem.smer}}
+			</h4>
+
+		</div>
 	</div>
-
-
 </div>

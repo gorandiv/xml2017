@@ -63,7 +63,7 @@ paymentOrderModule.service('paymentOrderService', ['$http', function($http) {
 	
 	this.removePaymentOrder = function(paymentOrder) {
 		
-		if(paymentOrder.paymentOrder.podaciOUplati.racunPoverioca.brojRacuna == null || paymentOrder.podaciOUplati.racunPoverioca.brojRacuna == "") {
+		if(paymentOrder.podaciOUplati.racunPoverioca.brojRacuna == null || paymentOrder.podaciOUplati.racunPoverioca.brojRacuna == "") {
 			toastr.warning("Potrebno je izabrati račun.");
 			return;
 		}

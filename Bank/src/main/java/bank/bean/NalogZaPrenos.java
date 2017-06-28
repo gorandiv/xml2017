@@ -286,10 +286,11 @@ public class NalogZaPrenos {
 		protected boolean hitno;
 		@XmlElement(name = "datum_naloga", namespace = "http://www.ftn.uns.ac.rs/nalogZaPrenos", required = true)
 		protected String datumNaloga;
-		@XmlTransient
+		
 		@Id
 		@Column(name = "id")
 		@GeneratedValue(strategy = GenerationType.AUTO)
+		@XmlTransient
 		private Integer id;
 
 		public Integer getId() {

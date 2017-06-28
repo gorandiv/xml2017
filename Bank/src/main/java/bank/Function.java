@@ -3,21 +3,21 @@ package bank;
 import org.springframework.oxm.jaxb.Jaxb2Marshaller;
 import org.springframework.ws.client.core.WebServiceTemplate;
 
-import bank.bean.ZahtevZaIzvod;
+import bank.bean.Presek;
 
 public class Function {
 
 	
 	public static void main(String[] args){
 		Function f=new Function();
-		ZahtevZaIzvod zahtev = new ZahtevZaIzvod();
+		Presek zahtev = new Presek();
 		f.sendZahtev(zahtev);
 	}
 	
-	private void sendZahtev(ZahtevZaIzvod zahtev){
+	private void sendZahtev(Presek zahtev){
 	    System.out.println("-----------------------------Poslat Nalog----------------------");
         WebServiceTemplate webServiceTemplate = configWebServiceTemplate("bank.bean",
-        		"http://localhost:8100/Firma/ws/zahtev_za_izvod");
+        		"http://localhost:8100/Firma/ws/prenos");
        webServiceTemplate.marshalSendAndReceive(zahtev);
         System.out.println("-----------------------------Primeljen Nalog--------------------");
   

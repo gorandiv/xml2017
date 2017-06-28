@@ -4,16 +4,20 @@ overviewModule.controller('overviewController', [
 		'overviewService',
 		'companyService',
 		'overviewObjectFactoryService',
-		function($scope, $interval, overviewService, overviewCompanyService,
+		function($scope, $interval, overviewService, companyService,
 				overviewObjectFactoryService) {
 			
-			$scope.thisCompany = {};
+			$scope.thisCompanyBills = [];
 			$scope.overviewSectionRequest = new overviewObjectFactoryService.OverviewSectionRequest();
 			$scope.overviewSections = [];
 			
-			companyService.getThisCompany().then(function(response) {
-				$scope.thisCompany = response.data;
+			companyService.getThisCompanyBills().then(function(response) {
+				$scope.thisCompanyBills = response.data;
 			});
 			
-			
-		}]);
+			$scope.sendOverviewSectionRequest = function() {
+				overviewService.sendOverviewSectionRequest($scope.overviewSections, $scope.overviewSectionRequest).then(function(response) {
+					$scope.overviewSections = response.data;
+				});
+			}
+}]);

@@ -37,6 +37,9 @@ public class Firma implements Serializable {
 	@Column(name = "adresa", unique = true, nullable = false)
 	private String adresa;
 
+	@Column(name = "adresa_firme", unique = true, nullable = false)
+	private String adresaFirme;
+
 	@ManyToOne(cascade = CascadeType.ALL)
 	@JoinColumn(name = "banka_id")
 	@JsonBackReference
@@ -87,6 +90,14 @@ public class Firma implements Serializable {
 
 	public void setBanka(Banka banka) {
 		this.banka = banka;
+	}
+
+	public String getAdresaFirme() {
+		return adresaFirme;
+	}
+
+	public void setAdresaFirme(String adresaFirme) {
+		this.adresaFirme = adresaFirme;
 	}
 
 	public List<ProizvodIliUsluga> getProizvodiIliUsluge() {

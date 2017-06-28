@@ -2,6 +2,7 @@ package company;
 
 import org.springframework.oxm.jaxb.Jaxb2Marshaller;
 import org.springframework.ws.client.core.WebServiceTemplate;
+
 import company.bean.ZahtevZaIzvod;
 
 public class Function {
@@ -33,6 +34,7 @@ public class Function {
 
         return webServiceTemplate;
     }
+	
 	
 }
 
