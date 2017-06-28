@@ -101,7 +101,7 @@ invoiceModule.service('invoiceService', ['$http', function($http) {
 	this.createInvoice = function(invoice, thisCompany) {
 
 		invoice.zaglavljeFakture.nazivDobavljaca = thisCompany.ime;
-		invoice.zaglavljeFakture.adresaDobavljaca = thisCompany.adresa;
+		invoice.zaglavljeFakture.adresaDobavljaca = thisCompany.adresaFirme;
 		invoice.zaglavljeFakture.pibDobavljaca = thisCompany.pib;
 		
 		if(invoice.zaglavljeFakture.nazivDobavljaca == null ||  invoice.zaglavljeFakture.uplataNaRacun == "" || invoice.zaglavljeFakture.uplataNaRacun == null || invoice.zaglavljeFakture.nazivKupca == "" || invoice.stavkaFakture.length == 0){
@@ -129,6 +129,8 @@ invoiceModule.service('invoiceService', ['$http', function($http) {
 	}
 	
 	this.sendInvoice = function(invoice) {
+		
+		console.log(invoice)
 		return $http({
 			  method: 'POST',
 			  url: '../Firma/invoice/send',

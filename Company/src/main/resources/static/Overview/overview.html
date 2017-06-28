@@ -4,7 +4,7 @@
 
 	<div class="form-group">
 		<label for="thisCompanyBill" class="control-label"> Broj računa: </label> <select
-			ng-options="racunFirme.brojRacuna as racunFirme.brojRacuna for racunFirme in thisCompany.banka.racuniFirme"
+			ng-options="bill.brojRacuna as bill.brojRacuna for bill in thisCompanyBills"
 			ng-model="overviewSectionRequest.brojRacuna"
 			class="form-control" id="thisCompanyBill">
 			<option style="background-color: #ccc" value="">Izaberi

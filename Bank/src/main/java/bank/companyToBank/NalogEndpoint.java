@@ -17,7 +17,6 @@ import bank.bankToCentral.Function;
 import bank.bankToCentral.M102Repository;
 import bank.bankToCentral.ReservedRepository;
 import bank.bean.Banka;
-import bank.bean.Firma;
 import bank.bean.NalogZaPrenos;
 import bank.bean.RacunFirme;
 import bank.bean.Reservation;

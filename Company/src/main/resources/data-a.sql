@@ -1,5 +1,5 @@
-INSERT INTO firma (id, pib, ime, banka_id, adresa)
-VALUES (1, '11111111111','A', 1, '127.0.0.1:8100')
+INSERT INTO firma (id, pib, ime, banka_id, adresa, adresa_firme)
+VALUES (1, '11111111111','A', 1, '127.0.0.1:8100', 'Novi Sad, Brace Ribnikar 15')
 ON DUPLICATE KEY UPDATE id=id;
 
 INSERT INTO proizvod_ili_usluga(ime, jedinica_mere, cena, porez, firma_id, jel_proizvod)
