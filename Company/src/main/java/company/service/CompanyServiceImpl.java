@@ -33,11 +33,14 @@ public class CompanyServiceImpl implements CompanyService {
 				break;
 			}
 		}
+		
 		return companies;
 	}
 
 	@Override
 	public Firma getThisCompany() {
+		
+		System.out.println(companyDao.findById(Integer.parseInt(companyId)).getBanka().getRacuniFirme().size());
 		return companyDao.findById(Integer.parseInt(companyId));
 	}
 
