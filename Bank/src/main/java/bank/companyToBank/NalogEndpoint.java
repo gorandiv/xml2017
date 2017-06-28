@@ -54,20 +54,38 @@ public class NalogEndpoint {
 	@ResponsePayload
 	public NalogZaPrenos handleRequest(@RequestPayload NalogZaPrenos request) {		
 		Banka thisBank = bankDAO.findById(Integer.parseInt(bankId));
+<<<<<<< HEAD
 		List<RacunFirme> rr=racuniDAO.findAll();
 		//try{
+=======
+		
+		System.out.println(thisBank.getRacuniFirme());
+		System.out.println("JAJAJAAJAJJAJAAJJ");
+		
+		try{
+>>>>>>> 926cfb5d72677c59242d00d78b3f801df27d3272
 			
 			String racunDuznika = request.getPodaciOUplati().getRacunDuznika().getBrojRacuna();
 			String racunPoverioca = request.getPodaciOUplati().getRacunPoverioca().getBrojRacuna();
 			
 			RacunFirme racunPoverioc = null;
 			RacunFirme racunDuznik = null;
+<<<<<<< HEAD
 			
 			for(RacunFirme racun : rr){
 				if(racun.getBrojRacuna().equals(racunDuznika))
 					racunDuznik=racun;
 				else if(racun.getBrojRacuna().equals(racunPoverioca))
 					racunPoverioc=racun;
+=======
+			for(RacunFirme racun : thisBank.getRacuniFirme()){
+				System.out.println(racun);
+				if(racun.getBrojRacuna().equals(racunPoverioca)){
+					racunPoverioc = racun;
+				}else if(racun.getBrojRacuna().equals(racunDuznika)){
+					racunDuznik = racun;
+				}
+>>>>>>> 926cfb5d72677c59242d00d78b3f801df27d3272
 			}
 			
 			

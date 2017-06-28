@@ -5,13 +5,7 @@
 // Generated on: 2017.06.28 at 02:21:29 AM CEST 
 //
 
-@javax.xml.bind.annotation.XmlSchema(
-		 xmlns = { 
-			        @XmlNs(prefix="presek",namespaceURI = "http://www.ftn.uns.ac.rs/presek"),
-			        @XmlNs(prefix="nalog",namespaceURI = "http://www.ftn.uns.ac.rs/nalogZaPrenos"),
-			        @XmlNs(prefix="zahtev", namespaceURI ="http://www.ftn.uns.ac.rs/ZahtevZaIzvod")
-			    }
-		)
+
+@javax.xml.bind.annotation.XmlSchema(namespace = "http://www.ftn.uns.ac.rs/presek", elementFormDefault = javax.xml.bind.annotation.XmlNsForm.QUALIFIED)
 package company.bean;
 
-import javax.xml.bind.annotation.XmlNs;

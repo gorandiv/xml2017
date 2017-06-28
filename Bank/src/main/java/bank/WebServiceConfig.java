@@ -60,5 +60,23 @@ public class WebServiceConfig extends WsConfigurerAdapter {
 		return wsdl11Definition;
 	}
 	
+	@Bean(name = "presek")
+	public DefaultWsdl11Definition defaultWsdl11Definition3(XsdSchema schema) {
+		DefaultWsdl11Definition wsdl11Definition = new DefaultWsdl11Definition();
+		wsdl11Definition.setPortTypeName("PresekPort");
+		wsdl11Definition.setLocationUri("/ws");
+		wsdl11Definition.setTargetNamespace("http://www.ftn.uns.ac.rs/presek");
+		wsdl11Definition.setSchema(schema);
+		return wsdl11Definition;
+	}
+
+	@Bean(name = "presek")
+	public Wsdl11Definition defaultWsdl11Definition3() {
+		SimpleWsdl11Definition wsdl11Definition = new SimpleWsdl11Definition();
+		wsdl11Definition.setWsdl(new ClassPathResource("Presek.xsd"));
+
+		return wsdl11Definition;
+	}
+	
 	
 }

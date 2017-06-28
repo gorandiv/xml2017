@@ -36,7 +36,11 @@ public class Banka implements Serializable {
 	@Column(name = "swift_kod", unique = true, nullable = false)
 	private String swiftKod;
 
+<<<<<<< HEAD
 	@OneToMany(cascade = CascadeType.ALL,fetch=FetchType.EAGER)
+=======
+	@OneToMany(cascade = CascadeType.ALL, fetch = FetchType.EAGER)
+>>>>>>> 926cfb5d72677c59242d00d78b3f801df27d3272
 	private List<RacunFirme> racuniFirme;
 
 	public List<RacunFirme> getRacuniFirme() {

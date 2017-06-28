@@ -6,8 +6,10 @@ import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.beans.factory.annotation.Value;
 import org.springframework.stereotype.Service;
 
+import company.bean.Banka;
 import company.bean.Firma;
 import company.bean.RacunFirme;
+import company.dao.BankDAO;
 import company.dao.BillDao;
 import company.dao.CompanyDao;
 
@@ -19,6 +21,9 @@ public class CompanyServiceImpl implements CompanyService {
 	
 	@Autowired
 	private BillDao billDao;
+	
+	@Autowired
+	private BankDAO bankDao;
 
 	@Value("${companyId}")
 	private String companyId;
@@ -40,7 +45,13 @@ public class CompanyServiceImpl implements CompanyService {
 	@Override
 	public Firma getThisCompany() {
 		
-		System.out.println(companyDao.findById(Integer.parseInt(companyId)).getBanka().getRacuniFirme().size());
+		Banka banka = bankDao.findById(1);
+		
+		System.out.println(banka.getRacuniFirme().size());
+		for(RacunFirme racun : banka.getRacuniFirme()) {
+			System.out.println(racun.getFirma());
+		}
+		
 		return companyDao.findById(Integer.parseInt(companyId));
 	}
 

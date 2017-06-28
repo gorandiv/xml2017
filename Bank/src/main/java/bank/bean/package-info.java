@@ -5,5 +5,5 @@
 // Generated on: 2017.06.28 at 10:04:54 AM CEST 
 //
 
-@javax.xml.bind.annotation.XmlSchema(namespace = "http://www.ftn.uns.ac.rs/ZahtevZaIzvod", elementFormDefault = javax.xml.bind.annotation.XmlNsForm.QUALIFIED)
+@javax.xml.bind.annotation.XmlSchema(namespace = "http://www.ftn.uns.ac.rs/presek", elementFormDefault = javax.xml.bind.annotation.XmlNsForm.QUALIFIED)
 package bank.bean;
