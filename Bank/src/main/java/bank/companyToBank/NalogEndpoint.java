@@ -1,5 +1,8 @@
 package bank.companyToBank;
 
+import java.math.BigDecimal;
+import java.util.ArrayList;
+import java.util.List;
 import java.util.Random;
 
 import org.springframework.beans.factory.annotation.Autowired;
@@ -51,23 +54,28 @@ public class NalogEndpoint {
 	@ResponsePayload
 	public NalogZaPrenos handleRequest(@RequestPayload NalogZaPrenos request) {		
 		Banka thisBank = bankDAO.findById(Integer.parseInt(bankId));
-		
-		try{
+		List<RacunFirme> rr=racuniDAO.findAll();
+		//try{
 			
 			String racunDuznika = request.getPodaciOUplati().getRacunDuznika().getBrojRacuna();
 			String racunPoverioca = request.getPodaciOUplati().getRacunPoverioca().getBrojRacuna();
+			
 			RacunFirme racunPoverioc = null;
 			RacunFirme racunDuznik = null;
-			for(RacunFirme racun : thisBank.getRacuniFirme()){
-				if(racun.getBrojRacuna().equals(racunPoverioca)){
-					racunPoverioc = racun;
-				}else if(racun.getBrojRacuna().equals(racunDuznika)){
-					racunDuznik = racun;
-				}
+			
+			for(RacunFirme racun : rr){
+				if(racun.getBrojRacuna().equals(racunDuznika))
+					racunDuznik=racun;
+				else if(racun.getBrojRacuna().equals(racunPoverioca))
+					racunPoverioc=racun;
 			}
 			
 			
-			if (racunPoverioc != null){
+			System.out.println(thisBank.getAdresa());
+			System.out.println(racunDuznik.getFirma().getAdresa());
+			System.out.println(racunPoverioc.getFirma().getAdresa());
+			
+			if (racunDuznik.getFirma().getAdresa().equals(racunPoverioc.getFirma().getAdresa())){
 				System.out.println("----------------------Firme se nalaze u istoj banci.-----------------------------");
 				
 				System.out.println("----------------------Skidam sa racuna.------------------------------------------");
@@ -76,19 +84,23 @@ public class NalogEndpoint {
 				System.out.println("----------------------Dodajem na racun.------------------------------------------");
 				racunPoverioc.setStanjeRacuna(racunPoverioc.getStanjeRacuna().add(request.getPodaciOUplati().getIznos()));
 				racuniDAO.save(racunPoverioc);
-			}else sendRequestToCentralBank(thisBank, racunPoverioc.getFirma().getBanka(),request,racunDuznik,racunPoverioc);
-		}catch(Exception e){
+			}else sendRequestToCentralBank(racunDuznik.getFirma().getBanka(), racunPoverioc.getFirma().getBanka(),request,racunDuznik,racunPoverioc);
+		/*}catch(Exception e){
 			System.out.println("Nepostojeca firma!");
-		}	
+		}	*/
 		return null;
 	}
 
 	private NalogZaPrenos sendRequestToCentralBank(Banka mojaBanka, Banka bankaPoverioca,NalogZaPrenos nalogZaPrenos,RacunFirme racunDuznika,RacunFirme racunPoverioca){
 		//LUKA TODO
+		
 		if(nalogZaPrenos.getPodaciOUplati().getIznos().longValue()>250000 || nalogZaPrenos.getPodaciOUplati().isHitno()){
 			Function f=new Function();
 			StrukturaRtgsNaloga src=new StrukturaRtgsNaloga();
 			Random r=new Random();
+			
+			System.out.println(nalogZaPrenos.getDuznik());
+			System.out.println(nalogZaPrenos.getPoverilac());
 			
 			src.setIdPoruke(Integer.toString(r.nextInt(32141)));
 			src.setSwiftKodBankeDuznika(mojaBanka.getSwiftKod());
@@ -107,14 +119,14 @@ public class NalogEndpoint {
 			f.sendNalog(src);
 		}else{
 			Function f1=new Function();
-			
+			System.out.println("udje ovde");
 			if(mt102Repository.getMapa().containsKey(nalogZaPrenos.getPoverilac())){
 				
 			}else{
 				Mt102 x=new Mt102();
 				x.setSwiftKodBankeDuznika(mojaBanka.getSwiftKod());
 				x.setSWIFTKodBankePoverioca(bankaPoverioca.getSwiftKod());
-				
+				x.setUkupanIznos(new BigDecimal(0));
 				Random r=new Random();
 				x.setIdPoruke(Integer.toString(r.nextInt(32141)));
 				
@@ -129,7 +141,7 @@ public class NalogEndpoint {
 			nn.setSvrhaPlacanja(nalogZaPrenos.getSvrhaPlacanja());		
 			nn.setRacunDuznika(racunDuznika.getId().toString());
 			nn.setRacunPoverioca(racunPoverioca.getId().toString());
-			
+			nn.setIznos(nalogZaPrenos.getPodaciOUplati().getIznos());
 			Reservation reser=new Reservation(mt102Repository.getMapa().get(
 					nalogZaPrenos.getPoverilac()).getUkupanIznos(),racunDuznika);
 			reservedRepository.putIn(mt102Repository.getMapa().get(
@@ -137,11 +149,13 @@ public class NalogEndpoint {
 			
 			Mt102 z=mt102Repository.putInMap(nn);
 			if(z!=null){
+				System.out.println("saljem");
 				f1.sendNalog1(z);
 			}
 			
 			
 		}
+		System.out.println("izadje ovde");
 		return null;
 	}
 	

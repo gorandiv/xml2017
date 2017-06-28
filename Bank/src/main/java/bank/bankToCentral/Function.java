@@ -79,7 +79,7 @@ public class Function {
     	
         System.out.println("-----------------------------Poslat Nalog----------------------");
         WebServiceTemplate webServiceTemplate = configWebServiceTemplate("com.example.bankxml.bankxml.mt102",
-        		"http://localhost:8080/ws/strukturaRtgsNaloga");
+        		"http://localhost:8080/ws/mt102");
         Mt102 nalogResponse = (Mt102) webServiceTemplate.marshalSendAndReceive(nalog);
         System.out.println("-----------------------------Primeljen Nalog--------------------");
     }

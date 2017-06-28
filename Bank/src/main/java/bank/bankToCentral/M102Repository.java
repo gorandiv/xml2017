@@ -34,7 +34,8 @@ private HashMap<String, Mt102> mapa=new HashMap<>();
 
 	public Mt102 putInMap(NalogZaMT102 nalog){
 
-		
+			System.out.println(mapa.get(nalog.getPrimalacPoverilac()).getUkupanIznos());
+			System.out.println(nalog.getIznos());
 			mapa.get(nalog.getPrimalacPoverilac()).getNalogZaMT102().add(nalog);
 			mapa.get(nalog.getPrimalacPoverilac()).setUkupanIznos(
 					mapa.get(nalog.getPrimalacPoverilac()).getUkupanIznos().add(nalog.getIznos()));

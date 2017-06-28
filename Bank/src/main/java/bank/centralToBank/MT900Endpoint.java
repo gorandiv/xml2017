@@ -58,12 +58,12 @@ public class MT900Endpoint {
 	@PayloadRoot(namespace = NAMESPACE_URI, localPart = "strukturaRtgsNaloga")
 	@ResponsePayload
 	public StrukturaRtgsNaloga getCountry(@RequestPayload StrukturaRtgsNaloga request) {
+		//Firma poverilac = companyDAO.findByIme(request.getPrimalacPoverilac());
 		
-		Firma poverilac = companyDAO.findByIme(request.getPrimalacPoverilac());
-		RacunFirme racunPoverioca = racuniDAO.findByFirma_Id(poverilac.getId());
+		RacunFirme racunPoverioca = racuniDAO.findById(Integer.parseInt(request.getRacunPoverioca()));
 		racunPoverioca.setStanjeRacuna(racunPoverioca.getStanjeRacuna().add(request.getIznos()));
 		racuniDAO.save(racunPoverioca);
-		
+		System.out.println("posle");
 		return request;
 	}
 
