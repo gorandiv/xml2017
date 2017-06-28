@@ -16,10 +16,8 @@ overviewModule.controller('overviewController', [
 			});
 			
 			$scope.sendOverviewSectionRequest = function() {
-				overviewService.sendOverviewSectionRequest($scope.overviewSectionRequest).then(function(response) {
+				overviewService.sendOverviewSectionRequest($scope.overviewSections, $scope.overviewSectionRequest).then(function(response) {
 					$scope.overviewSections = response.data;
 				});
 			}
-			
-			
-		}]);
+}]);
