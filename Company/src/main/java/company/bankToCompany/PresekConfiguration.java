@@ -13,7 +13,7 @@ import org.springframework.xml.xsd.XsdSchema;
 
 @EnableWs
 @Configuration
-public class ZahtevConfiguration {
+public class PresekConfiguration {
 
 	@Bean
 	public ServletRegistrationBean messageDispatcherServlet(ApplicationContext applicationContext) {
@@ -23,20 +23,19 @@ public class ZahtevConfiguration {
 		return new ServletRegistrationBean(servlet, "/ws/*");
 	}
 
-	@Bean(name = "zahtev_za_izvod")
+	@Bean(name = "presek")
 	public DefaultWsdl11Definition defaultWsdl11Definition(XsdSchema countriesSchema) {
 		DefaultWsdl11Definition wsdl11Definition = new DefaultWsdl11Definition();
-		wsdl11Definition.setPortTypeName("ZahtevPort");
+		wsdl11Definition.setPortTypeName("PresekPort");
 		wsdl11Definition.setLocationUri("/ws");
-		wsdl11Definition.setTargetNamespace("http://www.ftn.uns.ac.rs/ZahtevZaIzvod");
+		wsdl11Definition.setTargetNamespace("http://www.ftn.uns.ac.rs/presek");
 		wsdl11Definition.setSchema(countriesSchema);
 		return wsdl11Definition;
 	}
 
 	@Bean
 	public XsdSchema countriesSchema() {
-		return new SimpleXsdSchema(new ClassPathResource("ZahtevZaIzvod.xsd"));
+		return new SimpleXsdSchema(new ClassPathResource("Presek.xsd"));
 	}
-	
 	
 }
