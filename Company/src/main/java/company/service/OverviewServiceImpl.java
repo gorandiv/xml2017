@@ -24,18 +24,23 @@ public class OverviewServiceImpl implements OverviewService {
 	public Presek getOverviewSectionRequestToBank(ZahtevZaIzvod overviewSectionRequest) {
 		
 		
-		sendRequest(overviewSectionRequest);
+		Presek presek = sendRequest(overviewSectionRequest);
 		
-		return null;
+		System.out.println(presek);
+		System.out.println(presek.getZaglavlje().getBrojRacuna());
+		
+		return presek;
+		
 	}
 	
-	private void sendRequest(ZahtevZaIzvod request){
+	private Presek sendRequest(ZahtevZaIzvod request){
 		 Firma thisCompany = getCompany();
 		 System.out.println("-----------------------------Poslat Nalog----------------------");
 	     WebServiceTemplate webServiceTemplate = configWebServiceTemplate("company.bean",
 	        		"http://"+ thisCompany.getBanka().getAdresa() + "/ws/zahtev_za_izvod");
-	     webServiceTemplate.marshalSendAndReceive(request);
+	     Presek presek = (Presek) webServiceTemplate.marshalSendAndReceive(request);
 	     System.out.println("--------------------------Primljen Nalog--------------------");
+	     return presek;
 	}
 	
 	
