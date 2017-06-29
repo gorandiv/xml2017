@@ -1,0 +1,1 @@
+var paymentOrderModule = angular.module('paymentOrder', []);
