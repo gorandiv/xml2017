@@ -12,6 +12,7 @@ import bank.bean.Presek.Zaglavlje;
 import bank.bean.ZahtevZaIzvod;
 import bank.dao.BankDAO;
 import bank.dao.CompanyDao;
+import bank.dao.OverviewSectionDao;
 import bank.dao.RacuniDAO;
 
 @Endpoint
@@ -28,6 +29,9 @@ public class ZahtevEndpoint {
 	private CompanyDao companyDAO;
 	@Autowired
 	private RacuniDAO racuniDAO;
+	
+	@Autowired
+	private OverviewSectionDao overviewSectionDao;
 
 	@PayloadRoot(namespace = NAMESPACE_URI, localPart = "zahtev_za_izvod")
 	@ResponsePayload
@@ -37,13 +41,9 @@ public class ZahtevEndpoint {
 		
 		System.out.println("USAO SAM U ZAHTEV ENDPOINT - BANKA");
 		
-		Presek presek = new Presek();
-		presek.setId(2222);
-		presek.setZaglavlje(new Zaglavlje());
-		presek.getZaglavlje().setBrojRacuna("123412");
+		System.out.println(Integer.parseInt(request.getRedniBrojPreseka().toString()) + "**************************************************");
 		
-		
-		return presek;
+		return overviewSectionDao.findByZaglavljeBrojPresekaAndDatumNalogaAndBrojRacuna(request.getRedniBrojPreseka(), request.getDatum(), request.getBrojRacuna());
 	}
 	
 }

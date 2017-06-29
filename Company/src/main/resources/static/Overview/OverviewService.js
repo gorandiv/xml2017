@@ -8,7 +8,7 @@ overviewModule.service('overviewService', ['$http', function($http) {
 		
 		for(var i = 0; i < overviewSections.length; i++) {
 			
-			if(overviewSections[i].zaglavlje.brojPreseka == overviewSectionRequest.redniBrojPreseka) {
+			if(overviewSections[i].zaglavlje.brojPreseka == overviewSectionRequest.redniBrojPreseka && overviewSections[i].zaglavlje.brojRacuna == overviewSectionRequest.brojRacuna) {
 				toastr.warning("Presek sa tim rednim brojem je već prikazan.");
 				return;
 			}
@@ -21,12 +21,23 @@ overviewModule.service('overviewService', ['$http', function($http) {
 			return;
 		}
 		var date = overviewSectionRequest.datum;
-		request = {brojRacuna : overviewSectionRequest.brojRacuna, datum :  (date.getMonth() + 1) + '/' + date.getDate() + '/' +  date.getFullYear(),
+		
+		var d = (date.getMonth() + 1) + '/' + date.getDate() + '/' +  date.getFullYear();
+		
+		var splitD = d.split('/');
+		if(splitD[0].length == 1)
+			splitD[0] = "0"+splitD[0];
+		if(splitD[1].length == 1)
+			splitD[1] = "0"+splitD[1];
+		
+		var datumZaSlanje = splitD[1]+splitD[0]+splitD[2];
+		
+		
+		request = {brojRacuna : overviewSectionRequest.brojRacuna, datum :  datumZaSlanje,
 			redniBrojPreseka: overviewSectionRequest.redniBrojPreseka};
 		return $http({
 			  method: 'POST',
-			  url: '../Firma/overview/overview-section',
-			  data: angular.toJson(request),
+			  url: '../Firma/overview/overview-section/'+request.brojRacuna+'/'+request.datum+'/'+request.redniBrojPreseka,
 			  headers: { 'Accept': 'application/json' }
 			}).then(function successCallback(response) {
 				return response;

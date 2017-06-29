@@ -57,7 +57,7 @@ public class ZahtevZaIzvod {
     @XmlElement(required = true)
     protected String datum;
     @XmlElement(name = "redni_broj_preseka", required = true)
-    protected BigInteger redniBrojPreseka;
+    protected BigInteger  redniBrojPreseka;
 
     /**
      * Gets the value of the brojRacuna property.
@@ -115,7 +115,7 @@ public class ZahtevZaIzvod {
      *     {@link BigInteger }
      *     
      */
-    public BigInteger getRedniBrojPreseka() {
+    public BigInteger  getRedniBrojPreseka() {
         return redniBrojPreseka;
     }
 
@@ -127,7 +127,7 @@ public class ZahtevZaIzvod {
      *     {@link BigInteger }
      *     
      */
-    public void setRedniBrojPreseka(BigInteger value) {
+    public void setRedniBrojPreseka(BigInteger  value) {
         this.redniBrojPreseka = value;
     }
 

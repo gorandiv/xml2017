@@ -69,7 +69,7 @@ invoiceModule.service('invoiceService', ['$http', function($http) {
 			invoice.zaglavljeFakture.pibKupca = "";
 		} else {
 			invoice.zaglavljeFakture.nazivKupca = company.ime;
-			invoice.zaglavljeFakture.adresaKupca = company.adresa;
+			invoice.zaglavljeFakture.adresaKupca = company.adresaFirme;
 			invoice.zaglavljeFakture.pibKupca = company.pib;
 		}
 	}

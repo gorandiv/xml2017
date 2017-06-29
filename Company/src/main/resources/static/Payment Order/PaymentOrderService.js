@@ -37,6 +37,11 @@ paymentOrderModule.service('paymentOrderService', ['$http', function($http) {
 	
 	this.createPaymentOrder = function(paymentOrder) {
 		
+		if(paymentOrder.podaciOUplati.racunDuznika.brojRacuna == null || paymentOrder.podaciOUplati.racunDuznika.brojRacuna == ""  || 
+				paymentOrder.podaciOUplati.racunPoverioca.brojRacuna == null || paymentOrder.podaciOUplati.racunPoverioca.brojRacuna == "") {
+			toastr.warning("Potrebno je uneti sve podatke.");
+			return;
+		}
 		return $http({
 			  method: 'POST',
 			  url: '../Firma/payment-order/create',
@@ -50,6 +55,13 @@ paymentOrderModule.service('paymentOrderService', ['$http', function($http) {
 	}
 	
 	this.sendPaymentOrder = function(paymentOrder) {
+		
+		if(paymentOrder.podaciOUplati.racunDuznika.brojRacuna == null || paymentOrder.podaciOUplati.racunDuznika.brojRacuna == ""  || 
+				paymentOrder.podaciOUplati.racunPoverioca.brojRacuna == null || paymentOrder.podaciOUplati.racunPoverioca.brojRacuna == "") {
+			toastr.warning("Potrebno je uneti sve podatke.");
+		return;
+	}
+		
 		return $http({
 			  method: 'PUT',
 			  url: '../Firma/payment-order/send/' + paymentOrder.id,

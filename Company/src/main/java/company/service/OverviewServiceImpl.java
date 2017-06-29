@@ -1,5 +1,7 @@
 package company.service;
 
+import java.math.BigInteger;
+
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.beans.factory.annotation.Value;
 import org.springframework.oxm.jaxb.Jaxb2Marshaller;
@@ -21,13 +23,14 @@ public class OverviewServiceImpl implements OverviewService {
 	private String companyId;
 
 	@Override
-	public Presek getOverviewSectionRequestToBank(ZahtevZaIzvod overviewSectionRequest) {
-		
+	public Presek getOverviewSectionRequestToBank(String billNumber, String date, String overviewSectionOrdinal) {
+		ZahtevZaIzvod overviewSectionRequest = new ZahtevZaIzvod();
+		date = date.substring(0, 2) + "/" + date.substring(2,4)+ "/" + date.substring(4,8);
+		overviewSectionRequest.setBrojRacuna(billNumber);
+		overviewSectionRequest.setDatum(date);
+		overviewSectionRequest.setRedniBrojPreseka(new BigInteger(overviewSectionOrdinal));
 		
 		Presek presek = sendRequest(overviewSectionRequest);
-		
-		System.out.println(presek);
-		System.out.println(presek.getZaglavlje().getBrojRacuna());
 		
 		return presek;
 		

@@ -68,11 +68,13 @@ paymentOrderModule.controller('paymentOrderController', [
 			$scope.createPaymentOrder = function() {
 				paymentOrderService.createPaymentOrder($scope.paymentOrder).then(function(response) {
 					$scope.createdPaymentOrders.push(response.data);
+					$scope.selectedInvoice = null;
 					$scope.paymentOrder = new paymentOrderObjectFactoryService.PaymentOrder(
 							new paymentOrderObjectFactoryService.PaymentInfo(
 									new paymentOrderObjectFactoryService.Account(),
 									new paymentOrderObjectFactoryService.Account()));
 					toastr.info("Nalog za plaćanje je uspešno kreiran.");
+					$scope.paymentOr
 				});
 			}
 			

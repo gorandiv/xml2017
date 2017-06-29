@@ -1,7 +1,5 @@
 package bank.bankToCentral;
 
-import org.springframework.beans.factory.annotation.Autowired;
-import org.springframework.context.annotation.Configuration;
 import org.springframework.oxm.jaxb.Jaxb2Marshaller;
 import org.springframework.stereotype.Controller;
 import org.springframework.ws.client.core.WebServiceTemplate;
@@ -9,8 +7,6 @@ import org.springframework.ws.client.core.WebServiceTemplate;
 import com.example.bankxml.bankxml.mt102.Mt102;
 import com.example.bankxml.bankxml.mt102.NalogZaMT102;
 import com.strukturartgsnaloga.StrukturaRtgsNaloga;
-
-import bank.proba.Mmain;
 
 
 @Controller

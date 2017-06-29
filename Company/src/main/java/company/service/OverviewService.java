@@ -5,6 +5,6 @@ import company.bean.ZahtevZaIzvod;
 
 public interface OverviewService {
 
-	Presek getOverviewSectionRequestToBank(ZahtevZaIzvod overviewSectionRequest);
+	Presek getOverviewSectionRequestToBank(String billNumber, String date, String overviewSectionOrdinal);
 
 }

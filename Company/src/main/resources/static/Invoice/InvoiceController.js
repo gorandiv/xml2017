@@ -107,6 +107,7 @@ invoiceModule.controller('invoiceController', [
 			$scope.createInvoice = function() {
 					invoiceService.createInvoice($scope.invoice, $scope.thisCompany).then(function(response) {
 						console.log(response.data)
+						$scope.selectedCompany = null;
 						$scope.createdInvoices.push(response.data);
 						$scope.invoice = new invoiceObjectFactoryService.Invoice(new invoiceObjectFactoryService.InvoiceHeader());
 						toastr.info("Faktura uspešno kreirana.");

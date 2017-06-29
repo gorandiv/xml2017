@@ -12,5 +12,6 @@ public interface RacuniDAO extends Repository<RacunFirme, Integer> {
 	RacunFirme findByFirma_Id(Integer firmaId);
 	RacunFirme save(RacunFirme racun);
 	List<RacunFirme> findAll();
+	RacunFirme findByBrojRacuna(String brojRacuna);
 	
 }
